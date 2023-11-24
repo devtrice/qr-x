@@ -10,7 +10,6 @@ export default function Page(): JSX.Element {
         options={{
           renderer: 'svg'
         }}
-        className='w-64 h-64'
       />
     </main>
   )
