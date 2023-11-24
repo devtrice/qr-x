@@ -3,18 +3,18 @@
 var QRCode$ = require('./lib/QRCode');
 var ErrorCorrectLevel = require('./lib/ErrorCorrectLevel');
 import { useEffect, useState } from 'react'
- 
+
 type Options = {
   typeNumber?: number
   errorCorrectLevel?: number
   renderer?: 'svg' | 'canvas' | 'table'
 }
 
-const generateQR = function(data: string, options?: Options) {
-	const qr = new QRCode$(options?.typeNumber || -1, options?.errorCorrectLevel || ErrorCorrectLevel.H);
-	qr.addData(data);
-	qr.make();
-	return qr;
+const generateQR = function (data: string, options?: Options) {
+  const qr = new QRCode$(options?.typeNumber || -1, options?.errorCorrectLevel || ErrorCorrectLevel.H);
+  qr.addData(data);
+  qr.make();
+  return qr;
 };
 
 
@@ -23,15 +23,15 @@ export function QRCode({ url, options }: { url: string, options?: Options }) {
 
   useEffect(() => {
     const qr = generateQR(url, options)
-    const blocks: Array<Array<boolean>> = qr.modules 
+    const blocks: Array<Array<boolean>> = qr.modules
     setBlocks(blocks)
   }, [url, options])
- 
+
   return options?.renderer === 'table' ? (
     <table cellSpacing={0}>
       {blocks.map((row, i) => (
         <tr key={i}>
-          {row.map((block, j) => ( 
+          {row.map((block, j) => (
             <td key={`${i}-${j}`} style={{ background: block ? '#000' : '#fff', width: 3, height: 3 }} />
           ))}
         </tr>
@@ -56,13 +56,19 @@ export function QRCode({ url, options }: { url: string, options?: Options }) {
       }}
     />
   ) : (
-    <svg viewBox={`0 0 ${blocks.length} ${blocks.length}`}>
-      {blocks.map((row, i) =>
-        row.map((block, j) => (
-          <rect key={`${i}-${j}`} x={j} y={i} width={1} height={1} fill={block ? '#000' : '#fff'} />
-        ))
-      )}
+
+    <svg viewBox={`0 0 ${blocks.length} ${blocks.length}`}
+      style={{
+        background: 'linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(224,52,95,1) 21%, rgba(0,212,255,1) 100%)'
+      }}>
+      <g shapeRendering={'crispEdges'}>
+        {blocks.map((row, i) =>
+          row.map((block, j) =>
+            <rect key={`${i}-${j}`} x={j} y={i} width={1} height={1} fill={block ? 'transparent' : '#fff'} />
+          ))}
+      </g>
     </svg>
-  ) 
+
+  )
 }
 
