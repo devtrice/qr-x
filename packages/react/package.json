@@ -1,23 +1,25 @@
 {
-  "name": "@qr-x/core",
-  "license": "MIT",
+  "name": "@qr-x/react",
   "version": "0.0.1",
+  "license": "MIT",
   "description": "",
   "main": "dist/index.cjs.js",
   "types": "dist/index.d.ts",
   "module": "dist/index.esm.js",
   "files": [
-    "dist"
+    "dist",
+    "types"
   ],
   "keywords": [
     "qr",
-    "code"
+    "code",
+    "react"
   ],
   "scripts": {
     "build": "rm -rf dist && yarn build:dts && yarn build:esm && yarn build:cjs",
     "build:dts": "tsc -p tsconfig.build.json --outDir ./dist",
-    "build:esm": "esbuild index.ts --bundle --packages=external --format=esm --outfile=./dist/index.esm.js",
-    "build:cjs": "esbuild index.ts --bundle --packages=external --format=cjs --outfile=./dist/index.cjs.js",
+    "build:esm": "esbuild index.tsx --bundle --packages=external --format=esm --outfile=./dist/index.esm.js",
+    "build:cjs": "esbuild index.tsx --bundle --packages=external --format=cjs --outfile=./dist/index.cjs.js",
     "watch": "yarn build:dts && yarn build:esm && yarn build:cjs",
     "watch:dts": "tsc --watch -p tsconfig.build.json --outDir ./dist",
     "watch:esm": "esbuild index.ts --bundle --watch --packages=external --format=esm --outfile=./dist/index.esm.js",
@@ -25,9 +27,13 @@
   },
   "dependencies": {
     "tsconfig": "*",
-    "qr.js": "^0.0.0"
+    "@qr-x/core": "*"
   },
   "devDependencies": {
     "typescript": "^5.3.2"
+  },
+  "peerDependencies": {
+    "react": "^16.8.0  || ^17.0.0 || ^18.0.0",
+    "react-dom": "^16.8.0  || ^17.0.0 || ^18.0.0"
   }
 }

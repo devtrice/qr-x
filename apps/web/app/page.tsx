@@ -1,16 +1,12 @@
-'use client'
+import QRX from '@qr-x/react'
 
-import { QRCode } from 'qr-x'
-
-export default function Page(): JSX.Element {
+export default function Page() {
   return (
-    <main>
-      <QRCode 
-        url="https://zeyar.dev" 
-        options={{
-          renderer: 'svg'
-        }}
-      />
+    <main className='flex items-center justify-center w-screen h-screen'>
+      <div className='max-w-sm w-full flex gap-x-10'>
+        <QRX data='helloworld' path='rect' />
+        <QRX data='helloworld' path='circle' />
+      </div>
     </main>
   )
 }

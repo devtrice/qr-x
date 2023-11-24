@@ -3,6 +3,5 @@
   "printWidth": 130,
   "singleQuote": true,
   "arrowParens": "avoid",
-  "jsxSingleQuote": true,
-  "plugins": ["prettier-plugin-tailwindcss"]
+  "jsxSingleQuote": true
 }

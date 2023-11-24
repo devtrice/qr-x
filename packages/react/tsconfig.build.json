@@ -1,0 +1,6 @@
+{
+  "extends": "tsconfig/types-only.json",
+  "compilerOptions": {
+    "jsx": "preserve"
+  }
+}
