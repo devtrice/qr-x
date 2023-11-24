@@ -3,8 +3,7 @@
   "license": "MIT",
   "version": "0.0.0",
   "private": true,
-  "main": "./index.js",
-  "types": "./qr-x.d.ts",
+  "main": "./index.tsx",
   "devDependencies": {
     "typescript": "^5.2.2"
   }
