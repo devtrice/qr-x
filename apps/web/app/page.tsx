@@ -6,6 +6,7 @@ export default function Page() {
       <div className='max-w-sm w-full flex gap-x-10'>
         <QRX data='helloworld' path='rect' />
         <QRX data='helloworld' path='circle' />
+        <QRX data='helloworld' path='path' />
       </div>
     </main>
   )

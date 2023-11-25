@@ -9,7 +9,7 @@ export default function QRX({ path = 'rect', ...options }: Props) {
   return (
     <svg viewBox={`0 0 ${matrix.length} ${matrix.length}`}>
       {matrix.map((row, i) =>
-        row.map(({ isON }, ii) => createElement(tag, { ...props(i, ii), fill: isON ? '#000' : '#fff', width: 1, height: 1 })),
+        row.map(({ isON }, j) => createElement(tag, { ...props(i, j), fill: isON ? '#000' : '#fff', width: 1, height: 1 })),
       )}
     </svg>
   )
