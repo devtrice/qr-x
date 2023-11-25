@@ -1,6 +1,7 @@
 import QR from 'qr.js'
+import { SVGProps } from 'react'
 
-type Paths = keyof typeof paths
+type Shapes = keyof typeof shapes
 
 type Options = {
   data: string
@@ -15,11 +16,20 @@ type Matrix = {
   isON: boolean
 }
 
-export const paths = {
-  rect: { tag: 'rect', props: (x: number, y: number) => ({ x, y }) },
-  circle: { tag: 'rect', props: (x: number, y: number) => ({ x, y, rx: 0.5, ry: 0.5 }) },
-  polygon: { tag: 'polygon', props: (x: number, y: number) => ({ x, y }) },
-  path: { tag: 'path', props: (x: number, y: number) => ({ d: `M ${x} ${y} h 1 v 1 h -1 v -1` }) },
+export const shapes = {
+  circle: {
+    tag: 'path',
+    props: (x: number, y: number): SVGProps<SVGSVGElement> => {
+      const r = 0.5
+      return {
+        d: `M ${x + r * 2}, ${y + r} 
+          a ${r},${r} 45 1,0 -${r * 2},0,
+          a ${r},${r} 45 1,0 ${r * 2},0`,
+        // rotation 45deg is to smooth the edges of the circle (bug in chromium)
+      }
+    },
+  },
+  rect: { tag: 'path', props: (x: number, y: number) => ({ d: `M ${x} ${y} h 1 v 1 h -1 v -1`, shapeRendering: 'crispEdges' }) },
 }
 
 export default function getMatrix({ data, ...options }: Options): Matrix[][] {
@@ -31,4 +41,4 @@ export default function getMatrix({ data, ...options }: Options): Matrix[][] {
   )
 }
 
-export type { Paths, Options }
+export type { Shapes, Options }
