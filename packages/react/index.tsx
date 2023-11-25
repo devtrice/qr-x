@@ -3,7 +3,7 @@ import getMatrix, { shapes, Shapes, Options } from '@qr-x/core'
 
 type Props = Options & { shape?: Shapes }
 
-export default function QRX({ shape = 'rect', ...options }: Props) {
+export default function QRX({ shape = 'square', ...options }: Props) {
   const matrix = getMatrix(options)
   const { tag, props } = shapes[shape]
   return (

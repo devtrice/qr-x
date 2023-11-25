@@ -16,10 +16,15 @@ type Matrix = {
   isON: boolean
 }
 
+type ShapeElement = {
+  tag: keyof JSX.IntrinsicElements
+  props: (x: number, y: number) => SVGProps<SVGSVGElement>
+}
+
 export const shapes = {
   circle: {
     tag: 'path',
-    props: (x: number, y: number): SVGProps<SVGSVGElement> => {
+    props: (x, y) => {
       const r = 0.5
       return {
         d: `M ${x + r * 2}, ${y + r} 
@@ -28,8 +33,39 @@ export const shapes = {
         // rotation 45deg is to smooth the edges of the circle (bug in chromium)
       }
     },
-  },
-  rect: { tag: 'path', props: (x: number, y: number) => ({ d: `M ${x} ${y} h 1 v 1 h -1 v -1`, shapeRendering: 'crispEdges' }) },
+  } satisfies ShapeElement,
+  square: {
+    tag: 'path',
+    props: (x, y) => ({ d: `M ${x} ${y} h 1 v 1 h -1 v -1`, shapeRendering: 'crispEdges' }),
+  } satisfies ShapeElement,
+  rhombus: {
+    tag: 'path',
+    props: (x, y) => ({ d: `M ${x + 1} ${y} l 1 1 l -1 1 l -1 -1 Z` }),
+  } satisfies ShapeElement,
+  diamond: {
+    tag: 'path',
+    props: (x, y) => ({ d: `M ${x + 0.5} ${y} l 0.5 0.5 l -0.5 0.5 l -0.5 -0.5 Z` }),
+  } satisfies ShapeElement,
+  triangle: {
+    tag: 'path',
+    props: (x, y) => ({ d: `M ${x} ${y + 1} l 0.5 -1 l 0.5 1 Z` }),
+  } satisfies ShapeElement,
+  heart: {
+    tag: 'path',
+    props: (x, y) => ({
+      d: `M ${x + 0.5} ${y + 0.5} 
+          c -0.1, -0.5
+            0.6, -0.5
+            0.5, 0 
+          l -0.5, 0.5
+          l -0.5, -0.5
+          c -0.1 -0.6
+            0.7, -0.4
+            0.5, 0 
+            
+            Z`,
+    }),
+  } satisfies ShapeElement,
 }
 
 export default function getMatrix({ data, ...options }: Options): Matrix[][] {
