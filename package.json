@@ -1,7 +1,6 @@
 {
   "private": true,
   "scripts": {
-    "dev": "turbo run dev",
     "watch": "turbo run watch",
     "build": "turbo run build"
   },
