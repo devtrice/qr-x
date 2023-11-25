@@ -1,23 +1,20 @@
 {
-  "private": true,
   "scripts": {
     "dev": "turbo run dev",
     "watch": "turbo run watch",
     "build": "turbo run build"
   },
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
   "devDependencies": {
     "esbuild": "^0.19.7",
     "eslint": "^8.48.0",
     "prettier": "^3.1.0",
     "tsconfig": "*",
-    "turbo": "latest"
-  },
-  "packageManager": "yarn@1.22.19",
-  "workspaces": [
-    "apps/*",
-    "packages/*"
-  ],
-  "dependencies": {
+    "turbo": "latest",
     "typescript": "^5.3.2"
-  }
+  },
+  "packageManager": "yarn@1.22.19"
 }

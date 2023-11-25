@@ -20,7 +20,7 @@
     "build:dts": "tsc -p tsconfig.build.json --outDir ./dist",
     "build:esm": "esbuild index.tsx --bundle --packages=external --format=esm --outfile=./dist/index.esm.js",
     "build:cjs": "esbuild index.tsx --bundle --packages=external --format=cjs --outfile=./dist/index.cjs.js",
-    "watch": "yarn build:dts && yarn build:esm && yarn build:cjs",
+    "watch": "yarn watch:dts && yarn watch:esm && yarn watch:cjs",
     "watch:dts": "tsc --watch -p tsconfig.build.json --outDir ./dist",
     "watch:esm": "esbuild index.ts --bundle --watch --packages=external --format=esm --outfile=./dist/index.esm.js",
     "watch:cjs": "esbuild index.ts --bundle --watch --packages=external --format=cjs --outfile=./dist/index.cjs.js"

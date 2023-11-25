@@ -1,8 +1,7 @@
 # Development
 
 ```
-yarn dev; // Will start the nextjs server
-yarn build; // Currently need to run manually after each of core and react to updated
+yarn watch; // Will run packages/core packages/react apps/web in concurrently parallel
 ```
 
 ## packages/core

@@ -3,7 +3,6 @@
   "extends": "./base.json",
   "compilerOptions": {
     "noEmit": false,
-    "skipLibCheck": true,
     "emitDeclarationOnly": true
   }
 }

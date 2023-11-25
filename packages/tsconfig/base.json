@@ -1,14 +1,15 @@
 {
   "$schema": "https://json.schemastore.org/tsconfig",
   "compilerOptions": {
+    "jsx": "preserve",
     "strict": true,
     "target": "ES2018",
     "module": "CommonJS",
     "declaration": true,
+    "skipLibCheck": true,
     "esModuleInterop": true,
     "moduleResolution": "node",
     "forceConsistentCasingInFileNames": true
   },
-
   "exclude": ["node_modules"]
 }

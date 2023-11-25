@@ -1,3 +1,4 @@
 {
-  "extends": "tsconfig/types-only.json"
+  "extends": "tsconfig/types-only.json",
+  "exclude": ["node_modules", "dist/**/*"]
 }
