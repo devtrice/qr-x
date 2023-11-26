@@ -17,9 +17,9 @@ export default function QRX({ shape = 'square', multiplePahts, ...options }: Pro
           ${matrix
             .map((row, i) =>
               row
-                .map(({ isON }, j) => {
+                .map(({ isON, isTopLeftEyeArea, isTopRightEyeArea, isBottomLeftEyeArea }, j) => {
                   const { d } = props(i, j)
-                  return `${isON ? d : ''}`
+                  return `${isON ? (isTopLeftEyeArea || isTopRightEyeArea || isBottomLeftEyeArea ? '' : d) : ''}`
                 })
                 .join(''),
             )

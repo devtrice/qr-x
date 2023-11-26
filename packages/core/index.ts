@@ -14,6 +14,9 @@ type QRInstance = {
 
 type Matrix = {
   isON: boolean
+  isTopLeftEyeArea?: boolean
+  isTopRightEyeArea?: boolean
+  isBottomLeftEyeArea?: boolean
 }
 
 type ShapeElement = {
@@ -77,7 +80,12 @@ export default function getMatrix({ data, ...options }: Options): Matrix[][] {
   const { modules: matrix } = QR(data, options) as QRInstance
   return matrix.map((row, i) =>
     row.map((isON, j) => {
-      return { isON, isInEye: i > 0 && i < 7 && j > 0 && j < 7 }
+      return {
+        isON,
+        isTopLeftEyeArea: i < 7 && j < 7,
+        isTopRightEyeArea: i > row.length - 8 && j < 7,
+        isBottomLeftEyeArea: i < 7 && j > row.length - 8,
+      }
     }),
   )
 }
