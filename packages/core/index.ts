@@ -1,9 +1,11 @@
 import QR from 'qr.js'
 import { SVGProps } from 'react'
 
-type Shapes = keyof typeof shapes
+export type Shapes = keyof typeof shapes
+export type EyeBalls = keyof typeof eyeBalls
+export type EyeFrames = keyof typeof eyeFrames
 
-type Options = {
+export type Options = {
   data: string
   level?: 'L' | 'M' | 'Q' | 'H'
 }
@@ -12,7 +14,7 @@ type QRInstance = {
   modules: boolean[][]
 }
 
-type Matrix = ReturnType<typeof getMatrix>
+// type Matrix = ReturnType<typeof getMatrix>
 // {
 //   isON: boolean
 //   isEyeArea?: boolean
@@ -45,11 +47,6 @@ export const shapes = {
   square: {
     tag: 'path',
     props: (x, y) => ({ d: `M ${x} ${y} h 1 v 1 h -1 v -1`, shapeRendering: 'crispEdges' }),
-  } satisfies ShapeElement,
-  // TODO: fix this shape to work with single path
-  rhombus: {
-    tag: 'path',
-    props: (x, y) => ({ d: `M ${x + 1} ${y} l 1 1 l -1 1 l -1 -1 Z` }),
   } satisfies ShapeElement,
   diamond: {
     tag: 'path',
@@ -86,12 +83,29 @@ export const eyeBalls = {
     tag: 'path',
     props: (x, y) => ({ d: `M ${x} ${y} h 3 v 3 h -3 Z` }),
   } satisfies ShapeElement,
+  circle: {
+    tag: 'path',
+    props: (x, y) => ({
+      d: `
+        M ${x + 1.5} ${y} 
+        c 2, 0,
+          2, 3,
+          0, 3,
+        c -2, 0,
+          -2, -3,
+          0, -3, Z`,
+    }),
+  } satisfies ShapeElement,
 }
 
 export const eyeFrames = {
   square: {
     tag: 'path',
     props: (x, y) => ({ d: `M ${x} ${y} h 7 v 7 h -7 v -7 h 1 v 6 h 5 v -5 h -5` }),
+  } satisfies ShapeElement,
+  circle: {
+    tag: 'path',
+    props: (x, y) => ({ d: `M ${x + 0.5} ${y + 0.5} a 3.5,3.5 45 1,0 -7,0 a 3.5,3.5 45 1,0 7,0` }),
   } satisfies ShapeElement,
 }
 
@@ -112,5 +126,3 @@ export default function getMatrix({ data, ...options }: Options) {
     }),
   )
 }
-
-export type { Shapes, Options }
