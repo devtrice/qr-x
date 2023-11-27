@@ -1,9 +1,14 @@
-import React, { createElement } from 'react'
-import getMatrix, { shapes, Shapes, Options, eyeBalls, eyeFrames, EyeBalls, EyeFrames, Color } from '@qr-x/core'
+import React from 'react'
+import getMatrix, { shapes, Shapes, Options, eyeBalls, eyeFrames, EyeBalls, EyeFrames } from '@qr-x/core'
+
+type RGB = `rgb(${number}, ${number}, ${number})`
+type RGBA = `rgba(${number}, ${number}, ${number}, ${number})`
+type HEX = `#${string}`
+
+type Color = RGB | RGBA | HEX
 
 type Props = Options & {
   shape?: Shapes
-  multiplePahts?: boolean
   eyeBall?: EyeBalls
   eyeFrame?: EyeFrames
   foregroundColor?: Color
@@ -13,14 +18,13 @@ export default function QRX({
   shape = 'square',
   eyeBall = 'square',
   eyeFrame = 'square',
-  multiplePahts,
   foregroundColor = '#000',
   ...options
 }: Props) {
   const matrix = getMatrix(options)
-  const { tag, props } = shapes[shape]
-  const eyeballProps = eyeBalls[eyeBall].props
-  const eyeframeProps = eyeFrames[eyeFrame].props
+  const dot = shapes[shape]
+  const eyeball = eyeBalls[eyeBall]
+  const eyeframe = eyeFrames[eyeFrame]
 
   return (
     <svg
@@ -33,14 +37,9 @@ export default function QRX({
       }}
     >
       {/* Safari won't render SVGs without width and height */}
-      {multiplePahts ? (
-        matrix.map((row, i) =>
-          row.map(({ isON }, j) => createElement(tag, { ...props(i, j), fill: isON ? foregroundColor : 'transparent' })),
-        )
-      ) : (
-        <path
-          fill={foregroundColor}
-          d={`
+      <path
+        fill={foregroundColor}
+        d={`
           ${matrix
             .map((row, i) =>
               row
@@ -58,23 +57,19 @@ export default function QRX({
                     },
                     j,
                   ) => {
-                    const { d } = props(i, j)
-                    const { d: eyeframe } = eyeframeProps(i, j)
-                    const { d: eyeball } = eyeballProps(i, j)
-
                     switch (true) {
                       case isTopLeftEyeFrame:
                       case isTopRightEyeFrame:
                       case isBottomLeftEyeFrame:
-                        return eyeframe
+                        return eyeframe(i, j)
                       case isTopLeftEyeBall:
                       case isTopRightEyeBall:
                       case isBottomLeftEyeBall:
-                        return eyeball
+                        return eyeball(i, j)
                       case isEyeArea:
                         return ''
                       case isON:
-                        return d
+                        return dot(i, j)
                       default:
                         return ''
                     }
@@ -85,8 +80,7 @@ export default function QRX({
             .join('')
             .replace(/([\n]|[ ]{2})/g, '')}
         `}
-        />
-      )}
+      />
     </svg>
   )
 }

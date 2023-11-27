@@ -19,8 +19,8 @@ export default function Page() {
           <QRX data='https://github.com/devtrice' shape='diamond' />
         </div>
         <QRX data='https://github.com/devtrice' shape='triangle' />
-        <QRX data='https://github.com/devtrice' shape='heart' eyeBall='circle' multiplePahts />
-        <QRX data='https://github.com/devtrice' shape='heart' eyeBall='circle' multiplePahts />
+        <QRX data='https://github.com/devtrice' shape='heart' eyeBall='circle' />
+        <QRX data='https://github.com/devtrice' shape='heart' eyeBall='circle' foregroundColor='rgb(200, 13, 50)' />
       </div>
     </main>
   )
