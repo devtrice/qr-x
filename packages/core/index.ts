@@ -12,12 +12,17 @@ type QRInstance = {
   modules: boolean[][]
 }
 
-type Matrix = {
-  isON: boolean
-  isTopLeftEyeArea?: boolean
-  isTopRightEyeArea?: boolean
-  isBottomLeftEyeArea?: boolean
-}
+type Matrix = ReturnType<typeof getMatrix>
+// {
+//   isON: boolean
+//   isEyeArea?: boolean
+//   isTopLeftEyeFrame?: boolean
+//   isTopLeftEyeBall?: boolean
+//   isTopRightEyeFrame?: boolean
+//   isTopRightEyeBall?: boolean
+//   isBottomLeftEyeFrame?: boolean
+//   isBottomLeftEyeBall?: boolean
+// }
 
 type ShapeElement = {
   tag: keyof JSX.IntrinsicElements
@@ -76,15 +81,33 @@ export const shapes = {
   } satisfies ShapeElement,
 }
 
-export default function getMatrix({ data, ...options }: Options): Matrix[][] {
+export const eyeBalls = {
+  square: {
+    tag: 'path',
+    props: (x, y) => ({ d: `M ${x} ${y} h 3 v 3 h -3 Z` }),
+  } satisfies ShapeElement,
+}
+
+export const eyeFrames = {
+  square: {
+    tag: 'path',
+    props: (x, y) => ({ d: `M ${x} ${y} h 7 v 7 h -7 v -7 h 1 v 6 h 5 v -5 h -5` }),
+  } satisfies ShapeElement,
+}
+
+export default function getMatrix({ data, ...options }: Options) {
   const { modules: matrix } = QR(data, options) as QRInstance
   return matrix.map((row, i) =>
     row.map((isON, j) => {
       return {
         isON,
-        isTopLeftEyeArea: i < 7 && j < 7,
-        isTopRightEyeArea: i > row.length - 8 && j < 7,
-        isBottomLeftEyeArea: i < 7 && j > row.length - 8,
+        isEyeArea: (i < 7 && j < 7) || (i > row.length - 8 && j < 7) || (i < 7 && j > row.length - 8),
+        isTopLeftEyeFrame: i === 0 && j === 0,
+        isTopLeftEyeBall: i === 2 && j === 2,
+        isBottomLeftEyeFrame: i === 0 && j === row.length - 7,
+        isBottomLeftEyeBall: i === 2 && j === row.length - 5,
+        isTopRightEyeFrame: i === row.length - 7 && j === 0,
+        isTopRightEyeBall: i === row.length - 5 && j === 2,
       }
     }),
   )

@@ -1,5 +1,5 @@
 import React, { createElement } from 'react'
-import getMatrix, { shapes, Shapes, Options } from '@qr-x/core'
+import getMatrix, { shapes, Shapes, Options, eyeBalls, eyeFrames } from '@qr-x/core'
 
 type Props = Options & { shape?: Shapes; multiplePahts?: boolean }
 
@@ -17,13 +17,46 @@ export default function QRX({ shape = 'square', multiplePahts, ...options }: Pro
           ${matrix
             .map((row, i) =>
               row
-                .map(({ isON, isTopLeftEyeArea, isTopRightEyeArea, isBottomLeftEyeArea }, j) => {
-                  const { d } = props(i, j)
-                  return `${isON ? (isTopLeftEyeArea || isTopRightEyeArea || isBottomLeftEyeArea ? '' : d) : ''}`
-                })
+                .map(
+                  (
+                    {
+                      isON,
+                      isEyeArea,
+                      isTopLeftEyeFrame,
+                      isTopRightEyeFrame,
+                      isBottomLeftEyeFrame,
+                      isTopLeftEyeBall,
+                      isTopRightEyeBall,
+                      isBottomLeftEyeBall,
+                    },
+                    j,
+                  ) => {
+                    const { d } = props(i, j)
+                    const { d: eyeframe } = eyeFrames.square.props(i, j)
+                    const { d: eyeball } = eyeBalls.square.props(i, j)
+
+                    switch (true) {
+                      case isTopLeftEyeFrame:
+                      case isTopRightEyeFrame:
+                      case isBottomLeftEyeFrame:
+                        return eyeframe
+                      case isTopLeftEyeBall:
+                      case isTopRightEyeBall:
+                      case isBottomLeftEyeBall:
+                        return eyeball
+                      case isEyeArea:
+                        return ''
+                      case isON:
+                        return d
+                      default:
+                        return ''
+                    }
+                  },
+                )
                 .join(''),
             )
-            .join('')}
+            .join('')
+            .replace(/([\n]|[ ]{2})/g, '')}
         `}
         />
       )}
