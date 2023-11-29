@@ -6,9 +6,9 @@
       "outputs": [".next/**", "!.next/cache/**"],
       "dependsOn": ["^build"]
     },
-    "watch": {
-      "cache": false,
-      "persistent": true
+    "build:core": {
+      "outputs": [".dist/**"],
+      "dependsOn": ["@qr-x/core#build"]
     }
   }
 }
