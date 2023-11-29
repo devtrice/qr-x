@@ -1,20 +1,26 @@
 {
   "private": true,
   "scripts": {
-    "watch": "turbo run watch",
-    "build": "turbo run build"
+    "build": "turbo run build",
+    "build:core": "turbo run build:core",
+    "dev:react": "PLATFORM=react storybook dev -p 6006 --no-open"
   },
   "workspaces": [
     "apps/*",
     "packages/*"
   ],
-  "devDependencies": {
+  "dependencies": {
+    "@storybook/addon-essentials": "^7.6.0",
+    "@storybook/addon-interactions": "^7.6.0",
+    "@storybook/test": "^7.6.0",
     "esbuild": "^0.19.7",
     "eslint": "^8.48.0",
     "prettier": "^3.1.0",
+    "storybook": "^7.6.0",
     "tsconfig": "*",
     "turbo": "latest",
-    "typescript": "^5.3.2"
+    "typescript": "^5.3.2",
+    "vite": "^5.0.3"
   },
-  "packageManager": "yarn@1.22.19"
+  "packageManager": "yarn@4.0.2"
 }

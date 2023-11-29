@@ -16,24 +16,28 @@
     "react"
   ],
   "scripts": {
-    "build": "rm -rf dist && yarn build:dts && yarn build:esm && yarn build:cjs",
+    "build": "rm -rf dist && yarn build:storybook && yarn build:dts && yarn build:esm && yarn build:cjs",
     "build:dts": "tsc -p tsconfig.build.json --outDir ./dist",
     "build:esm": "esbuild index.tsx --bundle --packages=external --format=esm --outfile=./dist/index.esm.js",
     "build:cjs": "esbuild index.tsx --bundle --packages=external --format=cjs --outfile=./dist/index.cjs.js",
-    "watch": "yarn watch:dts && yarn watch:esm && yarn watch:cjs",
-    "watch:dts": "tsc --watch -p tsconfig.build.json --outDir ./dist",
-    "watch:esm": "esbuild index.ts --bundle --watch --packages=external --format=esm --outfile=./dist/index.esm.js",
-    "watch:cjs": "esbuild index.ts --bundle --watch --packages=external --format=cjs --outfile=./dist/index.cjs.js"
+    "build:storybook": "PLATFORM=react storybook build -c ../../.storybook"
   },
   "dependencies": {
-    "tsconfig": "*",
-    "@qr-x/core": "*"
-  },
-  "devDependencies": {
-    "typescript": "^5.3.2"
+    "@qr-x/core": "*",
+    "tsconfig": "*"
   },
   "peerDependencies": {
     "react": "^16.8.0  || ^17.0.0 || ^18.0.0",
     "react-dom": "^16.8.0  || ^17.0.0 || ^18.0.0"
+  },
+  "devDependencies": {
+    "@storybook/blocks": "^7.6.0",
+    "@storybook/react": "^7.6.0",
+    "@storybook/react-vite": "^7.6.0",
+    "@types/react": "^18.2.39",
+    "@types/react-dom": "^18.2.17",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "typescript": "^5.3.2"
   }
 }
