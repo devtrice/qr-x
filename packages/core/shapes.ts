@@ -1,3 +1,5 @@
+import { roundedRect } from './utils'
+
 type GetPath = (x: number, y: number) => string
 
 ///////
@@ -42,6 +44,7 @@ export const eyeBallShapes = {
           c -2, 0,
             -2, -3,
             0, -3, Z`) satisfies GetPath,
+  rounded: ((x, y) => roundedRect(x, y, 3, 3, 1, 1, 1, 0)) satisfies GetPath,
 }
 
 export const eyeFrameShapes = {

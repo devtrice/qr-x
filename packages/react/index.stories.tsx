@@ -3,7 +3,7 @@ import QRX from './'
 export const Normal = () => (
   <div className='grid'>
     <QRX data='https://example.com/' />
-    <QRX data='https://example.com/' shape='circle' />
+    <QRX data='https://example.com/' shape='circle' eyeBall='rounded' />
     <QRX data='https://example.com/' shape='diamond' />
     <QRX data='https://example.com/' shape='heart' />
     <QRX data='https://example.com/' shape='triangle' />
