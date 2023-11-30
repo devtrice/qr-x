@@ -17,7 +17,11 @@
     "build": "rm -rf dist && yarn build:dts && yarn build:esm && yarn build:cjs",
     "build:dts": "tsc -p tsconfig.build.json --outDir ./dist",
     "build:esm": "esbuild index.ts --bundle --packages=external --format=esm --outfile=./dist/index.esm.js",
-    "build:cjs": "esbuild index.ts --bundle --packages=external --format=cjs --outfile=./dist/index.cjs.js"
+    "build:cjs": "esbuild index.ts --bundle --packages=external --format=cjs --outfile=./dist/index.cjs.js",
+    "watch:core": "rm -rf dist && yarn watch:dts && yarn watch:esm && yarn watch:cjs",
+    "watch:dts": "tsc -p tsconfig.build.json --outDir ./dist --watch ",
+    "watch:esm": "esbuild index.ts --bundle --watch --packages=external --format=esm --outfile=./dist/index.esm.js",
+    "watch:cjs": "esbuild index.ts --bundle --watch --packages=external --format=cjs --outfile=./dist/index.cjs.js"
   },
   "dependencies": {
     "qr.js": "^0.0.0",
