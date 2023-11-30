@@ -1,7 +1,5 @@
 type GetPath = (x: number, y: number) => string
 
-///////
-
 export const dotShapes = {
   circle: ((x, y) => {
     const r = 0.5
