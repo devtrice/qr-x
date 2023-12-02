@@ -4,7 +4,7 @@ type GetPath = (x: number, y: number) => string
 
 export const dotShapes = {
   circle: ((x, y) => {
-    const r = 0.5
+    const r = 0.45
     return `M ${x + r * 2}, ${y + r} 
             a ${r},${r} 45 1,0 -${r * 2},0,
             a ${r},${r} 45 1,0 ${r * 2},0`
@@ -30,7 +30,8 @@ export const dotShapes = {
                0.5, 0 
                Z`
   }) satisfies GetPath,
-  leaf: ((x, y) => `M${x},${y}h0.4a0.6,0.6,0,0,1,0.6,0.6v0.4h-0.4a0.6,0.6,0,0,1,-0.6,-0.6v-0.4z`) satisfies GetPath,
+  leaf: ((x, y) => `M${x},${y}h0.34a0.51,0.51,0,0,1,0.51,0.51v0.34h-0.34a0.51,0.51,0,0,1,-0.51,-0.51v-0.34z`) satisfies GetPath,
+  // leaf: ((x, y) => `M${x},${y}h0.4a0.6,0.6,0,0,1,0.6,0.6v0.4h-0.4a0.6,0.6,0,0,1,-0.6,-0.6v-0.4z`) satisfies GetPath,
   // leaf reverse => m0,1v-0.4a0.6,0.6,0,0,1,0.6,-0.6h0.4v0.4a0.6,0.6,0,0,1,-0.6,0.6h-0.4z
 }
 
