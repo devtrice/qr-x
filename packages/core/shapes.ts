@@ -30,6 +30,8 @@ export const dotShapes = {
                0.5, 0 
                Z`
   }) satisfies GetPath,
+  leaf: ((x, y) => `M${x},${y}h0.4a0.6,0.6,0,0,1,0.6,0.6v0.4h-0.4a0.6,0.6,0,0,1,-0.6,-0.6v-0.4z`) satisfies GetPath,
+  // leaf reverse => m0,1v-0.4a0.6,0.6,0,0,1,0.6,-0.6h0.4v0.4a0.6,0.6,0,0,1,-0.6,0.6h-0.4z
 }
 
 export const eyeBallShapes = {
@@ -42,14 +44,15 @@ export const eyeBallShapes = {
           c -2, 0,
             -2, -3,
             0, -3, Z`) satisfies GetPath,
-  rounded: ((x, y) =>
+  leaf: ((x, y) =>
     `M${x},${y + 1} c0,-0.552,0.448,-1,1,-1h1c0.552,0,1,0.448,1,1v2h-2c-0.552,0,-1,-0.448,-1,-1v-1z`) satisfies GetPath,
 }
 
 export const eyeFrameShapes = {
   square: ((x, y) => `M ${x} ${y} h 7 v 7 h -7 Z m 1,1 v 5 h 5 v -5 Z`) satisfies GetPath,
-  circle: ((x, y) => `M ${x + 0.5} ${y + 0.5} a 3.5,3.5 45 1,0 -7,0 a 3.5,3.5 45 1,0 7,0`) satisfies GetPath,
-  rounded: ((x, y) =>
+  circle: ((x, y) =>
+    `M${x},${y + 3.5}a3.5,3.5,0,0,1,7,0a3.5,3.5,0,1,1,-7,0zm3.5,-2.5a2.5,2.5,0,1,0,0,5a2.5,2.5,0,0,0,0,-5z`) satisfies GetPath,
+  leaf: ((x, y) =>
     `M${x},${
       y + 2
     }c0,-1.105,0.895,-2,2,-2h3c1.105,0,2,0.895,2,2v5h-5c-1.105,0,-2,-0.895,-2,-2v-3zm2.2,-1c-0.663,0,-1.2,0.537,-1.2,1.2v2.6c0,0.663,0.537,1.2,1.2,1.2h3.8v-3.8c0,-0.663,-0.537,-1.2,-1.2,-1.2h-2.6z`) satisfies GetPath,

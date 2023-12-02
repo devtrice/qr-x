@@ -22,22 +22,22 @@ export function getSVGData({ data, shape = 'square', eyeBall = 'square', eyeFram
       row
         .map((isON, j) => {
           const isEyeArea = (i < 7 && j < 7) || (i > row.length - 8 && j < 7) || (i < 7 && j > row.length - 8)
-          const isTopLeftEyeFrame = i === 0 && j === 0
-          const isTopLeftEyeBall = i === 2 && j === 2
-          const isBottomLeftEyeFrame = i === 0 && j === row.length - 7
-          const isBottomLeftEyeBall = i === 2 && j === row.length - 5
-          const isTopRightEyeFrame = i === row.length - 7 && j === 0
-          const isTopRightEyeBall = i === row.length - 5 && j === 2
+          // const isTopLeftEyeFrame = i === 0 && j === 0
+          // const isTopLeftEyeBall = i === 2 && j === 2
+          // const isBottomLeftEyeFrame = i === 0 && j === row.length - 7
+          // const isBottomLeftEyeBall = i === 2 && j === row.length - 5
+          // const isTopRightEyeFrame = i === row.length - 7 && j === 0
+          // const isTopRightEyeBall = i === row.length - 5 && j === 2
 
           switch (true) {
-            case isTopLeftEyeFrame:
-            case isTopRightEyeFrame:
-            case isBottomLeftEyeFrame:
-              return eyeframe(i, j)
-            case isTopLeftEyeBall:
-            case isTopRightEyeBall:
-            case isBottomLeftEyeBall:
-              return eyeball(i, j)
+            // case isTopLeftEyeFrame:
+            // case isTopRightEyeFrame:
+            // case isBottomLeftEyeFrame:
+            // return eyeframe(i, j)
+            // case isTopLeftEyeBall:
+            // case isTopRightEyeBall:
+            // case isBottomLeftEyeBall:
+            // return eyeball(i, j)
             case isEyeArea:
               return ''
             case isON:
@@ -51,5 +51,11 @@ export function getSVGData({ data, shape = 'square', eyeBall = 'square', eyeFram
     .join('')
     .replace(/([\n]|[ ]{2})/g, '')
 
-  return { path, length: modules.length }
+  return {
+    path,
+    getEyeBallPath: eyeball,
+    getEyeFramePath: eyeframe,
+    length: modules.length,
+    id: Math.random().toString(36).substring(2, 9),
+  }
 }
