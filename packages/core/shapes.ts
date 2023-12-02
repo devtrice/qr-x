@@ -42,10 +42,15 @@ export const eyeBallShapes = {
           c -2, 0,
             -2, -3,
             0, -3, Z`) satisfies GetPath,
-  rounded: ((x, y) => roundedRect(x, y, 3, 3, 1, 1, 1, 0)) satisfies GetPath,
+  rounded: ((x, y) =>
+    `M${x},${y + 1} c0,-0.552,0.448,-1,1,-1h1c0.552,0,1,0.448,1,1v2h-2c-0.552,0,-1,-0.448,-1,-1v-1z`) satisfies GetPath,
 }
 
 export const eyeFrameShapes = {
-  square: ((x, y) => `M ${x} ${y} h 7 v 7 h -7 v -7 h 1 v 6 h 5 v -5 h -5`) satisfies GetPath,
+  square: ((x, y) => `M ${x} ${y} h 7 v 7 h -7 Z m 1,1 v 5 h 5 v -5 Z`) satisfies GetPath,
   circle: ((x, y) => `M ${x + 0.5} ${y + 0.5} a 3.5,3.5 45 1,0 -7,0 a 3.5,3.5 45 1,0 7,0`) satisfies GetPath,
+  rounded: ((x, y) =>
+    `M${x},${
+      y + 2
+    }c0,-1.105,0.895,-2,2,-2h3c1.105,0,2,0.895,2,2v5h-5c-1.105,0,-2,-0.895,-2,-2v-3zm2.2,-1c-0.663,0,-1.2,0.537,-1.2,1.2v2.6c0,0.663,0.537,1.2,1.2,1.2h3.8v-3.8c0,-0.663,-0.537,-1.2,-1.2,-1.2h-2.6z`) satisfies GetPath,
 }

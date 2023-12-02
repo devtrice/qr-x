@@ -52,6 +52,6 @@ export function roundedRect(x: number, y: number, w: number, h: number, tlr: num
     blr +
     ' 0 0 1 0 ' +
     (h - blr) +
-    ' Z'
+    ' Z '
   )
 }

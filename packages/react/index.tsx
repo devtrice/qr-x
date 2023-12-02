@@ -7,13 +7,7 @@ export default function QRX({ data, level, shape, eyeBall, eyeFrame, smooth, ...
   const { path, length } = getSVGData({ data, level, shape, eyeBall, eyeFrame })
   return (
     <svg {...rest} xmlns='http://www.w3.org/2000/svg' viewBox={`0 0 ${length} ${length}`} width='100%' height='100%'>
-      <path
-        d={path}
-        stroke='currentColor'
-        strokeWidth={0.35}
-        strokeLinecap={smooth ? 'round' : 'square'}
-        strokeLinejoin={smooth ? 'round' : 'inherit'}
-      />
+      <path d={path} fill='currentColor' />
     </svg>
   )
 }
