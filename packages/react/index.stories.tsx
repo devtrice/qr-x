@@ -1,24 +1,45 @@
+import type { Meta, StoryObj } from '@storybook/react'
 import QRX from './'
 
-export const Normal = () => (
-  <div className='grid'>
-    <QRX data='https://example.com/' />
-    <QRX data='https://example.com/' shape='leaf' eyeFrame='leaf' eyeBall='leaf' />
-    <QRX data='https://example.com/' shape='circle' eyeBall='circle' eyeFrame='circle' />
-    <QRX data='https://example.com/' shape='heart' eyeFrame='rounded' eyeBall='rounded' />
-    <QRX data='https://example.com/' shape='diamond' />
-    <QRX data='https://example.com/' shape='triangle' />
-  </div>
-)
+const meta: Meta<typeof QRX> = {
+  component: QRX,
+  title: 'QRx',
+  argTypes: {
+    data: {
+      control: {
+        type: 'text',
+      },
+    },
+    eyeFrame: {
+      options: ['square', 'leaf', 'circle', 'rounded'],
+      control: {
+        type: 'select',
+      },
+    },
+    eyeBall: {
+      options: ['square', 'leaf', 'circle', 'rounded'],
+      control: {
+        type: 'select',
+      },
+    },
+    shape: {
+      options: ['square', 'circle', 'leaf', 'diamond', 'heart', 'triangle'],
+      control: {
+        type: 'select',
+      },
+    },
+  },
+}
+type Story = StoryObj<typeof QRX>
 
-export const Smooth = () => (
-  <div className='grid'>
-    <QRX data='https://example.com/' smooth />
-    <QRX data='https://example.com/' shape='circle' smooth />
-    <QRX data='https://example.com/' shape='diamond' smooth />
-    <QRX data='https://example.com/' shape='heart' smooth />
-    <QRX data='https://example.com/' shape='triangle' smooth />
-  </div>
-)
+export const Default: Story = {
+  args: {
+    eyeBall: 'leaf',
+    eyeFrame: 'leaf',
+    shape: 'square',
+    data: 'https://example.com/',
+    color: '#000000',
+  },
+}
 
-export default { title: 'React' }
+export default meta
