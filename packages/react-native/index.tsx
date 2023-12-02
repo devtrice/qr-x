@@ -1,19 +1,20 @@
-import React, { SVGAttributes } from 'react'
+import React from 'react'
 import { getSVGData, Options } from '@qr-x/core'
+import { Path, Svg, SvgProps } from 'react-native-svg'
 
-type Props = Options & SVGAttributes<SVGSVGElement>
+type Props = Options & SvgProps
 
 export default function QRX({ data, level, shape, eyeBall, eyeFrame, smooth, ...rest }: Props) {
   const { path, length } = getSVGData({ data, level, shape, eyeBall, eyeFrame })
   return (
-    <svg {...rest} xmlns='http://www.w3.org/2000/svg' viewBox={`0 0 ${length} ${length}`} width='100%' height='100%'>
-      <path
+    <Svg {...rest} viewBox={`0 0 ${length} ${length}`}>
+      <Path
         d={path}
         stroke='currentColor'
         strokeWidth={0.35}
         strokeLinecap={smooth ? 'round' : 'square'}
         strokeLinejoin={smooth ? 'round' : undefined}
       />
-    </svg>
+    </Svg>
   )
 }

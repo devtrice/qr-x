@@ -15,8 +15,8 @@ function getAbsolutePath(value: string): any {
 }
 
 const config: StorybookConfig = {
-  stories: [`../packages/${platform}/*.stories.tsx`],
   addons: [getAbsolutePath('@storybook/addon-essentials'), getAbsolutePath('@storybook/addon-interactions')],
+  stories: [`../packages/${platform}/index.stories.tsx`],
   framework: {
     name: getAbsolutePath(modules[platform]),
     options: {},
