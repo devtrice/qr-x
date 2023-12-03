@@ -1,74 +1,91 @@
 import { getSVGData, Options } from '@qr-x/core'
-import { createElement, SVGAttributes } from 'react'
+import React, { createElement, FunctionComponent } from 'react'
+import {
+  Defs,
+  G,
+  Image,
+  LinearGradient,
+  Mask,
+  Path,
+  Pattern,
+  RadialGradient,
+  Rect,
+  Stop,
+  Svg,
+  SvgProps,
+  Symbol,
+  Use,
+} from './tags/'
 
-type Props = Options & SVGAttributes<SVGSVGElement>
+type Props = Options & SvgProps
 
-function Image({ src, size, length }: NonNullable<Props['image']> & { length: number }) {
-  const cord = (length - size) / 2
+// function MarkImage({ src, size, length }: NonNullable<Props['image']> & { length: number }) {
+//   const cord = (length - size) / 2
 
-  return (
-    <>
-      <clipPath id='clip-path'>
-        <rect x={cord} y={cord} width={size} height={size} rx={99999} ry={99999} fill='red' />
-      </clipPath>
-      <image
-        x={cord}
-        y={cord}
-        width={size}
-        height={size}
-        xlinkHref={src}
-        clipPath='url(#clip-path)'
-        preserveAspectRatio='xMidYMid slice'
-      />
-    </>
-  )
-}
+//   return (
+//     <>
+//       <clipPath id='clip-path'>
+//         <rect x={cord} y={cord} width={size} height={size} rx={99999} ry={99999} fill='red' />
+//       </clipPath>
+//       <Image
+//         x={cord}
+//         y={cord}
+//         width={size}
+//         height={size}
+//         xlinkHref={src}
+//         clipPath='url(#clip-path)'
+//         preserveAspectRatio='xMidYMid slice'
+//       />
+//     </>
+//   )
+// }
 
-export default function QRX({ data, level, shape, image, eyeBall, eyeFrame, smooth, gradient: $gradient, ...rest }: Props) {
-  const { id, paths, length, gradient } = getSVGData({
+export default function QRX({ data, level, shapes, image, gradient: $gradient, fillImage, ...rest }: Props) {
+  const { ids, fills, paths, length, markers, gradient, eyeItems } = getSVGData({
     data,
     level,
-    shape,
-    eyeBall,
-    eyeFrame,
+    image,
+    shapes,
     gradient: $gradient,
+    fillImage,
   })
 
-  const fill = gradient ? "url('#gradient')" : 'currentColor'
-  const eyeBallId = `#eyeball-${id}`
-  const eyeFrameId = `#eyeframe-${id}`
-  const isLinearGradient = gradient?.type === 'linear'
+  const group = (
+    <G fill={fills.path}>
+      <Path d={paths.body} />
+      {eyeItems.map(item =>
+        markers.map((marker, index) => <Use key={`${item}-${index}`} href={ids[item]} xlinkHref={ids[item]} {...marker} />),
+      )}
+    </G>
+  )
 
   return (
-    <svg {...rest} xmlns='http://www.w3.org/2000/svg' viewBox={`0 0 ${length} ${length}`} width='100%'>
-      <g>
-        <use href={eyeBallId} xlinkHref={eyeBallId} x={0} y={0} />
-        <use href={eyeBallId} xlinkHref={eyeBallId} x={-length} y={0} transform='scale(-1 1)' />
-        <use href={eyeBallId} xlinkHref={eyeBallId} x={0} y={-length} transform='scale(1 -1)' />
-        <use href={eyeFrameId} xlinkHref={eyeFrameId} x={0} y={0} />
-        <use href={eyeFrameId} xlinkHref={eyeFrameId} x={-length} y={0} transform='scale(-1 1)' />
-        <use href={eyeFrameId} xlinkHref={eyeFrameId} x={0} y={-length} transform='scale(1 -1)' />
-        <path d={paths.body} fill={fill} />
-      </g>
-      {image && <Image {...image} length={length} />}
-      <defs>
-        <symbol id={eyeBallId.substring(1)}>
-          <path d={paths.eyeball} fill={fill} />
-        </symbol>
-        <symbol id={eyeFrameId.substring(1)}>
-          <path d={paths.eyeframe} fill={fill} />
-        </symbol>
-        {gradient &&
-          createElement(
-            isLinearGradient ? 'linearGradient' : 'radialGradient',
-            {
-              id: 'gradient',
-              gradientTransform: isLinearGradient ? `rotate(${gradient.rotate})` : undefined,
-            },
-            gradient.colors.map(({ color, offset }) => <stop key={offset} offset={offset} stopColor={color} />),
-          )}
-      </defs>
-    </svg>
+    <Svg {...rest} viewBox={`0 0 ${length} ${length}`}>
+      {gradient ? <Rect x='0' y='0' width='100%' height='100%' fill={fills.rect} mask="url('#mask')" /> : group}
+
+      <Defs>
+        {eyeItems.map(item => (
+          <Path key={item} d={paths[item]} fill={fills.path} id={ids[item].substring(1)} />
+        ))}
+
+        {fillImage && (
+          <Pattern id='fill-image' patternUnits='userSpaceOnUse' width='100%' height='100%'>
+            <Image href={fillImage} x='0' y='0' width='100%' height='100%' preserveAspectRatio='xMidYMid slice' />
+          </Pattern>
+        )}
+
+        {gradient && (
+          <G>
+            <Mask id='mask'>{group}</Mask>
+            {createElement(
+              (gradient.isLinearGradient ? LinearGradient : RadialGradient) as FunctionComponent<typeof gradient.attributes>,
+              gradient.attributes,
+              gradient.colors.map(({ color, offset }) => <Stop key={offset} offset={offset} stopColor={color} />),
+            )}
+          </G>
+        )}
+      </Defs>
+    </Svg>
   )
 }
 

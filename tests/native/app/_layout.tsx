@@ -3,7 +3,7 @@ import { ScrollView, View } from 'react-native'
 import { TailwindProvider, useTailwind } from 'tailwind-rn'
 import utilities from '../tailwind.json'
 
-const pages = ['index', 'smooth', 'eyeballs'] as const
+const pages = ['index', 'gradient', 'fill-image'] as const
 
 function Layout() {
   const tailwind = useTailwind()

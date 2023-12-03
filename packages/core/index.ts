@@ -1,5 +1,15 @@
 import QR from 'qr.js'
-import { dotShapes, eyeBallShapes, eyeFrameShapes } from './shapes'
+import { bodyShapes, eyeballShapes, eyeframeShapes } from './shapes'
+
+type Shapes = {
+  body: keyof typeof bodyShapes
+  eyeball?: keyof typeof eyeballShapes
+  eyeframe?: keyof typeof eyeframeShapes
+}
+
+type Gradient = ({ type?: 'linear'; rotate?: number } | { type: 'radial'; rotate: never }) & {
+  colors: string[]
+}
 
 export type Options = {
   data: string
@@ -8,18 +18,29 @@ export type Options = {
     size: number
   }
   level?: 'L' | 'M' | 'Q' | 'H'
-  shape?: keyof typeof dotShapes
-  smooth?: boolean
-  eyeBall?: keyof typeof eyeBallShapes
-  eyeFrame?: keyof typeof eyeFrameShapes
+  shapes?: Shapes
   gradient?: Gradient
+  fillImage?: string
 }
 
-type Gradient = ({ type?: 'linear'; rotate?: number } | { type: 'radial' }) & {
-  colors: string[]
+function parseGradient({ type = 'linear', colors, ...rest }: Gradient) {
+  const isLinearGradient = type === 'linear'
+  return {
+    colors: colors.map((color, index, colors) => ({
+      color,
+      offset: `${(index / colors.length + 1 / colors.length) * 100}%`,
+    })),
+    attributes: {
+      id: 'gradient',
+      gradientTransform: isLinearGradient ? `rotate(${rest.rotate || 45})` : undefined,
+    },
+    isLinearGradient,
+  }
 }
 
-export function getSVGData({ data, shape = 'square', eyeBall = 'square', eyeFrame = 'square', gradient, ...options }: Options) {
+export function getSVGData({ data, shapes, image, gradient, fillImage, ...options }: Options) {
+  const id = Math.random().toString(36).substring(2, 9)
+  const $shapes = { body: 'square', eyeball: 'square', eyeframe: 'square', ...shapes } as const
   const { modules } = QR(data, options) as { modules: boolean[][] }
 
   const bodyPath = modules
@@ -32,7 +53,7 @@ export function getSVGData({ data, shape = 'square', eyeBall = 'square', eyeFram
             case isEyeArea:
               return ''
             case isON:
-              return dotShapes[shape](i, j)
+              return bodyShapes[$shapes.body](i, j)
             default:
               return ''
           }
@@ -43,22 +64,23 @@ export function getSVGData({ data, shape = 'square', eyeBall = 'square', eyeFram
     .replace(/([\n]|[ ]{2})/g, '')
 
   return {
-    id: Math.random().toString(36).substring(2, 9),
+    ids: { eyeball: `#eyeball-${id}`, eyeframe: `#eyeframe-${id}` },
     paths: {
       body: bodyPath,
-      eyeball: eyeBallShapes[eyeBall],
-      eyeframe: eyeFrameShapes[eyeFrame],
+      eyeball: eyeballShapes[$shapes.eyeball],
+      eyeframe: eyeframeShapes[$shapes.eyeframe],
+    },
+    fills: {
+      rect: "url('#gradient')",
+      path: fillImage ? 'url(#fill-image)' : gradient ? 'white' : 'currentColor', // Note! don't change white to any color.
     },
     length: modules.length,
-    gradient: gradient
-      ? {
-          type: gradient.type || 'linear',
-          rotate: gradient.type !== 'radial' ? gradient.rotate || 45 : undefined,
-          colors: gradient.colors.map((color, index, colors) => ({
-            color,
-            offset: `${(index / colors.length + 1 / colors.length) * 100}%`,
-          })),
-        }
-      : undefined,
+    markers: [
+      { x: 0, y: 0 },
+      { x: -modules.length, y: 0, transform: 'scale(-1 1)' },
+      { x: 0, y: -modules.length, transform: 'scale(1 -1)' },
+    ],
+    eyeItems: ['eyeball', 'eyeframe'] as const,
+    gradient: gradient ? parseGradient(gradient) : undefined,
   }
 }
