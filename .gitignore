@@ -38,3 +38,8 @@ yarn-error.log*
 
 #outputs
 dist
+storybook-static
+
+#lock files
+yarn.lock
+.yarn

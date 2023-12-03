@@ -1,44 +1,63 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import QRX from './'
+import QRX from './index'
 
 const meta: Meta<typeof QRX> = {
-  component: QRX,
   title: 'QRx',
+  component: QRX,
   argTypes: {
     data: {
-      control: {
-        type: 'text',
-      },
+      control: 'text',
     },
-    eyeFrame: {
-      options: ['square', 'leaf', 'circle', 'rounded'],
-      control: {
-        type: 'select',
+    shapes: {
+      body: {
+        control: 'select',
+        options: ['square', 'circle', 'leaf', 'diamond', 'heart', 'triangle'],
       },
-    },
-    eyeBall: {
-      options: ['square', 'leaf', 'circle', 'rounded'],
-      control: {
-        type: 'select',
+      eyeball: {
+        control: 'select',
+        options: ['square', 'leaf', 'circle', 'rounded'],
       },
-    },
-    shape: {
-      options: ['square', 'circle', 'leaf', 'diamond', 'heart', 'triangle'],
-      control: {
-        type: 'select',
+      eyeframe: {
+        control: 'select',
+        options: ['square', 'leaf', 'circle', 'rounded'],
       },
     },
   },
 }
-type Story = StoryObj<typeof QRX>
 
-export const Default: Story = {
+export const Default: StoryObj<typeof QRX> = {
   args: {
-    eyeBall: 'leaf',
-    eyeFrame: 'leaf',
-    shape: 'square',
-    data: 'https://example.com/',
-    color: '#000000',
+    data: 'https://qr-x.dev',
+  },
+}
+
+export const Gradient: StoryObj<typeof QRX> = {
+  args: {
+    data: 'https://qr-x.dev',
+    gradient: {
+      type: 'linear',
+      colors: ['#f97316', '#f59e0b', '#facc15'],
+    },
+  },
+}
+
+export const FillImage: StoryObj<typeof QRX> = {
+  args: {
+    data: 'https://qr-x.dev',
+    fillImage:
+      'https://images.unsplash.com/photo-1594905666013-8f11171b8d6d?q=80&w=2671&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+  },
+}
+
+export const FillImageWithGradient: StoryObj<typeof QRX> = {
+  args: {
+    data: 'https://qr-x.dev',
+    fillImage:
+      'https://images.unsplash.com/photo-1594905666013-8f11171b8d6d?q=80&w=2671&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    gradient: {
+      type: 'linear',
+      colors: ['#f97316', '#f59e0b', '#facc15'],
+    },
   },
 }
 

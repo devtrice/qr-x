@@ -1,37 +1,77 @@
-import React, { SVGAttributes } from 'react'
 import { getSVGData, Options } from '@qr-x/core'
+import { createElement, FunctionComponent } from 'react'
+import { Defs, G, Image, LinearGradient, Mask, Path, Pattern, RadialGradient, Rect, Stop, Svg, SvgProps, Use } from './tags/'
 
-type Props = Options & SVGAttributes<SVGSVGElement>
+type Props = Options & SvgProps
 
-export default function QRX({ data, level, shape, eyeBall, eyeFrame, smooth, ...rest }: Props) {
-  const { path, getEyeFramePath, getEyeBallPath, length, id } = getSVGData({ data, level, shape, eyeBall, eyeFrame })
+// function MarkImage({ src, size, length }: NonNullable<Props['image']> & { length: number }) {
+//   const cord = (length - size) / 2
 
-  const eyeFrameId = `#eyeframe-${id}`
-  const eyeBallId = `#eyeball-${id}`
+//   return (
+//     <>
+//       <clipPath id='clip-path'>
+//         <rect x={cord} y={cord} width={size} height={size} rx={99999} ry={99999} fill='red' />
+//       </clipPath>
+//       <Image
+//         x={cord}
+//         y={cord}
+//         width={size}
+//         height={size}
+//         xlinkHref={src}
+//         clipPath='url(#clip-path)'
+//         preserveAspectRatio='xMidYMid slice'
+//       />
+//     </>
+//   )
+// }
+
+export default function QRX({ data, level, shapes, image, gradient: $gradient, fillImage, ...rest }: Props) {
+  const { ids, fills, paths, length, markers, gradient, eyeItems } = getSVGData({
+    data,
+    level,
+    image,
+    shapes,
+    gradient: $gradient,
+    fillImage,
+  })
+
+  const group = (
+    <G fill={fills.path}>
+      <Path d={paths.body} />
+      {eyeItems.map(item =>
+        markers.map((marker, index) => <Use key={`${item}-${index}`} href={ids[item]} xlinkHref={ids[item]} {...marker} />),
+      )}
+    </G>
+  )
 
   return (
-    <svg {...rest} xmlns='http://www.w3.org/2000/svg' viewBox={`0 0 ${length} ${length}`} width='100%' height='100%'>
-      <defs>
-        <symbol id={eyeFrameId.substring(1)}>
-          <path d={getEyeFramePath(0, 0)} fill='currentColor' />
-        </symbol>
-        <symbol id={eyeBallId.substring(1)}>
-          <path d={getEyeBallPath(2, 2)} fill='currentColor' />
-        </symbol>
-      </defs>
+    <Svg {...rest} viewBox={`0 0 ${length} ${length}`}>
+      {gradient ? <Rect x='0' y='0' width='100%' height='100%' fill={fills.rect} mask="url('#mask')" /> : group}
 
-      <use href={eyeFrameId} xlinkHref={eyeFrameId} x={0} y={0} />
-      <use href={eyeFrameId} xlinkHref={eyeFrameId} x={-length} y={0} transform='scale(-1 1)' />
-      <use href={eyeFrameId} xlinkHref={eyeFrameId} x={0} y={-length} transform='scale(1 -1)' />
-      <use href={eyeBallId} xlinkHref={eyeBallId} x={0} y={0} />
-      <use href={eyeBallId} xlinkHref={eyeBallId} x={-length} y={0} transform='scale(-1 1)' />
-      <use href={eyeBallId} xlinkHref={eyeBallId} x={0} y={-length} transform='scale(1 -1)' />
-      {/**
-       * href is modern way and xlink:href is for backward compatibility
-       * xlink:href is deprecated in SVG 2.0
-       */}
+      <Defs>
+        {eyeItems.map(item => (
+          <Path key={item} d={paths[item]} fill={fills.path} id={ids[item].substring(1)} />
+        ))}
 
-      <path d={path} fill='currentColor' />
-    </svg>
+        {fillImage && (
+          <Pattern id='fill-image' patternUnits='userSpaceOnUse' width='100%' height='100%'>
+            <Image href={fillImage} x='0' y='0' width='100%' height='100%' preserveAspectRatio='xMidYMid slice' />
+          </Pattern>
+        )}
+
+        {gradient && (
+          <G>
+            <Mask id='mask'>{group}</Mask>
+            {createElement(
+              (gradient.isLinearGradient ? LinearGradient : RadialGradient) as FunctionComponent<typeof gradient.attributes>,
+              gradient.attributes,
+              gradient.colors.map(({ color, offset }) => <Stop key={offset} offset={offset} stopColor={color} />),
+            )}
+          </G>
+        )}
+      </Defs>
+    </Svg>
   )
 }
+
+// !Note: Must use both href and xlinkHref to link a source
