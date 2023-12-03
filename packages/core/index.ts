@@ -3,72 +3,62 @@ import { dotShapes, eyeBallShapes, eyeFrameShapes } from './shapes'
 
 export type Options = {
   data: string
+  image?: {
+    src: string
+    size: number
+  }
   level?: 'L' | 'M' | 'Q' | 'H'
   shape?: keyof typeof dotShapes
   smooth?: boolean
   eyeBall?: keyof typeof eyeBallShapes
   eyeFrame?: keyof typeof eyeFrameShapes
+  gradient?: Gradient
 }
 
-export function getSVGData({ data, shape = 'square', eyeBall = 'square', eyeFrame = 'square', ...options }: Options) {
-  const { modules } = QR(data, options) as { modules: boolean[][] }
-  const matrix = modules.map((row, i) =>
-    row.map((isON, j) => {
-      return {
-        isON,
-        isEyeArea: (i < 7 && j < 7) || (i > row.length - 8 && j < 7) || (i < 7 && j > row.length - 8),
-        isTopLeftEyeFrame: i === 0 && j === 0,
-        isTopLeftEyeBall: i === 2 && j === 2,
-        isBottomLeftEyeFrame: i === 0 && j === row.length - 7,
-        isBottomLeftEyeBall: i === 2 && j === row.length - 5,
-        isTopRightEyeFrame: i === row.length - 7 && j === 0,
-        isTopRightEyeBall: i === row.length - 5 && j === 2,
-      }
-    }),
-  )
-  const dot = dotShapes[shape]
-  const eyeball = eyeBallShapes[eyeBall]
-  const eyeframe = eyeFrameShapes[eyeFrame]
+type Gradient = ({ type?: 'linear'; rotate?: number } | { type: 'radial' }) & {
+  colors: string[]
+}
 
-  const path = matrix
+export function getSVGData({ data, shape = 'square', eyeBall = 'square', eyeFrame = 'square', gradient, ...options }: Options) {
+  const { modules } = QR(data, options) as { modules: boolean[][] }
+
+  const bodyPath = modules
     .map((row, i) =>
       row
-        .map(
-          (
-            {
-              isON,
-              isEyeArea,
-              isTopLeftEyeFrame,
-              isTopRightEyeFrame,
-              isBottomLeftEyeFrame,
-              isTopLeftEyeBall,
-              isTopRightEyeBall,
-              isBottomLeftEyeBall,
-            },
-            j,
-          ) => {
-            switch (true) {
-              case isTopLeftEyeFrame:
-              case isTopRightEyeFrame:
-              case isBottomLeftEyeFrame:
-                return eyeframe(i, j)
-              case isTopLeftEyeBall:
-              case isTopRightEyeBall:
-              case isBottomLeftEyeBall:
-                return eyeball(i, j)
-              case isEyeArea:
-                return ''
-              case isON:
-                return dot(i, j)
-              default:
-                return ''
-            }
-          },
-        )
+        .map((isON, j) => {
+          const isEyeArea = (i < 7 && j < 7) || (i > row.length - 8 && j < 7) || (i < 7 && j > row.length - 8)
+
+          switch (true) {
+            case isEyeArea:
+              return ''
+            case isON:
+              return dotShapes[shape](i, j)
+            default:
+              return ''
+          }
+        })
         .join(''),
     )
     .join('')
     .replace(/([\n]|[ ]{2})/g, '')
 
-  return { path, length: matrix.length }
+  return {
+    id: Math.random().toString(36).substring(2, 9),
+    paths: {
+      body: bodyPath,
+      eyeball: eyeBallShapes[eyeBall],
+      eyeframe: eyeFrameShapes[eyeFrame],
+    },
+    length: modules.length,
+    gradient: gradient
+      ? {
+          type: gradient.type || 'linear',
+          rotate: gradient.type !== 'radial' ? gradient.rotate || 45 : undefined,
+          colors: gradient.colors.map((color, index, colors) => ({
+            color,
+            offset: `${(index / colors.length + 1 / colors.length) * 100}%`,
+          })),
+        }
+      : undefined,
+  }
 }
