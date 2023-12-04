@@ -7,9 +7,7 @@
   "module": "dist/index.esm.js",
   "scripts": {
     "build": "rm -rf dist && yarn build:dts && node scripts/build",
-    "build:dts": "tsc -p tsconfig.build.json --outDir ./dist",
-    "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build:dts": "tsc -p tsconfig.build.json --outDir ./dist"
   },
   "dependencies": {
     "@qr-x/core": "*",
