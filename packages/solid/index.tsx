@@ -22,7 +22,7 @@ export default function QRX({ data, level, shapes, image, gradient: $gradient, f
   )
 
   return (
-    <svg {...rest} viewBox={`0 0 ${length} ${length}`}>
+    <svg {...rest} width='100%' viewBox={`0 0 ${length} ${length}`}>
       {isMasked ? (
         <g>
           <mask id='mask'>{group}</mask>
