@@ -61,4 +61,26 @@ export const FillImageWithGradient: StoryObj<typeof QRX> = {
   },
 }
 
+export const MultipleQR = () => {
+  return (
+    <div className='grid'>
+      <QRX
+        data='https://qr-x.dev'
+        gradient={{
+          colors: ['#f97316', '#f59e0b', '#facc15'],
+          rotate: 30,
+          type: 'linear',
+        }}
+      />
+      <QRX
+        data='https://qr-x.dev'
+        gradient={{
+          colors: ['#00ffff', '#ff0000', '#f0f0ff'],
+          rotate: 20,
+          type: 'linear',
+        }}
+      />
+    </div>
+  )
+}
 export default meta
