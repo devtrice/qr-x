@@ -26,7 +26,7 @@ type Props = Options & SvgProps
 // }
 
 export default function QRX({ data, level, shapes, image, gradient: $gradient, fillImage, ...rest }: Props) {
-  const { ids, fills, paths, length, markers, gradient, eyeItems } = getSVGData({
+  const { ids, fills, paths, length, markers, gradient, eyeItems, isMasked } = getSVGData({
     data,
     level,
     image,
@@ -39,36 +39,40 @@ export default function QRX({ data, level, shapes, image, gradient: $gradient, f
     <G fill={fills.path}>
       <Path d={paths.body} />
       {eyeItems.map(item =>
-        markers.map((marker, index) => <Use key={`${item}-${index}`} href={ids[item]} xlinkHref={ids[item]} {...marker} />),
+        markers.map((marker, index) => (
+          <Use key={`${item}-${index}`} href={`#${ids[item]}`} xlinkHref={`#${ids[item]}`} {...marker} />
+        )),
       )}
     </G>
   )
 
   return (
     <Svg {...rest} viewBox={`0 0 ${length} ${length}`}>
-      {gradient ? <Rect x='0' y='0' width='100%' height='100%' fill={fills.rect} mask="url('#mask')" /> : group}
+      {isMasked ? (
+        <G>
+          <Mask id='mask'>{group}</Mask>
+          <Rect x='0' y='0' width='100%' height='100%' fill={fills.rect} mask="url('#mask')" />
+        </G>
+      ) : (
+        group
+      )}
 
       <Defs>
         {eyeItems.map(item => (
-          <Path key={item} d={paths[item]} fill={fills.path} id={ids[item].substring(1)} />
+          <Path key={item} id={ids[item]} d={paths[item]} />
         ))}
 
-        {fillImage && (
-          <Pattern id='fill-image' patternUnits='userSpaceOnUse' width='100%' height='100%'>
-            <Image href={fillImage} x='0' y='0' width='100%' height='100%' preserveAspectRatio='xMidYMid slice' />
-          </Pattern>
-        )}
-
-        {gradient && (
-          <G>
-            <Mask id='mask'>{group}</Mask>
-            {createElement(
+        {gradient
+          ? createElement(
               (gradient.isLinearGradient ? LinearGradient : RadialGradient) as FunctionComponent<typeof gradient.attributes>,
               gradient.attributes,
               gradient.colors.map(({ color, offset }) => <Stop key={offset} offset={offset} stopColor={color} />),
+            )
+          : fillImage && (
+              <Pattern id={ids.image} patternUnits='userSpaceOnUse' width='100%' height='100%'>
+                <Image href={fillImage} x='0' y='0' width='100%' height='100%' preserveAspectRatio='xMidYMid slice' />
+              </Pattern>
             )}
-          </G>
-        )}
       </Defs>
     </Svg>
   )

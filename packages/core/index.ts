@@ -7,7 +7,7 @@ type Shapes = {
   eyeframe?: keyof typeof eyeframeShapes
 }
 
-type Gradient = ({ type?: 'linear'; rotate?: number } | { type: 'radial'; rotate: never }) & {
+type Gradient = ({ type?: 'linear'; rotate?: number } | { type: 'radial'; rotate?: never }) & {
   colors: string[]
 }
 
@@ -23,7 +23,7 @@ export type Options = {
   fillImage?: string
 }
 
-function parseGradient({ type = 'linear', colors, ...rest }: Gradient) {
+function parseGradient({ id, type = 'linear', colors, ...rest }: Gradient & { id: string }) {
   const isLinearGradient = type === 'linear'
   return {
     colors: colors.map((color, index, colors) => ({
@@ -31,7 +31,7 @@ function parseGradient({ type = 'linear', colors, ...rest }: Gradient) {
       offset: `${(index / colors.length + 1 / colors.length) * 100}%`,
     })),
     attributes: {
-      id: 'gradient',
+      id,
       gradientTransform: isLinearGradient ? `rotate(${rest.rotate || 45})` : undefined,
     },
     isLinearGradient,
@@ -42,6 +42,8 @@ export function getSVGData({ data, shapes, image, gradient, fillImage, ...option
   const id = Math.random().toString(36).substring(2, 9)
   const $shapes = { body: 'square', eyeball: 'square', eyeframe: 'square', ...shapes } as const
   const { modules } = QR(data, options) as { modules: boolean[][] }
+
+  const ids = { image: `image-${id}`, eyeball: `eyeball-${id}`, eyeframe: `eyeframe-${id}`, gradient: `gradient-${id}` }
 
   const bodyPath = modules
     .map((row, i) =>
@@ -63,16 +65,18 @@ export function getSVGData({ data, shapes, image, gradient, fillImage, ...option
     .join('')
     .replace(/([\n]|[ ]{2})/g, '')
 
+  const isMasked = gradient || fillImage
+
   return {
-    ids: { eyeball: `#eyeball-${id}`, eyeframe: `#eyeframe-${id}` },
+    ids,
     paths: {
       body: bodyPath,
       eyeball: eyeballShapes[$shapes.eyeball],
       eyeframe: eyeframeShapes[$shapes.eyeframe],
     },
     fills: {
-      rect: "url('#gradient')",
-      path: fillImage ? 'url(#fill-image)' : gradient ? 'white' : 'currentColor', // Note! don't change white to any color.
+      rect: `url('#${fillImage ? ids.image : ids.gradient}')`,
+      path: isMasked ? 'white' : 'currentColor', // Note! don't change white to any color.
     },
     length: modules.length,
     markers: [
@@ -80,7 +84,8 @@ export function getSVGData({ data, shapes, image, gradient, fillImage, ...option
       { x: -modules.length, y: 0, transform: 'scale(-1 1)' },
       { x: 0, y: -modules.length, transform: 'scale(1 -1)' },
     ],
+    isMasked,
     eyeItems: ['eyeball', 'eyeframe'] as const,
-    gradient: gradient ? parseGradient(gradient) : undefined,
+    gradient: gradient ? parseGradient({ id: ids.gradient, ...gradient }) : undefined,
   }
 }
