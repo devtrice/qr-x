@@ -8,7 +8,7 @@ import { dirname, join } from 'path'
 
 const platform = process.env.PLATFORM as string
 
-const modules = { react: '@storybook/react-vite' }
+const modules = { react: '@storybook/react-vite', solid: 'storybook-solidjs-vite' }
 
 function getAbsolutePath(value: string): any {
   return dirname(require.resolve(join(value, 'package.json')))

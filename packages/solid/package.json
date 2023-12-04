@@ -1,0 +1,30 @@
+{
+  "name": "@qr-x/solid",
+  "version": "0.0.1",
+  "license": "MIT",
+  "main": "dist/index.cjs.js",
+  "types": "dist/index.d.ts",
+  "module": "dist/index.esm.js",
+  "scripts": {
+    "build": "rm -rf dist && yarn build:dts && node scripts/build",
+    "build:dts": "tsc -p tsconfig.build.json --outDir ./dist",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
+  },
+  "dependencies": {
+    "@qr-x/core": "*",
+    "tsconfig": "*"
+  },
+  "devDependencies": {
+    "esbuild": "^0.19.8",
+    "esbuild-plugin-solid": "^0.5.0",
+    "solid-js": "^1.8.7",
+    "storybook-solidjs": "^1.0.0-beta.2",
+    "storybook-solidjs-vite": "^1.0.0-beta.2",
+    "typescript": "^5.3.2",
+    "vite-plugin-solid": "^2.7.2"
+  },
+  "peerDependencies": {
+    "solid-js": "^1.x"
+  }
+}

@@ -4,27 +4,6 @@ import { Defs, G, Image, LinearGradient, Mask, Path, Pattern, RadialGradient, Re
 
 type Props = Options & SvgProps
 
-// function MarkImage({ src, size, length }: NonNullable<Props['image']> & { length: number }) {
-//   const cord = (length - size) / 2
-
-//   return (
-//     <>
-//       <clipPath id='clip-path'>
-//         <rect x={cord} y={cord} width={size} height={size} rx={99999} ry={99999} fill='red' />
-//       </clipPath>
-//       <Image
-//         x={cord}
-//         y={cord}
-//         width={size}
-//         height={size}
-//         xlinkHref={src}
-//         clipPath='url(#clip-path)'
-//         preserveAspectRatio='xMidYMid slice'
-//       />
-//     </>
-//   )
-// }
-
 export default function QRX({ data, level, shapes, image, gradient: $gradient, fillImage, ...rest }: Props) {
   const { ids, fills, paths, length, markers, gradient, eyeItems, isMasked } = getSVGData({
     data,
@@ -70,7 +49,15 @@ export default function QRX({ data, level, shapes, image, gradient: $gradient, f
             )
           : fillImage && (
               <Pattern id={ids.image} patternUnits='userSpaceOnUse' width='100%' height='100%'>
-                <Image href={fillImage} x='0' y='0' width='100%' height='100%' preserveAspectRatio='xMidYMid slice' />
+                <Image
+                  x='0'
+                  y='0'
+                  width='100%'
+                  height='100%'
+                  href={fillImage}
+                  xlinkHref={fillImage}
+                  preserveAspectRatio='xMidYMid slice'
+                />
               </Pattern>
             )}
       </Defs>
