@@ -75,7 +75,7 @@ export function getSVGData({ data, shapes, image, gradient, fillImage, ...option
       eyeframe: eyeframeShapes[$shapes.eyeframe],
     },
     fills: {
-      rect: `url('#${fillImage ? ids.image : ids.gradient}')`,
+      rect: `url('#${gradient ? ids.gradient : ids.image}')`, // Note the only check gradient. Don't swap the condition with fillImage exist.
       path: isMasked ? 'white' : 'currentColor', // Note! don't change white to any color.
     },
     length: modules.length,

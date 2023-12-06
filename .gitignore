@@ -9,9 +9,8 @@ node_modules
 coverage
 
 # next.js
-.next/
 out/
-build
+.next/
 
 # misc
 .DS_Store
@@ -38,8 +37,10 @@ yarn-error.log*
 
 #outputs
 dist
+build
 storybook-static
+.svelte-kit
 
 #lock files
+.yarn/**
 yarn.lock
-.yarn

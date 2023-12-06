@@ -4,7 +4,8 @@
     "build": "turbo run build",
     "dev:core": "turbo run watch:core",
     "dev:react": "PLATFORM=react storybook dev -p 6006 --no-open",
-    "dev:solid": "PLATFORM=solid storybook dev -p 6006 --no-open"
+    "dev:solid": "PLATFORM=solid storybook dev -p 6006 --no-open",
+    "dev:svelte": "PLATFORM=svelte storybook dev -p 6006 --no-open"
   },
   "workspaces": [
     "apps/*",
