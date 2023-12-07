@@ -1,5 +1,4 @@
 {
-  "private": true,
   "scripts": {
     "build": "turbo run build",
     "dev:core": "turbo run watch:core",

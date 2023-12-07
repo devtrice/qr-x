@@ -28,8 +28,7 @@
     "@sveltejs/kit": "^1.27.4",
     "@sveltejs/package": "^2.2.3",
     "@tsconfig/svelte": "^5.0.2",
-    "svelte": "^4.2.8",
-    "typescript": "^5.3.2"
+    "svelte": "^4.2.8"
   },
   "peerDependencies": {
     "svelte": "^4.x"

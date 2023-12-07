@@ -3,7 +3,8 @@
   "globalDependencies": ["**/.env.*local"],
   "pipeline": {
     "build": {
-      "outputs": [".next/**", "!.next/cache/**"],
+      "cache": false,
+      "outputs": [".next/**", "!.next/cache/**", "dist/**", ".svelte-kit/**"],
       "dependsOn": ["^build"]
     },
     "watch:core": {

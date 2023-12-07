@@ -17,11 +17,11 @@ out/
 *.pem
 
 # debug
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
+npm-debug.*
+yarn-debug.*
+yarn-error.*
 
-# local env files
+# env files
 .env
 .env.local
 .env.development.local
@@ -35,12 +35,37 @@ yarn-error.log*
 .vercel
 
 
-#outputs
+# outputs
 dist
 build
 storybook-static
 .svelte-kit
 
-#lock files
-.yarn/**
-yarn.lock
+# yarn build atrifacts
+# https://yarnpkg.com/getting-started/qa#which-files-should-be-gitignored
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
+
+# expo
+.expo/
+dist/
+web-build/
+
+# native
+*.orig.*
+*.jks
+*.p8
+*.p12
+*.key
+*.mobileprovision
+
+# metro
+.metro-health-check*
+
+# typescript
+*.tsbuildinfo
