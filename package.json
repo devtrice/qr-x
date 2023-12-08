@@ -4,7 +4,8 @@
     "dev:core": "turbo run watch:core",
     "dev:react": "PLATFORM=react storybook dev -p 6006 --no-open",
     "dev:solid": "PLATFORM=solid storybook dev -p 6006 --no-open",
-    "dev:svelte": "PLATFORM=svelte storybook dev -p 6006 --no-open"
+    "dev:svelte": "PLATFORM=svelte storybook dev -p 6006 --no-open",
+    "dev:vanilla": "PLATFORM=vanilla storybook dev -p 6006 --no-open"
   },
   "workspaces": [
     "apps/*",
@@ -14,6 +15,7 @@
   "dependencies": {
     "@storybook/addon-essentials": "^7.6.3",
     "@storybook/addon-interactions": "^7.6.3",
+    "@storybook/addon-links": "^7.6.3",
     "@storybook/blocks": "^7.6.3",
     "@storybook/test": "^7.6.3",
     "concurrently": "^8.2.2",

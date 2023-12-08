@@ -8,7 +8,12 @@ import { dirname, join } from 'path'
 
 const platform = process.env.PLATFORM as string
 
-const modules = { react: '@storybook/react-vite', solid: 'storybook-solidjs-vite', svelte: '@storybook/svelte-vite' }
+const modules = {
+  react: '@storybook/react-vite',
+  solid: 'storybook-solidjs-vite',
+  svelte: '@storybook/svelte-vite',
+  vanilla: '@storybook/html-vite',
+}
 
 function getAbsolutePath(value: string): any {
   return dirname(require.resolve(join(value, 'package.json')))
@@ -16,7 +21,7 @@ function getAbsolutePath(value: string): any {
 
 const config: StorybookConfig = {
   addons: [
-    // getAbsolutePath('@storybook/addon-links'),
+    getAbsolutePath('@storybook/addon-links'),
     getAbsolutePath('@storybook/addon-essentials'),
     getAbsolutePath('@storybook/addon-interactions'),
   ],
