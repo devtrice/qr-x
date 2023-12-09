@@ -1,4 +1,4 @@
-import { Default, FillImage, LinearGradient, RadialGradient, defaultMeta, renderMultiple } from 'stories'
+import { Default, FillImage, LinearGradient, RadialGradient, defaultMeta, renderMultiple, LogoCenter } from 'stories'
 import type { Meta } from 'storybook-solidjs'
 import QRX from '.'
 
@@ -8,4 +8,4 @@ const Multiple = () => <div class='grid'>{renderMultiple(QRX)}</div>
 
 export default meta
 
-export { Default, FillImage, LinearGradient, Multiple, RadialGradient }
+export { Default, FillImage, LogoCenter, LinearGradient, Multiple, RadialGradient }

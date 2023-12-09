@@ -12,6 +12,12 @@ export const defaultMeta = {
     data: {
       control: 'text',
     },
+    logo: {
+      control: 'object',
+      src: {
+        control: 'text',
+      },
+    },
     shapes: {
       body: {
         control: 'select',
@@ -33,6 +39,16 @@ export const Default: Story = {
   args: {
     data: URL,
     color: '#6366f1',
+  },
+}
+
+export const LogoCenter: Story = {
+  args: {
+    data: URL,
+    color: '#34acd8',
+    logo: {
+      src: 'https://static.xx.fbcdn.net/rsrc.php/yT/r/aGT3gskzWBf.ico',
+    },
   },
 }
 

@@ -21,6 +21,10 @@ export type Options = {
   shapes?: Shapes
   gradient?: Gradient
   fillImage?: string
+  logo?: {
+    src: string
+    // size: number
+  }
 }
 
 function parseGradient({ id, type = 'linear', colors, ...rest }: Gradient & { id: string }) {
