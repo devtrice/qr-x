@@ -3041,15 +3041,9 @@ __metadata:
   resolution: "@qr-x/vue@workspace:packages/vue"
   dependencies:
     "@qr-x/core": "npm:*"
-    "@storybook/test": "npm:^7.6.4"
     "@storybook/vue3": "npm:^7.6.4"
     "@storybook/vue3-vite": "npm:^7.6.4"
-    "@types/react": "npm:^18.2.39"
-    "@types/react-dom": "npm:^18.2.17"
-    "@vitejs/plugin-vue": "npm:^4.5.2"
     esbuild: "npm:^0.19.8"
-    react: "npm:^18.2.0"
-    react-dom: "npm:^18.2.0"
     stories: "npm:*"
     tsconfig: "npm:*"
     vue: "npm:^3.3.11"
@@ -5159,7 +5153,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@storybook/test@npm:^7.6.3, @storybook/test@npm:^7.6.4":
+"@storybook/test@npm:^7.6.3":
   version: 7.6.4
   resolution: "@storybook/test@npm:7.6.4"
   dependencies:
@@ -5935,7 +5929,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@vitejs/plugin-vue@npm:^4.0.0, @vitejs/plugin-vue@npm:^4.5.2":
+"@vitejs/plugin-vue@npm:^4.0.0":
   version: 4.5.2
   resolution: "@vitejs/plugin-vue@npm:4.5.2"
   peerDependencies:
