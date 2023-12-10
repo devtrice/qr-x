@@ -1,15 +1,18 @@
 {
   "scripts": {
     "build": "turbo run build",
-    "dev:core": "turbo run watch:core",
+    "dev:core": "turbo run watch --filter=@qr-x/core",
     "dev:react": "PLATFORM=react storybook dev -p 6006 --no-open",
     "dev:solid": "PLATFORM=solid storybook dev -p 6006 --no-open",
-    "dev:svelte": "PLATFORM=svelte storybook dev -p 6006 --no-open",
-    "dev:vanilla": "PLATFORM=vanilla storybook dev -p 6006 --no-open"
+    "dev:svelte": "concurrently 'turbo run watch --filter=@qr-x/svelte' 'PLATFORM=svelte storybook dev -p 6006 --no-open'",
+    "dev:vanilla": "PLATFORM=vanilla storybook dev -p 6006 --no-open",
+    "dev:vue": "PLATFORM=vue storybook dev -p 6006 --no-open",
+    "types:check": "turbo run types:check"
   },
   "workspaces": [
     "apps/*",
     "tests/*",
+    "common/*",
     "packages/*"
   ],
   "dependencies": {

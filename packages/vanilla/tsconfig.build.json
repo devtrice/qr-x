@@ -1,4 +1,4 @@
 {
-  "extends": "tsconfig/types-only.json",
-  "exclude": ["node_modules", "dist/**/*", "index.stories.tsx"]
+  "extends": "tsconfig/build.json",
+  "exclude": ["node_modules", "dist", "index.stories.ts"]
 }

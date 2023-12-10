@@ -2,12 +2,6 @@ import type { Meta } from '@storybook/html'
 import { Default, FillImage, LinearGradient, RadialGradient, defaultMeta, renderMultiple } from 'stories'
 import createQRX, { Props } from './index'
 
-const meta: Meta<Props> = {
-  title: 'QRx',
-  render: args => createQRX(args),
-  ...defaultMeta,
-}
-
 const Multiple = () => {
   const elements = renderMultiple(createQRX)
   const grid = document.createElement('div')
@@ -16,6 +10,10 @@ const Multiple = () => {
   return grid
 }
 
-export default meta
+export default {
+  title: 'QRx',
+  render: args => createQRX(args),
+  ...defaultMeta,
+} satisfies Meta<Props>
 
-export { Default, FillImage, LinearGradient, Multiple, RadialGradient }
+export { Default, FillImage, LinearGradient, RadialGradient, Multiple }

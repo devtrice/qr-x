@@ -1,5 +1,5 @@
 import { getSVGData, Options } from '@qr-x/core'
-import { createElement, FunctionComponent } from 'react'
+import React, { FunctionComponent } from 'react'
 import { Defs, G, Image, LinearGradient, Mask, Path, Pattern, RadialGradient, Rect, Stop, Svg, SvgProps, Use } from './tags/'
 
 type Props = Options & SvgProps
@@ -42,7 +42,8 @@ export default function QRX({ data, level, shapes, image, gradient: $gradient, f
         ))}
 
         {gradient
-          ? createElement(
+          ? // Warning: Keep as React.createElement bec React must be imported in the output bundle. Just using import React from 'react' is risky coz the editor will remove unused deps.
+            React.createElement(
               (gradient.isLinearGradient ? LinearGradient : RadialGradient) as FunctionComponent<typeof gradient.attributes>,
               gradient.attributes,
               gradient.colors.map(({ color, offset }) => <Stop key={offset} offset={offset} stopColor={color} />),

@@ -19,17 +19,16 @@
     "build:dts": "tsc -p tsconfig.build.json --outDir ./dist",
     "build:esm": "esbuild index.ts --format=esm --outfile=./dist/index.esm.js",
     "build:cjs": "esbuild index.ts --format=cjs --outfile=./dist/index.cjs.js",
-    "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "types:check": "tsc --skipLibCheck --noEmit"
   },
   "dependencies": {
-    "@qr-x/core": "*",
-    "tsconfig": "*"
+    "@qr-x/core": "*"
   },
   "devDependencies": {
     "@storybook/html": "^7.6.4",
     "@storybook/html-vite": "^7.6.4",
     "esbuild": "^0.19.8",
-    "stories": "*"
+    "stories": "*",
+    "tsconfig": "*"
   }
 }

@@ -10,11 +10,11 @@
   ],
   "scripts": {
     "build": "rm -rf dist && yarn build:dts && yarn node scripts/build",
-    "build:dts": "tsc -p tsconfig.build.json --outDir ./dist"
+    "build:dts": "tsc -p tsconfig.build.json --outDir ./dist",
+    "types:check": "tsc --skipLibCheck --noEmit"
   },
   "dependencies": {
-    "@qr-x/core": "*",
-    "tsconfig": "*"
+    "@qr-x/core": "*"
   },
   "devDependencies": {
     "esbuild": "^0.19.8",
@@ -23,6 +23,7 @@
     "stories": "*",
     "storybook-solidjs": "^1.0.0-beta.2",
     "storybook-solidjs-vite": "^1.0.0-beta.2",
+    "tsconfig": "*",
     "typescript": "^5.3.3",
     "vite-plugin-solid": "^2.7.2"
   },

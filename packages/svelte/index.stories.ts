@@ -1,8 +1,6 @@
 import type { Meta } from '@storybook/svelte'
 import { Default, FillImage, LinearGradient, RadialGradient, defaultMeta, renderMultiple } from 'stories'
-import QRX, { type QrxProps } from './dist/QRX.svelte'
-
-const meta: Meta<QrxProps> = { title: 'QRx', component: QRX, ...defaultMeta }
+import QRX from './dist/QRX.svelte'
 
 // function $QRX(props: QrxProps) {
 //   return new QRX({ target: document.getElementById('storybook-root') as any, props })
@@ -10,6 +8,10 @@ const meta: Meta<QrxProps> = { title: 'QRx', component: QRX, ...defaultMeta }
 
 // const Multiple = () => renderMultiple($QRX)
 
-export default meta
+export default {
+  title: 'QRx',
+  component: QRX,
+  ...defaultMeta,
+} satisfies Meta<QRX>
 
 export { Default, FillImage, LinearGradient, RadialGradient }

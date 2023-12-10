@@ -1,5 +1,5 @@
 import QR from 'qr.js'
-import { bodyShapes, eyeballShapes, eyeframeShapes } from './shapes'
+import { bodyShapes, eyeballShapes, eyeframeShapes } from './src/shapes'
 
 type Shapes = {
   body: keyof typeof bodyShapes

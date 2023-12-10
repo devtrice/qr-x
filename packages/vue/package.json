@@ -1,5 +1,5 @@
 {
-  "name": "@qr-x/react",
+  "name": "@qr-x/vue",
   "version": "0.0.1",
   "license": "MIT",
   "description": "",
@@ -12,35 +12,33 @@
   "keywords": [
     "qr",
     "code",
-    "react"
+    "vue"
   ],
   "scripts": {
     "build": "rm -rf dist && yarn build:dts && yarn build:esm && yarn build:cjs && yarn build:src",
     "build:dts": "tsc -p tsconfig.build.json --outDir ./dist",
-    "build:esm": "esbuild index.tsx --format=esm --outfile=./dist/index.esm.js",
-    "build:cjs": "esbuild index.tsx --format=cjs --outfile=./dist/index.cjs.js",
-    "build:src": "esbuild tags/index.tsx tags/index.native.tsx --format=esm --outdir=./dist/tags",
+    "build:esm": "esbuild index.ts --format=esm --outfile=./dist/index.esm.js",
+    "build:cjs": "esbuild index.ts --format=cjs --outfile=./dist/index.cjs.js",
     "types:check": "tsc --skipLibCheck --noEmit"
   },
   "dependencies": {
     "@qr-x/core": "*"
   },
   "peerDependencies": {
-    "react": "^16.x || ^17.x || ^18.x",
-    "react-dom": "^16.x || ^17.x || ^18.x",
-    "react-native-svg": "*"
+    "vue": "^3.x"
   },
   "devDependencies": {
-    "@storybook/react": "^7.6.3",
-    "@storybook/react-vite": "^7.6.3",
+    "@storybook/test": "^7.6.4",
+    "@storybook/vue3": "^7.6.4",
+    "@storybook/vue3-vite": "^7.6.4",
     "@types/react": "^18.2.39",
     "@types/react-dom": "^18.2.17",
+    "@vitejs/plugin-vue": "^4.5.2",
     "esbuild": "^0.19.8",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-native-svg": "^14.0.0",
     "stories": "*",
     "tsconfig": "*",
-    "typescript": "^5.3.3"
+    "vue": "^3.3.11"
   }
 }
