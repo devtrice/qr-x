@@ -12,6 +12,11 @@ jobs:
   publish:
     name: 🚀 Publishing to NPM
     runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        package: [core, react, solid, svelte]
+
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
@@ -19,15 +24,21 @@ jobs:
           node-version: 20
           registry-url: https://registry.npmjs.org/
 
-      - name: Set vars
+      - name: Build packages
+        run: |
+          if [ "${{ matrix.package }}" == "core" ]; then
+            yarn
+            yarn build
+          fi
+
+      - name: Set variables
         run: |
           echo "COMMIT_ID=$(git rev-parse --short HEAD)" >> $GITHUB_ENV
+          echo "VERSION=$(npm view ./packages/${{ matrix.package }} version)" >> $GITHUB_ENV
 
-      - name: Build & Publish
+      - name: Publish packages
         run: |
-          yarn
-          yarn build
-          # yarn workspaces foreach --since --include @qr-x/\* run echo "VERSION=$(npm view ./ version)" >> $GITHUB_ENV && version ${{ env.VERSION }}-alpha.${{ env.COMMIT_ID }}
-          # yarn workspaces foreach --since --include @qr-x/\* npm publish --tag alpha --access public
+          yarn workspace @qr-x/${{ matrix.package }} version ${{ env.VERSION }}-alpha.${{ env.COMMIT_ID }}
+          yarn workspace @qr-x/${{ matrix.package }} npm publish --tag alpha --access public
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
