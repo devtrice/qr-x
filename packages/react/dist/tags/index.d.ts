@@ -1,0 +1,17 @@
+import React, { SVGProps } from 'react';
+type Props = SVGProps<SVGSVGElement>;
+export type SvgProps = Props;
+export declare const G: (props: Props) => React.JSX.Element;
+export declare const Svg: (props: Props) => React.JSX.Element;
+export declare const Use: (props: SVGProps<SVGUseElement>) => React.JSX.Element;
+export declare const Path: (props: SVGProps<SVGPathElement>) => React.JSX.Element;
+export declare const Rect: (props: SVGProps<SVGRectElement>) => React.JSX.Element;
+export declare const Defs: (props: SVGProps<SVGDefsElement>) => React.JSX.Element;
+export declare const Mask: (props: SVGProps<SVGMaskElement>) => React.JSX.Element;
+export declare const Stop: (props: SVGProps<SVGStopElement>) => React.JSX.Element;
+export declare const Image: (props: SVGProps<SVGImageElement>) => React.JSX.Element;
+export declare const Symbol: (props: SVGProps<SVGSymbolElement>) => React.JSX.Element;
+export declare const Pattern: (props: SVGProps<SVGPatternElement>) => React.JSX.Element;
+export declare const LinearGradient: (props: SVGProps<SVGLinearGradientElement>) => React.JSX.Element;
+export declare const RadialGradient: (props: SVGProps<SVGRadialGradientElement>) => React.JSX.Element;
+export {};
