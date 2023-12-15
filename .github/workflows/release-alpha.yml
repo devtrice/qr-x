@@ -27,7 +27,7 @@ jobs:
         run: |
           yarn
           yarn build
-          yarn workspaces foreach --since --include @qr-x/\* run echo "VERSION=$(npm view ./ version)" >> $GITHUB_ENV && version ${{ env.VERSION }}-alpha.78051f4
-          yarn workspaces foreach --since --include @qr-x/\* npm publish --tag alpha --access public --force
+          yarn workspaces foreach --since --include @qr-x/\* run echo "VERSION=$(npm view ./ version)" >> $GITHUB_ENV && version ${{ env.VERSION }}-alpha.${{ env.COMMIT_ID }}
+          yarn workspaces foreach --since --include @qr-x/\* npm publish --tag alpha --access public
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
