@@ -1,0 +1,7 @@
+{
+  "extends": "tsconfig/build.json",
+  "compilerOptions": {
+    "jsxImportSource": "solid-js"
+  },
+  "exclude": ["node_modules", "dist", "index.stories.tsx"]
+}

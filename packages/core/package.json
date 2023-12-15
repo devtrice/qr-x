@@ -1,12 +1,35 @@
 {
-    "name": "qr-x",
-    "license": "MIT",
-    "version": "0.0.0",
-    "private": true,
-    "main": "./qrcode.js",
-    "types": "./qr-x.d.ts",
-    "devDependencies": {
-      "typescript": "^5.2.2"
-    }
+  "name": "@qr-x/core",
+  "license": "MIT",
+  "version": "0.0.0",
+  "description": "",
+  "main": "dist/index.cjs.js",
+  "types": "dist/index.d.ts",
+  "module": "dist/index.esm.js",
+  "files": [
+    "dist"
+  ],
+  "keywords": [
+    "qr",
+    "code"
+  ],
+  "scripts": {
+    "build": "rm -rf dist && yarn build:dts && yarn build:esm && yarn build:cjs",
+    "build:dts": "tsc -p tsconfig.build.json --outDir ./dist",
+    "build:esm": "esbuild index.ts --bundle --packages=external --format=esm --outfile=./dist/index.esm.js",
+    "build:cjs": "esbuild index.ts --bundle --packages=external --format=cjs --outfile=./dist/index.cjs.js",
+    "watch": "rm -rf dist && concurrently 'yarn watch:dts' 'yarn watch:esm' 'yarn watch:cjs'",
+    "watch:dts": "tsc -p tsconfig.build.json --outDir ./dist --watch ",
+    "watch:esm": "esbuild index.ts --bundle --watch --packages=external --format=esm --outfile=./dist/index.esm.js",
+    "watch:cjs": "esbuild index.ts --bundle --watch --packages=external --format=cjs --outfile=./dist/index.cjs.js",
+    "types:check": "tsc --skipLibCheck --noEmit"
+  },
+  "dependencies": {
+    "qr.js": "^0.0.0"
+  },
+  "devDependencies": {
+    "esbuild": "^0.19.8",
+    "tsconfig": "*",
+    "typescript": "^5.3.3"
   }
-  
+}

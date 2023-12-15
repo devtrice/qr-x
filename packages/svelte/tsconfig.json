@@ -1,0 +1,10 @@
+{
+  "extends": "tsconfig/base.json",
+  "compilerOptions": {
+    "module": "ESNext",
+    "sourceMap": true,
+    "moduleResolution": "Bundler",
+    "verbatimModuleSyntax": true
+  },
+  "exclude": ["node_modules", "dist", ".svelte-kit"]
+}

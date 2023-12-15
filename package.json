@@ -1,21 +1,38 @@
 {
-  "private": true,
+  "name": "qr-x",
   "scripts": {
     "build": "turbo run build",
-    "dev": "turbo run dev",
-    "lint": "turbo run lint",
-    "format": "prettier --write \"**/*.{ts,tsx,md}\""
+    "prepare": "husky install",
+    "dev:core": "turbo run watch --filter=@qr-x/core",
+    "dev:react": "PLATFORM=react storybook dev -p 6006 --no-open",
+    "dev:solid": "PLATFORM=solid storybook dev -p 6006 --no-open",
+    "dev:vanilla": "PLATFORM=vanilla storybook dev -p 6006 --no-open",
+    "dev:svelte": "concurrently 'turbo run watch --filter=@qr-x/svelte' 'PLATFORM=svelte storybook dev -p 6006 --no-open'",
+    "dev:vue": "PLATFORM=vue storybook dev -p 6006 --no-open"
   },
-  "devDependencies": {
-    "eslint": "^8.48.0",
-    "prettier": "^3.0.3",
-    "tsconfig": "*",
-    "turbo": "latest"
-  },
-  "name": "qr-x",
-  "packageManager": "yarn@1.22.19",
   "workspaces": [
     "apps/*",
+    "tests/*",
+    "common/*",
     "packages/*"
-  ]
+  ],
+  "dependencies": {
+    "@storybook/addon-essentials": "^7.6.4",
+    "@storybook/addon-interactions": "^7.6.4",
+    "@storybook/addon-links": "^7.6.4",
+    "@storybook/blocks": "^7.6.4",
+    "@storybook/test": "^7.6.4",
+    "concurrently": "^8.2.2",
+    "eslint": "^8.48.0",
+    "prettier": "^3.1.0",
+    "storybook": "^7.6.4",
+    "tsconfig": "*",
+    "turbo": "latest",
+    "typescript": "^5.3.2",
+    "vite": "^5.0.3"
+  },
+  "devDependencies": {
+    "husky": "^8.0.0"
+  },
+  "packageManager": "yarn@4.0.2"
 }

@@ -1,0 +1,7 @@
+{
+  "name": "stories",
+  "private": true,
+  "dependencies": {
+    "@qr-x/core": "^0.0.0"
+  }
+}
