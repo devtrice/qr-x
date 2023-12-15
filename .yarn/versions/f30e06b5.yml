@@ -1,7 +1,7 @@
-releases:
-  "@qr-x/core": patch
-  "@qr-x/react": patch
-  "@qr-x/solid": patch
-  "@qr-x/svelte": patch
-  "@qr-x/vanilla": patch
-  "@qr-x/vue": patch
+declined:
+  - "@qr-x/core"
+  - "@qr-x/react"
+  - "@qr-x/solid"
+  - "@qr-x/svelte"
+  - "@qr-x/vanilla"
+  - "@qr-x/vue"

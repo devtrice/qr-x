@@ -1,6 +1,6 @@
 {
   "name": "@qr-x/react",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "license": "MIT",
   "description": "",
   "main": "dist/index.cjs.js",
@@ -23,7 +23,7 @@
     "types:check": "tsc --skipLibCheck --noEmit"
   },
   "dependencies": {
-    "@qr-x/core": "^0.0.0"
+    "@qr-x/core": "^0.0.1"
   },
   "peerDependencies": {
     "react": "^16.x || ^17.x || ^18.x",
