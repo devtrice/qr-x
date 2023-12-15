@@ -1,6 +1,6 @@
 {
   "name": "@qr-x/solid",
-  "version": "0.0.1",
+  "version": "0.0.0",
   "license": "MIT",
   "main": "dist/index.cjs.js",
   "types": "dist/index.d.ts",
@@ -14,7 +14,7 @@
     "types:check": "tsc --skipLibCheck --noEmit"
   },
   "dependencies": {
-    "@qr-x/core": "*"
+    "@qr-x/core": "^0.0.0"
   },
   "devDependencies": {
     "esbuild": "^0.19.8",

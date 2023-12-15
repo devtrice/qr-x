@@ -1,6 +1,6 @@
 {
   "name": "@qr-x/react",
-  "version": "0.0.1",
+  "version": "0.0.0",
   "license": "MIT",
   "description": "",
   "main": "dist/index.cjs.js",
@@ -23,7 +23,7 @@
     "types:check": "tsc --skipLibCheck --noEmit"
   },
   "dependencies": {
-    "@qr-x/core": "*"
+    "@qr-x/core": "^0.0.0"
   },
   "peerDependencies": {
     "react": "^16.x || ^17.x || ^18.x",
@@ -31,8 +31,8 @@
     "react-native-svg": "*"
   },
   "devDependencies": {
-    "@storybook/react": "^7.6.3",
-    "@storybook/react-vite": "^7.6.3",
+    "@storybook/react": "^7.6.4",
+    "@storybook/react-vite": "^7.6.4",
     "@types/react": "^18.2.39",
     "@types/react-dom": "^18.2.17",
     "esbuild": "^0.19.8",

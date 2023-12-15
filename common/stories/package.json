@@ -1,12 +1,7 @@
 {
   "name": "stories",
-  "version": "0.0.0",
   "private": true,
-  "license": "MIT",
   "dependencies": {
-    "@qr-x/core": "*"
-  },
-  "publishConfig": {
-    "access": "public"
+    "@qr-x/core": "^0.0.0"
   }
 }

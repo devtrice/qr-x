@@ -6,10 +6,6 @@
       "outputs": [".next/**", "!.next/cache/**", "dist/**", ".svelte-kit/**"],
       "dependsOn": ["^build"]
     },
-    "watch": {
-      "cache": false,
-      "persistent": true
-    },
     "types:check": {
       "dependsOn": ["^types:check"]
     }

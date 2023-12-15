@@ -1,6 +1,6 @@
 {
   "name": "@qr-x/svelte",
-  "version": "0.0.1",
+  "version": "0.0.0",
   "license": "MIT",
   "main": "dist/index.js",
   "types": "./dist/index.d.js",
@@ -20,11 +20,11 @@
     "types:check": "tsc --skipLibCheck --noEmit"
   },
   "dependencies": {
-    "@qr-x/core": "*"
+    "@qr-x/core": "^0.0.0"
   },
   "devDependencies": {
-    "@storybook/svelte": "^7.6.3",
-    "@storybook/svelte-vite": "^7.6.3",
+    "@storybook/svelte": "^7.6.4",
+    "@storybook/svelte-vite": "^7.6.4",
     "@sveltejs/adapter-auto": "^2.0.0",
     "@sveltejs/kit": "^1.27.4",
     "@sveltejs/package": "^2.2.3",
