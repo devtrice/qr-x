@@ -1,10 +1,13 @@
 releases:
-  "@qr-x/core": patch
-  "@qr-x/react": patch
-  "@qr-x/solid": patch
-  "@qr-x/svelte": patch
-  "@qr-x/vanilla": patch
-  "@qr-x/vue": patch
+  '@qr-x/core': patch
+  '@qr-x/react': patch
+  '@qr-x/solid': patch
+  '@qr-x/svelte': patch
+  '@qr-x/vanilla': patch
+  '@qr-x/vue': patch
 
 undecided:
   - native
+
+declined:
+  - tsconfig
