@@ -23,7 +23,6 @@ jobs:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
-          fetch-depth: 0
           node-version: 20
           registry-url: https://registry.npmjs.org/
 
@@ -41,7 +40,7 @@ jobs:
 
       - name: Publish packages
         run: |
-          yarn workspace @qr-x/${{ matrix.package }} version ${{ env.VERSION }}-alpha.${{ env.COMMIT_ID }}
-          yarn workspace @qr-x/${{ matrix.package }} npm publish --tag alpha --access public
+          npm version ${{ env.VERSION }}-alpha.${{ env.COMMIT_ID }} --force --no-git-tag-version --workspace=@qr-x/${{ matrix.package }}
+          npm publish --tag alpha --access public --workspace=@qr-x/${{ matrix.package }}
         env:
-          YARN_NPM_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
+          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
