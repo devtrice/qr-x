@@ -16,8 +16,7 @@
   },
   "scripts": {
     "build": "svelte-package -i ./src",
-    "watch": "svelte-package -i ./src -w",
-    "types:check": "tsc --skipLibCheck --noEmit"
+    "watch": "svelte-package -i ./src -w"
   },
   "dependencies": {
     "@qr-x/core": "^0.0.1"
