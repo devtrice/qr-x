@@ -10,8 +10,7 @@
   ],
   "scripts": {
     "build": "rm -rf dist && yarn build:dts && yarn node scripts/build",
-    "build:dts": "tsc -p tsconfig.build.json --outDir ./dist",
-    "types:check": "tsc --skipLibCheck --noEmit"
+    "build:dts": "tsc -p tsconfig.build.json --outDir ./dist"
   },
   "dependencies": {
     "@qr-x/core": "^0.0.1"
