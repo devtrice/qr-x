@@ -2962,7 +2962,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@qr-x/react@npm:^0.0.1, @qr-x/react@workspace:packages/react":
+"@qr-x/react@npm:*, @qr-x/react@workspace:packages/react":
   version: 0.0.0-use.local
   resolution: "@qr-x/react@workspace:packages/react"
   dependencies:
@@ -12711,7 +12711,7 @@ __metadata:
   resolution: "native@workspace:tests/react-native"
   dependencies:
     "@babel/core": "npm:^7.20.0"
-    "@qr-x/react": "npm:^0.0.1"
+    "@qr-x/react": "npm:*"
     "@react-navigation/native": "npm:^6.0.2"
     "@types/react": "npm:~18.2.14"
     concurrently: "npm:^8.2.2"
