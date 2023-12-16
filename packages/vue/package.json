@@ -1,6 +1,6 @@
 {
   "name": "@qr-x/vue",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "license": "MIT",
   "description": "",
   "main": "dist/index.cjs.js",
@@ -22,7 +22,7 @@
     "types:check": ""
   },
   "dependencies": {
-    "@qr-x/core": "^0.0.0"
+    "@qr-x/core": "^0.0.1"
   },
   "peerDependencies": {
     "vue": "^3.x"

@@ -1,0 +1,28 @@
+name: 'Publish Stable Version'
+
+on:
+  push:
+    branches:
+      - main
+    paths-ignore:
+      - '**/package.json'
+      - '.yarn/versions/**'
+
+jobs:
+  publish:
+    name: 🚀 Publishing to NPM
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 20
+          registry-url: https://registry.npmjs.org/
+
+      - name: Build & Publish
+        run: |
+          yarn
+          yarn build
+          yarn workspaces foreach --since --include @qr-x/\* npm publish --tag alpha --access public
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
