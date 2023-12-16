@@ -25,4 +25,4 @@ jobs:
           yarn build
           yarn workspaces foreach --all --include @qr-x/\* npm publish --tag alpha --access public
         env:
-          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
+          YARN_NPM_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
