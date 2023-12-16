@@ -23,6 +23,6 @@ jobs:
         run: |
           yarn
           yarn build
-          yarn workspaces foreach --since --include @qr-x/\* npm publish --tag alpha --access public
+          yarn workspaces foreach --all --include @qr-x/\* npm publish --tag alpha --access public
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
