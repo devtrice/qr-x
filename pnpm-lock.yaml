@@ -56,7 +56,7 @@ importers:
     dependencies:
       '@qr-x/core':
         specifier: ^0.0.1
-        version: link:../../packages/core
+        version: 0.0.1
 
   common/tsconfig: {}
 
@@ -80,7 +80,7 @@ importers:
     dependencies:
       '@qr-x/core':
         specifier: ^0.0.1
-        version: link:../core
+        version: 0.0.1
     devDependencies:
       '@common/stories':
         specifier: workspace:*
@@ -120,7 +120,7 @@ importers:
     dependencies:
       '@qr-x/core':
         specifier: ^0.0.1
-        version: link:../core
+        version: 0.0.1
     devDependencies:
       '@common/stories':
         specifier: workspace:*
@@ -154,7 +154,7 @@ importers:
     dependencies:
       '@qr-x/core':
         specifier: ^0.0.1
-        version: link:../core
+        version: 0.0.1
     devDependencies:
       '@common/stories':
         specifier: workspace:*
@@ -191,11 +191,14 @@ importers:
     dependencies:
       '@qr-x/core':
         specifier: ^0.0.1
-        version: link:../core
+        version: 0.0.1
     devDependencies:
       '@common/stories':
         specifier: workspace:*
         version: link:../../common/stories
+      '@common/tsconfig':
+        specifier: workspace:*
+        version: link:../../common/tsconfig
       '@storybook/html':
         specifier: ^7.6.4
         version: 7.6.7(@babel/core@7.23.3)
@@ -205,15 +208,12 @@ importers:
       esbuild:
         specifier: ^0.19.8
         version: 0.19.11
-      tsconfig:
-        specifier: '*'
-        version: 7.0.0
 
   packages/vue:
     dependencies:
       '@qr-x/core':
         specifier: ^0.0.1
-        version: link:../core
+        version: 0.0.1
     devDependencies:
       '@common/stories':
         specifier: workspace:*
@@ -2814,6 +2814,12 @@ packages:
     resolution: {integrity: sha512-2LuNTFBIO0m7kKIQvvPHN6UE63VjpmL9rnEEaOOaiSPbZK+zUOYIzBAWcED+3XYzhYsd/0mD57VdxAEqqV52CQ==}
     dev: true
 
+  /@qr-x/core@0.0.1:
+    resolution: {integrity: sha512-WxUH5i6rtXVpkSsLhvAUe0nrgdC4PlZEkxuZTsanGO+j0qzqJe4oZOf+WvQ2UlhYnWDBgVmpGGMgUwex+fj7mQ==}
+    dependencies:
+      qr.js: 0.0.0
+    dev: false
+
   /@radix-ui/number@1.0.1:
     resolution: {integrity: sha512-T5gIdVO2mmPW3NNhjNgEP3cqMXjXL9UbO0BzWcXfvdBs+BohbQxvd/K5hSVKmn9/lbTdsQVKbUcP5WLCwvUbBg==}
     dependencies:
@@ -4435,9 +4441,9 @@ packages:
     resolution: {integrity: sha512-Rhf3sPU3GsEDXgxh6n0WQMJ63oNJp+8nImjXuBviNWIlhwERA4x+q3lhCt2YAYDjMtMShIv+fLmrXrxC1LbblQ==}
     dependencies:
       '@babel/generator': 7.23.3
-      '@babel/parser': 7.23.3
+      '@babel/parser': 7.23.6
       '@babel/traverse': 7.23.3
-      '@babel/types': 7.23.3
+      '@babel/types': 7.23.6
       '@storybook/csf': 0.1.2
       '@storybook/types': 8.0.0-alpha.7
       fs-extra: 11.2.0
@@ -5252,14 +5258,6 @@ packages:
 
   /@types/stack-utils@2.0.3:
     resolution: {integrity: sha512-9aEbYZ3TbYMznPdcdr3SmIrLXwC/AKZXQeCf9Pgao5CKb8CyHuEX5jzWPTkvregvhRJHcpRO6BFoGW9ycaOkYw==}
-
-  /@types/strip-bom@3.0.0:
-    resolution: {integrity: sha512-xevGOReSYGM7g/kUBZzPqCrR/KYAo+F0yiPc85WFTJa0MSLtyFTVTU6cJu/aV4mid7IffDIWqo69THF2o4JiEQ==}
-    dev: true
-
-  /@types/strip-json-comments@0.0.30:
-    resolution: {integrity: sha512-7NQmHra/JILCd1QqpSzl8+mJRc8ZHz3uDm8YV1Ks9IhK0epEiTw8aIErbvH9PI+6XbqhyIQy3462nEsn7UVzjQ==}
-    dev: true
 
   /@types/unist@2.0.10:
     resolution: {integrity: sha512-IfYcSBWE3hLpBg8+X2SEa8LVkJdJEkT2Ese2aaLs3ptGdVtABxndrMaxuFlQ1qdFf9Q5rDvDpxI3WwgvKFAsQA==}
@@ -11999,11 +11997,6 @@ packages:
     dependencies:
       ansi-regex: 6.0.1
 
-  /strip-bom@3.0.0:
-    resolution: {integrity: sha512-vavAMRXOgBVNF6nyEEmL3DBK19iRpDcoIwW+swQ+CbGiu7lju6t+JklA1MHweoWtadgt4ISVUsXLyDq34ddcwA==}
-    engines: {node: '>=4'}
-    dev: true
-
   /strip-eof@1.0.0:
     resolution: {integrity: sha512-7FCwGGmx8mD5xQd3RPUvnSpUXHM3BWuzjtpD4TXsfcZ9EL4azvVVUscFYwD9nx8Kh+uCBC00XBtAykoMHwTh8Q==}
     engines: {node: '>=0.10.0'}
@@ -12034,6 +12027,7 @@ packages:
   /strip-json-comments@2.0.1:
     resolution: {integrity: sha512-4gB8na07fecVVkOI6Rs4e7T6NOTki5EmL7TUduTs6bu3EdnSycntVJ4re8kgZA+wx9IueI2Y11bfbgwtzuE0KQ==}
     engines: {node: '>=0.10.0'}
+    dev: false
 
   /strip-json-comments@3.1.1:
     resolution: {integrity: sha512-6fPc+R4ihwqP6N/aIv2f1gMH8lOVtWQHoqC4yK6oSDVVocumAsfCqjkXnqiYMhmMwS/mEHLp7Vehlt3ql6lEig==}
@@ -12469,15 +12463,6 @@ packages:
 
   /ts-map@1.0.3:
     resolution: {integrity: sha512-vDWbsl26LIcPGmDpoVzjEP6+hvHZkBkLW7JpvwbCv/5IYPJlsbzCVXY3wsCeAxAUeTclNOUZxnLdGh3VBD/J6w==}
-    dev: true
-
-  /tsconfig@7.0.0:
-    resolution: {integrity: sha512-vZXmzPrL+EmC4T/4rVlT2jNVMWCi/O4DIiSj3UHg1OE5kCKbk4mfrXc6dZksLgRM/TZlKnousKH9bbTazUWRRw==}
-    dependencies:
-      '@types/strip-bom': 3.0.0
-      '@types/strip-json-comments': 0.0.30
-      strip-bom: 3.0.0
-      strip-json-comments: 2.0.1
     dev: true
 
   /tslib@1.14.1:

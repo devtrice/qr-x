@@ -9,7 +9,7 @@
     "dist"
   ],
   "scripts": {
-    "build": "rm -rf dist && yarn build:dts && yarn node scripts/build",
+    "build": "rm -rf dist && pnpm build:dts && pnpm node scripts/build",
     "build:dts": "tsc -p tsconfig.build.json --outDir ./dist"
   },
   "dependencies": {
