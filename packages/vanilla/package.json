@@ -1,6 +1,6 @@
 {
   "name": "@qr-x/vanilla",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "license": "MIT",
   "description": "",
   "main": "dist/index.cjs.js",
@@ -16,7 +16,7 @@
   ],
   "type": "module",
   "scripts": {
-    "build": "rm -rf dist && yarn build:dts && yarn build:esm && yarn build:cjs && yarn build:src",
+    "build": "rm -rf dist && pnpm build:dts && pnpm build:esm && pnpm build:cjs",
     "build:dts": "tsc -p tsconfig.build.json --outDir ./dist",
     "build:esm": "esbuild index.ts --format=esm --outfile=./dist/index.esm.js",
     "build:cjs": "esbuild index.ts --format=cjs --outfile=./dist/index.cjs.js"
@@ -25,10 +25,10 @@
     "@qr-x/core": "^0.0.1"
   },
   "devDependencies": {
+    "@common/stories": "workspace:*",
+    "@common/tsconfig": "workspace:*",
     "@storybook/html": "^7.6.4",
     "@storybook/html-vite": "^7.6.4",
-    "esbuild": "^0.19.8",
-    "stories": "workspace:*",
-    "tsconfig": "*"
+    "esbuild": "^0.19.8"
   }
 }

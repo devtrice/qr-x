@@ -1,7 +1,0 @@
-declined:
-  - "@qr-x/core"
-  - "@qr-x/react"
-  - "@qr-x/solid"
-  - "@qr-x/svelte"
-  - "@qr-x/vanilla"
-  - "@qr-x/vue"

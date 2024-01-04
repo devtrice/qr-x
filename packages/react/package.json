@@ -1,6 +1,6 @@
 {
   "name": "@qr-x/react",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "license": "MIT",
   "description": "",
   "main": "dist/index.js",
@@ -14,7 +14,7 @@
     "react"
   ],
   "scripts": {
-    "build": "rm -rf dist && yarn build:dts && yarn build:cjs && yarn build:src",
+    "build": "rm -rf dist && pnpm build:dts && pnpm build:cjs && pnpm build:src",
     "build:dts": "tsc -p tsconfig.build.json --outDir ./dist",
     "build:cjs": "esbuild index.tsx --format=cjs --outfile=./dist/index.js",
     "build:src": "esbuild tags/index.tsx tags/index.native.tsx --format=cjs --outdir=./dist/tags"
@@ -28,6 +28,8 @@
     "react-native-svg": "*"
   },
   "devDependencies": {
+    "@common/stories": "workspace:*",
+    "@common/tsconfig": "workspace:*",
     "@storybook/react": "^7.6.4",
     "@storybook/react-vite": "^7.6.4",
     "@types/react": "^18.2.39",
@@ -36,8 +38,6 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-native-svg": "^14.0.0",
-    "stories": "workspace:*",
-    "tsconfig": "*",
     "typescript": "^5.3.3"
   }
 }

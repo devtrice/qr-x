@@ -1,5 +1,5 @@
+import { Default, FillImage, LinearGradient, RadialGradient, defaultMeta, renderMultiple } from '@common/stories'
 import type { Meta } from '@storybook/html'
-import { Default, FillImage, LinearGradient, RadialGradient, defaultMeta, renderMultiple } from 'stories'
 import createQRX, { Props } from './index'
 
 const Multiple = () => {

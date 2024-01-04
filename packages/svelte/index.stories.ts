@@ -1,5 +1,5 @@
+import { Default, FillImage, LinearGradient, RadialGradient, defaultMeta } from '@common/stories'
 import type { Meta } from '@storybook/svelte'
-import { Default, FillImage, LinearGradient, RadialGradient, defaultMeta } from 'stories'
 import QRX from './dist/QRX.svelte'
 
 // function $QRX(props: QrxProps) {

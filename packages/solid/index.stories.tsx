@@ -1,4 +1,4 @@
-import { Default, FillImage, LinearGradient, LogoCenter, RadialGradient, defaultMeta, renderMultiple } from 'stories'
+import { Default, FillImage, LinearGradient, LogoCenter, RadialGradient, defaultMeta, renderMultiple } from '@common/stories'
 import type { Meta } from 'storybook-solidjs'
 import QRX from './index'
 

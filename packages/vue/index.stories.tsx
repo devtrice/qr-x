@@ -1,5 +1,5 @@
+import { Default, FillImage, LinearGradient, RadialGradient, defaultMeta, renderMultiple } from '@common/stories'
 import type { Meta } from '@storybook/vue3'
-import { Default, FillImage, LinearGradient, RadialGradient, defaultMeta, renderMultiple } from 'stories'
 import QRX from './src/QRX.vue'
 
 const Multiple = () => {

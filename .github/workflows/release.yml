@@ -4,9 +4,6 @@ on:
   push:
     branches:
       - main
-    paths-ignore:
-      - '**/package.json'
-      - '.yarn/versions/**'
 
 jobs:
   publish:
@@ -14,6 +11,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 8
       - uses: actions/setup-node@v3
         with:
           node-version: 20
@@ -21,8 +21,8 @@ jobs:
 
       - name: Build & Publish
         run: |
-          yarn
-          yarn build
-          yarn workspaces foreach --since --include @qr-x/\* npm publish --access public
+          pnpm install
+          pnpm build
+          pnpm --filter="{packages/**}[origin/main]" publish --access public
         env:
-          YARN_NPM_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
+          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
