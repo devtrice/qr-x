@@ -33,7 +33,7 @@ jobs:
 
       - name: Build packages
         run: |
-          pnpm
+          pnpm install
           pnpm build
 
       - name: Publish packages
