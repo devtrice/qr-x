@@ -1,6 +1,6 @@
 {
-  "name": "stories",
-  "private": true,
+  "name": "@common/stories",
+  "version": "0.0.1",
   "dependencies": {
     "@qr-x/core": "^0.0.1"
   }

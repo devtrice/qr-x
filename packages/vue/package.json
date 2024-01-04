@@ -27,11 +27,11 @@
     "vue": "^3.x"
   },
   "devDependencies": {
+    "@common/stories": "workspace:*",
+    "@common/tsconfig": "workspace:*",
     "@storybook/vue3": "^7.6.4",
     "@storybook/vue3-vite": "^7.6.4",
     "esbuild": "^0.19.8",
-    "stories": "workspace:*",
-    "tsconfig": "*",
     "vue": "^3.3.11"
   }
 }

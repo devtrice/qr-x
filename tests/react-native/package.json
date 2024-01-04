@@ -9,7 +9,7 @@
     "dev:tailwind": "concurrently \"tailwindcss --input input.css --output tailwind.css --no-autoprefixer --watch\" \"tailwind-rn --watch\""
   },
   "dependencies": {
-    "@qr-x/react": "*",
+    "@qr-x/react": "workspace:*",
     "@react-navigation/native": "^6.0.2",
     "expo": "~49.0.18",
     "expo-linking": "~5.0.2",

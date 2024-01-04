@@ -1,6 +1,7 @@
 {
-  "search.exclude": {
-    "**/.yarn": true,
-    "**/.pnp.*": true
-  }
+  "eslint.workingDirectories": [
+    {
+      "mode": "auto"
+    }
+  ]
 }
