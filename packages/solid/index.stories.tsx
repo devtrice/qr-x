@@ -10,4 +10,4 @@ export default {
   ...defaultMeta,
 } satisfies Meta<typeof QRX>
 
-export { Default, FillImage, LinearGradient, LogoCenter, RadialGradient, Multiple }
+export { Default, FillImage, LinearGradient, LogoCenter, Multiple, RadialGradient }

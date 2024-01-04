@@ -16,4 +16,4 @@ export default {
   ...defaultMeta,
 } satisfies Meta<Props>
 
-export { Default, FillImage, LinearGradient, RadialGradient, Multiple }
+export { Default, FillImage, LinearGradient, Multiple, RadialGradient }

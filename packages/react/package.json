@@ -36,7 +36,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-native-svg": "^14.0.0",
-    "stories": "*",
+    "stories": "workspace:*",
     "tsconfig": "*",
     "typescript": "^5.3.3"
   }
