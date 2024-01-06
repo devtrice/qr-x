@@ -1,7 +1,7 @@
 {
   "name": "@qr-x/core",
   "license": "MIT",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "",
   "main": "dist/index.cjs.js",
   "types": "dist/index.d.ts",
@@ -14,22 +14,21 @@
     "code"
   ],
   "scripts": {
-    "build": "rm -rf dist && yarn build:dts && yarn build:esm && yarn build:cjs",
+    "build": "rm -rf dist && pnpm build:dts && pnpm build:esm && pnpm build:cjs",
     "build:dts": "tsc -p tsconfig.build.json --outDir ./dist",
     "build:esm": "esbuild index.ts --bundle --packages=external --format=esm --outfile=./dist/index.esm.js",
     "build:cjs": "esbuild index.ts --bundle --packages=external --format=cjs --outfile=./dist/index.cjs.js",
-    "watch": "rm -rf dist && concurrently 'yarn watch:dts' 'yarn watch:esm' 'yarn watch:cjs'",
+    "watch": "rm -rf dist && concurrently 'pnpm watch:dts' 'pnpm watch:esm' 'pnpm watch:cjs'",
     "watch:dts": "tsc -p tsconfig.build.json --outDir ./dist --watch ",
     "watch:esm": "esbuild index.ts --bundle --watch --packages=external --format=esm --outfile=./dist/index.esm.js",
-    "watch:cjs": "esbuild index.ts --bundle --watch --packages=external --format=cjs --outfile=./dist/index.cjs.js",
-    "types:check": "tsc --skipLibCheck --noEmit"
+    "watch:cjs": "esbuild index.ts --bundle --watch --packages=external --format=cjs --outfile=./dist/index.cjs.js"
   },
   "dependencies": {
     "qr.js": "^0.0.0"
   },
   "devDependencies": {
+    "@common/tsconfig": "workspace:*",
     "esbuild": "^0.19.8",
-    "tsconfig": "*",
     "typescript": "^5.3.3"
   }
 }

@@ -1,4 +1,4 @@
-import { Default, FillImage, LinearGradient, LogoCenter, RadialGradient, defaultMeta, renderMultiple } from 'stories'
+import { Default, FillImage, LinearGradient, LogoCenter, RadialGradient, defaultMeta, renderMultiple } from '@common/stories'
 import type { Meta } from 'storybook-solidjs'
 import QRX from './index'
 
@@ -10,4 +10,4 @@ export default {
   ...defaultMeta,
 } satisfies Meta<typeof QRX>
 
-export { Default, FillImage, LinearGradient, LogoCenter, RadialGradient, Multiple }
+export { Default, FillImage, LinearGradient, LogoCenter, Multiple, RadialGradient }

@@ -75,14 +75,15 @@ export const RadialGradient: Story = {
 export const FillImage: Story = {
   args: {
     data: URL,
-    fillImage: 'https://images.unsplash.com/photo-1594905666013-8f11171b8d6d',
+    fillImage:
+      'https://images.unsplash.com/photo-1437413646517-e98caade5a58?q=80&w=480&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
   },
 }
 
 export const renderMultiple = (component: (props: Props) => any) => {
   const images = [
-    'https://images.unsplash.com/photo-1698824241422-57942267c0cf',
-    'https://images.unsplash.com/photo-1700125675544-98bd16b9c627',
+    'https://images.unsplash.com/photo-1437413646517-e98caade5a58?q=80&w=480&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    'https://images.unsplash.com/photo-1704138162406-bc43d5b9ff97?q=80&w=480&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
   ]
   const gradients = [
     ['#0ea5e9', '#22d3ee'],
