@@ -1,5 +1,17 @@
-<script setup>
-const { ids, paths, eyeItems, fills, markers } = defineProps(['ids', 'paths', 'fills', 'markers', 'eyeItems'])
+<script setup lang="ts">
+import { getSVGData } from '@qr-x/core'
+
+type Return = ReturnType<typeof getSVGData>
+
+interface Props {
+  ids: Return['ids']
+  paths: Return['paths']
+  eyeItems: Return['eyeItems']
+  fills: Return['fills']
+  markers: Return['markers']
+}
+
+const { ids, paths, eyeItems, fills, markers } = defineProps<Props>()
 
 const flatten = markers.flatMap((marker, index) =>
   eyeItems.map(item => ({
@@ -14,7 +26,7 @@ const flatten = markers.flatMap((marker, index) =>
   <g :fill="fills.path">
     <path :d="paths.body" />
     <use
-      v-for="{ item, index, ...rest } in flatten"
+      v-for="{ item, index, transform, ...rest } in flatten"
       :key="`${item}-${index}`"
       :href="`#${ids[item]}`"
       :xlinkHref="`#${ids[item]}`"
