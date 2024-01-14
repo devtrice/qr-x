@@ -1,24 +1,25 @@
 <script setup lang="ts">
-import { Options, getSVGData } from '@qr-x/core'
-import Group from './Group.vue'
+import Group from './src/Group.vue'
 import { SVGAttributes } from 'vue'
+import { Options, getSVGData } from '@qr-x/core'
 
-type Props = Options & SVGAttributes
+interface Props extends Options {}
 
-const { data, level, image, gradient: gradientProps, fillImage, shapes, logo, ...rest } = defineProps<Props>()
+interface Props extends SVGAttributes {}
+
+const { data, level, image, shapes, fillImage, gradient: $gradient, ...rest } = defineProps<Props>()
 
 const { ids, fills, paths, length, markers, gradient, eyeItems, isMasked } = getSVGData({
   data: data,
   level: level,
-  image: image,
   shapes: shapes,
-  gradient: gradientProps,
+  gradient: $gradient,
   fillImage: fillImage,
 })
 </script>
 
 <template>
-  <svg width="100%" :viewBox="`0 0 ${length} ${length}`" v-bind="rest">
+  <svg v-bind="rest" width="100%" :viewBox="`0 0 ${length} ${length}`">
     <g v-if="isMasked">
       <mask id="mask">
         <Group :ids="ids" :paths="paths" :fills="fills" :markers="markers" :eyeItems="eyeItems" />
