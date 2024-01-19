@@ -20,16 +20,12 @@
     "build:esm": "esbuild index.tsx --format=esm --outfile=./dist/index.js",
     "build:cjs": "esbuild index.tsx --format=cjs --outfile=./dist/index.js"
   },
-  "dependencies": {},
-  "peerDependencies": {
-    "@qr-x/core": "^0.0.1",
-    "react": "^16.x || ^17.x || ^18.x",
-    "react-dom": "^16.x || ^17.x || ^18.x"
+  "dependencies": {
+    "@qr-x/core": "workspace:*"
   },
   "devDependencies": {
     "@common/stories": "workspace:*",
     "@common/tsconfig": "workspace:*",
-    "@qr-x/core": "workspace:*",
     "@storybook/react": "^7.6.4",
     "@storybook/react-vite": "^7.6.4",
     "@types/react": "^18.2.39",
@@ -38,5 +34,9 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "typescript": "^5.3.3"
+  },
+  "peerDependencies": {
+    "react": "^16.x || ^17.x || ^18.x",
+    "react-dom": "^16.x || ^17.x || ^18.x"
   }
 }

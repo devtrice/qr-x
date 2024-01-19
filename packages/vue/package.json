@@ -13,20 +13,20 @@
     "vue"
   ],
   "scripts": {},
-  "dependencies": {},
-  "peerDependencies": {
-    "vue": "^3.x",
+  "dependencies": {
     "@qr-x/core": "^0.0.1"
   },
   "devDependencies": {
     "@common/stories": "workspace:*",
     "@common/tsconfig": "workspace:*",
-    "@qr-x/core": "workspace:*",
     "@storybook/vue3": "^7.6.4",
     "@storybook/vue3-vite": "^7.6.4",
     "@vue/runtime-core": "^3.4.13",
     "@vue/runtime-dom": "^3.4.13",
     "esbuild": "^0.19.8",
     "vue": "^3.3.11"
+  },
+  "peerDependencies": {
+    "vue": "^3.x"
   }
 }

@@ -2,6 +2,7 @@
   "name": "@qr-x/svelte",
   "version": "0.0.2",
   "license": "MIT",
+  "type": "module",
   "main": "dist/index.js",
   "types": "./dist/index.d.js",
   "svelte": "./dist/index.js",
@@ -18,10 +19,12 @@
     "build": "svelte-package -i ./src",
     "watch": "svelte-package -i ./src -w"
   },
+  "dependencies": {
+    "@qr-x/core": "workspace:*"
+  },
   "devDependencies": {
     "@common/stories": "workspace:*",
     "@common/tsconfig": "workspace:*",
-    "@qr-x/core": "workspace:*",
     "@storybook/svelte": "^7.6.4",
     "@storybook/svelte-vite": "^7.6.4",
     "@sveltejs/adapter-auto": "^2.0.0",
@@ -32,8 +35,6 @@
     "typescript": "^5.3.3"
   },
   "peerDependencies": {
-    "@qr-x/core": "^0.0.1",
     "svelte": "^4.x"
-  },
-  "type": "module"
+  }
 }

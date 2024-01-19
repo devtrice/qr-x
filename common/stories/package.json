@@ -2,7 +2,7 @@
   "name": "@common/stories",
   "version": "0.0.2",
   "dependencies": {
-    "@qr-x/core": "^0.0.1",
+    "@qr-x/core": "workspace:*",
     "@storybook/react": "^7.6.4"
   }
 }

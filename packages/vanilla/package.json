@@ -21,11 +21,10 @@
     "build:esm": "esbuild index.ts --format=esm --outfile=./dist/index.esm.js",
     "build:cjs": "esbuild index.ts --format=cjs --outfile=./dist/index.cjs.js"
   },
-  "peerDependencies": {
+  "dependencies": {
     "@qr-x/core": "^0.0.1"
   },
   "devDependencies": {
-    "@qr-x/core": "workspace:*",
     "@common/stories": "workspace:*",
     "@common/tsconfig": "workspace:*",
     "@storybook/html": "^7.6.4",
