@@ -12,7 +12,7 @@ jobs:
 
     strategy:
       matrix:
-        package: [core, react, solid, svelte]
+        package: [core, vue, react, solid, svelte, vanilla]
 
     steps:
       - uses: actions/checkout@v3

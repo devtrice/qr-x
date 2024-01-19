@@ -288,6 +288,9 @@ importers:
       esbuild:
         specifier: ^0.19.8
         version: 0.19.11
+      esbuild-plugin-vue-next:
+        specifier: ^0.1.4
+        version: 0.1.4(@vue/compiler-sfc@3.4.13)
       vue:
         specifier: ^3.3.11
         version: 3.4.13(typescript@5.3.3)
@@ -5489,6 +5492,10 @@ packages:
     resolution: {integrity: sha512-nTjqfcBFEipKdXCv4YDQWCfmcLZKm81ldF0pAopTvyrFGVbcR6P/VAAd5G7N+0tTr8QqiU0tFadD6FK4NtJwOA==}
     engines: {node: '>= 0.6'}
 
+  /convert-source-map@1.9.0:
+    resolution: {integrity: sha512-ASFBup0Mz1uyiIjANan1jzLQami9z1PoYSZCiiYW2FczPbenXc45FZdBZLzOT+r6+iciuEModtmCti+hjaAk0A==}
+    dev: true
+
   /convert-source-map@2.0.0:
     resolution: {integrity: sha512-Kvp459HrV2FEJ1CAsi1Ku+MY3kasH19TFykTz2xWmMeq6bk2NU3XXvfJ+Q61m0xktWwt+1HSYf3JZsTms3aRJg==}
 
@@ -6011,6 +6018,16 @@ packages:
       solid-js: 1.8.11
     transitivePeerDependencies:
       - supports-color
+    dev: true
+
+  /esbuild-plugin-vue-next@0.1.4(@vue/compiler-sfc@3.4.13):
+    resolution: {integrity: sha512-n4DF5xY/GJ9DdRM4+MvV14Rrr+7xGhtv9/0xIxfzN6qSIMdXfZ6g4PVX735NYC7vGRr9KyZGRWST5jCyHQ6n5g==}
+    peerDependencies:
+      '@vue/compiler-sfc': '>=3.0.0'
+    dependencies:
+      '@vue/compiler-sfc': 3.4.13
+      convert-source-map: 1.9.0
+      hash-sum: 2.0.0
     dev: true
 
   /esbuild-register@3.5.0(esbuild@0.18.20):

@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import Group from './src/Group.vue'
+import G from './G.vue'
 import { SVGAttributes } from 'vue'
 import { Options, getSVGData } from '@qr-x/core'
 
-interface Props extends Options {}
+interface Props extends /* @vue-ignore */ Options {}
 
 interface Props extends SVGAttributes {}
 
@@ -22,11 +22,11 @@ const { ids, fills, paths, length, markers, gradient, eyeItems, isMasked } = get
   <svg v-bind="rest" width="100%" :viewBox="`0 0 ${length} ${length}`">
     <g v-if="isMasked">
       <mask id="mask">
-        <Group :ids="ids" :paths="paths" :fills="fills" :markers="markers" :eyeItems="eyeItems" />
+        <G :ids="ids" :paths="paths" :fills="fills" :markers="markers" :eyeItems="eyeItems" />
       </mask>
       <rect x="0" y="0" width="100%" height="100%" :fill="fills.rect" mask="url('#mask')" />
     </g>
-    <Group v-else :ids="ids" :paths="paths" :fills="fills" :markers="markers" :eyeItems="eyeItems" />
+    <G v-else :ids="ids" :paths="paths" :fills="fills" :markers="markers" :eyeItems="eyeItems" />
 
     <defs>
       <path v-for="item in eyeItems" :key="item" :id="ids[item]" :d="paths[item]" />
