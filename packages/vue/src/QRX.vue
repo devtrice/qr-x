@@ -3,7 +3,7 @@ import G from './G.vue'
 import { SVGAttributes } from 'vue'
 import { Options, getSVGData } from '@qr-x/core'
 
-interface Props extends /* @vue-ignore */ Options {}
+interface Props extends Options {}
 
 interface Props extends SVGAttributes {}
 

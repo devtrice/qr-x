@@ -15,7 +15,7 @@
     "vue"
   ],
   "scripts": {
-    "build": "rm -rf dist && pnpm build:dts && pnpm node scripts/build",
+    "build": "rm -rf dist && pnpm build:dts",
     "build:dts": "tsc -p tsconfig.build.json --outDir ./dist"
   },
   "dependencies": {
