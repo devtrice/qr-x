@@ -12,27 +12,16 @@ export default function QRX({ data, level, shapes, gradient: $gradient, fillImag
     fillImage,
   })
 
-  const group = (
-    <g fill={fills.path}>
-      <path d={paths.body} />
-      {eyeItems.map(item =>
-        markers.map((marker, index) => (
-          <use key={`${item}-${index}`} href={`#${ids[item]}`} xlinkHref={`#${ids[item]}`} {...marker} />
-        )),
-      )}
-    </g>
-  )
-
   return (
     <svg {...rest} viewBox={`0 0 ${length} ${length}`}>
-      {isMasked ? (
-        <g>
-          <mask id='mask'>{group}</mask>
-          <rect x='0' y='0' width='100%' height='100%' fill={fills.rect} mask="url('#mask')" />
-        </g>
-      ) : (
-        group
-      )}
+      <g fill={gradient || fillImage ? `url(#${gradient ? `pattern-${gradient?.attributes.id}` : ids.image})` : 'currentColor'}>
+        {eyeItems.map(item =>
+          markers.map((marker, index) => (
+            <use key={`${item}-${index}`} href={`#${ids[item]}`} xlinkHref={`#${ids[item]}`} {...marker} />
+          )),
+        )}
+        <path d={paths.body} />
+      </g>
 
       <defs>
         {eyeItems.map(item => (
@@ -59,6 +48,10 @@ export default function QRX({ data, level, shapes, gradient: $gradient, fillImag
                 />
               </pattern>
             )}
+
+        <pattern id={`pattern-${gradient?.attributes.id}`} patternUnits='userSpaceOnUse' width='100%' height='100%'>
+          <rect x='0' y='0' width='100%' height='100%' fill={`url(#${gradient?.attributes.id})`} />
+        </pattern>
       </defs>
     </svg>
   )
