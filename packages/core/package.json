@@ -24,7 +24,8 @@
     "watch:cjs": "esbuild index.ts --bundle --watch --packages=external --format=cjs --outfile=./dist/index.cjs.js"
   },
   "dependencies": {
-    "qr.js": "^0.0.0"
+    "qr.js": "^0.0.0",
+    "svgpath": "2.3.0"
   },
   "devDependencies": {
     "@common/tsconfig": "workspace:*",
