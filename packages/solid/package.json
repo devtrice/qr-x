@@ -13,7 +13,7 @@
     "build:dts": "tsc -p tsconfig.build.json --outDir ./dist"
   },
   "dependencies": {
-    "@qr-x/core": "^0.0.1"
+    "@qr-x/core": "workspace:*"
   },
   "devDependencies": {
     "@common/stories": "workspace:*",

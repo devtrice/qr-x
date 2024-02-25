@@ -5,7 +5,7 @@ import { Dynamic } from 'solid-js/web'
 type Props = Options & JSX.SvgSVGAttributes<SVGSVGElement>
 
 export default function QRX($props: Props) {
-  const [props, rest] = splitProps($props, ['data', 'level', 'shapes', 'image', 'gradient', 'fillImage', 'logo'])
+  const [props, rest] = splitProps($props, ['data', 'level', 'shapes', 'gradient', 'fillImage'])
 
   const svg = createMemo(() => getSVGData(props))
 
@@ -51,15 +51,6 @@ export default function QRX($props: Props) {
           </Dynamic>
         </Show>
       </defs>
-      <Show when={props.logo}>
-        <image
-          href={props.logo?.src}
-          x={svg().length / 2 - svg().length / logoSqueezeFactor / 2}
-          y={svg().length / 2 - svg().length / logoSqueezeFactor / 2}
-          height={svg().length / logoSqueezeFactor}
-          width={svg().length / logoSqueezeFactor}
-        />
-      </Show>
     </svg>
   )
 }

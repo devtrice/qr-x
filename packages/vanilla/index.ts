@@ -7,11 +7,10 @@ const objectToAtr = (obj: Object) =>
     .map(([k, v]) => k + "='" + v + "'")
     .join(' ')
 
-export default function createQRX({ data, level, shapes, image, gradient: $gradient, fillImage, ...rest }: Props) {
+export default function createQRX({ data, level, shapes, gradient: $gradient, fillImage, ...rest }: Props) {
   const { ids, fills, paths, length, markers, gradient, eyeItems, isMasked } = getSVGData({
     data,
     level,
-    image,
     shapes,
     gradient: $gradient,
     fillImage,

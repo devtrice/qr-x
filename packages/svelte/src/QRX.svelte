@@ -9,7 +9,6 @@
 
   export let data: Options['data']
   export let level: Options['level'] = undefined
-  export let image: Options['image'] = undefined
   export let shapes: Options['shapes'] = undefined
   export let gradient: Options['gradient'] = undefined
   export let fillImage: Options['fillImage'] = undefined
@@ -26,7 +25,6 @@
   } = getSVGData({
     data,
     level,
-    image,
     shapes,
     gradient,
     fillImage,

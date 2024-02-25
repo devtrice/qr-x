@@ -1,11 +1,11 @@
-<script setup>
+<script setup lang="ts">
 const { ids, paths, eyeItems, fills, markers } = defineProps(['ids', 'paths', 'fills', 'markers', 'eyeItems'])
 
-const flatten = markers.flatMap((marker, index) =>
-  eyeItems.map(item => ({
-    ...marker,
+const flatten = markers.flatMap((marker: [], index: number) =>
+  eyeItems.map((item: unknown) => ({
     item,
     index,
+    ...marker,
   })),
 )
 </script>
@@ -14,7 +14,7 @@ const flatten = markers.flatMap((marker, index) =>
   <g :fill="fills.path">
     <path :d="paths.body" />
     <use
-      v-for="{ item, index, ...rest } in flatten"
+      v-for="{ item, index, transform, ...rest } in flatten"
       :key="`${item}-${index}`"
       :href="`#${ids[item]}`"
       :xlinkHref="`#${ids[item]}`"

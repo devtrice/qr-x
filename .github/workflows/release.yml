@@ -21,8 +21,8 @@ jobs:
 
       - name: Build & Publish
         run: |
-          pnpm install
+          pnpm install --no-frozen-lockfile
           pnpm build
-          pnpm --filter="{packages/**}[origin/main]" publish --access public
+          pnpm --filter "@qr-x/*" --filter "[origin/main]" publish --access public
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}

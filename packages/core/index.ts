@@ -13,18 +13,10 @@ type Gradient = ({ type?: 'linear'; rotate?: number } | { type: 'radial'; rotate
 
 export type Options = {
   data: string
-  image?: {
-    src: string
-    size: number
-  }
   level?: 'L' | 'M' | 'Q' | 'H'
   shapes?: Shapes
   gradient?: Gradient
   fillImage?: string
-  logo?: {
-    src: string
-    // size: number
-  }
 }
 
 function parseGradient({ id, type = 'linear', colors, ...rest }: Gradient & { id: string }) {
@@ -42,7 +34,7 @@ function parseGradient({ id, type = 'linear', colors, ...rest }: Gradient & { id
   }
 }
 
-export function getSVGData({ data, shapes, image, gradient, fillImage, ...options }: Options) {
+export function getSVGData({ data, shapes, gradient, fillImage, ...options }: Options) {
   const id = Math.random().toString(36).substring(2, 9)
   const $shapes = { body: 'square', eyeball: 'square', eyeframe: 'square', ...shapes } as const
   const { modules } = QR(data, options) as { modules: boolean[][] }
@@ -78,7 +70,9 @@ export function getSVGData({ data, shapes, image, gradient, fillImage, ...option
       eyeball: eyeballShapes[$shapes.eyeball],
       eyeframe: eyeframeShapes[$shapes.eyeframe],
     },
+
     fills: {
+      /* not used */
       rect: `url('#${gradient ? ids.gradient : ids.image}')`, // Note the only check gradient. Don't swap the condition with fillImage exist.
       path: isMasked ? 'white' : 'currentColor', // Note! don't change white to any color.
     },
@@ -88,7 +82,7 @@ export function getSVGData({ data, shapes, image, gradient, fillImage, ...option
       { x: -modules.length, y: 0, transform: 'scale(-1 1)' },
       { x: 0, y: -modules.length, transform: 'scale(1 -1)' },
     ],
-    isMasked,
+    isMasked /* not used */,
     eyeItems: ['eyeball', 'eyeframe'] as const,
     gradient: gradient ? parseGradient({ id: ids.gradient, ...gradient }) : undefined,
   }

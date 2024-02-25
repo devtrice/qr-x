@@ -1,29 +1,32 @@
-<script setup>
-import { getSVGData } from '@qr-x/core'
-import { ref } from 'vue'
-import Group from './Group.vue'
+<script setup lang="ts">
+import G from './G.vue'
+import { SVGAttributes } from 'vue'
+import { Options, getSVGData } from '@qr-x/core'
 
-const props = defineProps(['data', 'level', 'image', 'shapes', 'gradient', 'fillImage', 'color'])
+interface Props extends Options {}
+
+interface Props extends SVGAttributes {}
+
+const { data, level, image, shapes, fillImage, gradient: $gradient, ...rest } = defineProps<Props>()
 
 const { ids, fills, paths, length, markers, gradient, eyeItems, isMasked } = getSVGData({
-  data: props.data,
-  level: props.level,
-  image: props.image,
-  shapes: props.shapes,
-  gradient: props.gradient,
-  fillImage: props.fillImage,
+  data: data,
+  level: level,
+  shapes: shapes,
+  gradient: $gradient,
+  fillImage: fillImage,
 })
 </script>
 
 <template>
-  <svg width="100%" :viewBox="`0 0 ${length} ${length}`" v-bind="props">
+  <svg v-bind="rest" width="100%" :viewBox="`0 0 ${length} ${length}`">
     <g v-if="isMasked">
       <mask id="mask">
-        <Group :ids="ids" :paths="paths" :fills="fills" :markers="markers" :eyeItems="eyeItems" />
+        <G :ids="ids" :paths="paths" :fills="fills" :markers="markers" :eyeItems="eyeItems" />
       </mask>
       <rect x="0" y="0" width="100%" height="100%" :fill="fills.rect" mask="url('#mask')" />
     </g>
-    <Group v-else :ids="ids" :paths="paths" :fills="fills" :markers="markers" :eyeItems="eyeItems" />
+    <G v-else :ids="ids" :paths="paths" :fills="fills" :markers="markers" :eyeItems="eyeItems" />
 
     <defs>
       <path v-for="item in eyeItems" :key="item" :id="ids[item]" :d="paths[item]" />

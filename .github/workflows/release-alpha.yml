@@ -12,7 +12,7 @@ jobs:
 
     strategy:
       matrix:
-        package: [core, react, solid, svelte]
+        package: [core, vue, react, solid, svelte, vanilla]
 
     steps:
       - uses: actions/checkout@v3
@@ -31,12 +31,12 @@ jobs:
 
       - name: Build packages
         run: |
-          pnpm install
+          pnpm install --no-frozen-lockfile
           pnpm build
 
       - name: Publish packages
         run: |
-          pnpm --filter=@qr-x/${{ matrix.package }} exec pnpm version ${{ env.VERSION }}-alpha.${{ env.COMMIT_ID }}
-          pnpm --filter=@qr-x/${{ matrix.package }} publish --tag alpha --access public --no-git-checks
+          pnpm --filter "@qr-x/${{ matrix.package }}" exec pnpm version ${{ env.VERSION }}-alpha.${{ env.COMMIT_ID }}
+          pnpm --filter "@qr-x/${{ matrix.package }}" publish --tag alpha --access public --no-git-checks
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}

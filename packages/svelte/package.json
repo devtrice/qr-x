@@ -2,6 +2,7 @@
   "name": "@qr-x/svelte",
   "version": "0.0.2",
   "license": "MIT",
+  "type": "module",
   "main": "dist/index.js",
   "types": "./dist/index.d.js",
   "svelte": "./dist/index.js",
@@ -19,7 +20,7 @@
     "watch": "svelte-package -i ./src -w"
   },
   "dependencies": {
-    "@qr-x/core": "^0.0.1"
+    "@qr-x/core": "workspace:*"
   },
   "devDependencies": {
     "@common/stories": "workspace:*",
@@ -35,6 +36,5 @@
   },
   "peerDependencies": {
     "svelte": "^4.x"
-  },
-  "type": "module"
+  }
 }
