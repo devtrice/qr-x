@@ -1,5 +1,6 @@
 import QR from 'qr.js'
 import { bodyShapes, eyeballShapes, eyeframeShapes } from './src/shapes'
+import svgpath from 'svgpath'
 
 type Shapes = {
   body: keyof typeof bodyShapes
@@ -66,7 +67,20 @@ export function getSVGData({ data, shapes, gradient, fillImage, ...options }: Op
   return {
     ids,
     paths: {
-      body: bodyPath,
+      body:
+        bodyPath +
+        `
+        ${eyeballShapes[$shapes.eyeball]} 
+        ${eyeframeShapes[$shapes.eyeframe]}
+
+        
+        ${svgpath(eyeballShapes[$shapes.eyeball]).matrix([1, 0, 0, -1, 0, modules.length]).toString()}
+        ${svgpath(eyeframeShapes[$shapes.eyeframe]).matrix([1, 0, 0, -1, 0, modules.length]).toString()}
+
+        ${svgpath(eyeballShapes[$shapes.eyeball]).matrix([-1, 0, 0, 1, modules.length, 0]).toString()}
+        ${svgpath(eyeframeShapes[$shapes.eyeframe]).matrix([-1, 0, 0, 1, modules.length, 0]).toString()} 
+       
+      `,
       eyeball: eyeballShapes[$shapes.eyeball],
       eyeframe: eyeframeShapes[$shapes.eyeframe],
     },
