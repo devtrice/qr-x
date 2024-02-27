@@ -36,7 +36,7 @@ jobs:
 
       - name: Publish packages
         run: |
-          pnpm --filter "@qr-x/${{ matrix.package }}" --filter "[origin/main]" exec pnpm version ${{ env.VERSION }}-alpha.${{ env.COMMIT_ID }}
-          pnpm --filter "@qr-x/${{ matrix.package }}" --filter "[origin/main]" publish --tag alpha --access public --no-git-checks
+          pnpm --filter "@qr-x/${{ matrix.package }}" --filter "[origin/develop]" exec pnpm version ${{ env.VERSION }}-alpha.${{ env.COMMIT_ID }}
+          pnpm --filter "@qr-x/${{ matrix.package }}" --filter "[origin/develop]" publish --tag alpha --access public --no-git-checks
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
