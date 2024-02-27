@@ -4,7 +4,7 @@ import React, { SVGAttributes } from 'react'
 type Props = Options & SVGAttributes<SVGSVGElement>
 
 export default function QRX({ data, level, shapes, gradient: $gradient, fillImage, ...rest }: Props) {
-  const { ids, paths, length, gradient } = getSVGData({
+  const { ids, path, length, gradient } = getSVGData({
     data,
     level,
     shapes,
@@ -13,10 +13,11 @@ export default function QRX({ data, level, shapes, gradient: $gradient, fillImag
   })
 
   return (
-    <svg {...rest} viewBox={`0 0 ${length} ${length}`}>
-      <g fill={gradient || fillImage ? `url(#${gradient ? `${gradient?.attributes.id}` : ids.image})` : 'currentColor'}>
-        <path d={paths.body} />
-      </g>
+    <svg width='100%' {...rest} viewBox={`0 0 ${length} ${length}`}>
+      <path
+        d={path}
+        fill={gradient || fillImage ? `url(#${gradient ? `${gradient?.attributes.id}` : ids.image})` : 'currentColor'}
+      />
 
       <defs>
         {gradient

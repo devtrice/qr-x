@@ -12,12 +12,7 @@
   export let gradient: Options['gradient'] = undefined
   export let fillImage: Options['fillImage'] = undefined
 
-  const {
-    ids,
-    paths,
-    length,
-    gradient: _gradient,
-  } = getSVGData({
+  const { ids, path, length, gradient: _gradient,} = getSVGData({
     data,
     level,
     shapes,
@@ -26,10 +21,8 @@
   })
 </script>
 
-<svg {...$$restProps} viewBox={`0 0 ${length} ${length}`}>
-  <g fill={_gradient || fillImage ? `url(#${_gradient ? `${_gradient?.attributes.id}` : ids.image})` : 'currentColor'}>
-    <path d={paths.body} />
-  </g>
+<svg width="100%" {...$$restProps} viewBox={`0 0 ${length} ${length}`}>
+  <path d={path} fill={_gradient || fillImage ? `url(#${_gradient ? `${_gradient?.attributes.id}` : ids.image})` : 'currentColor'} />
 
   <defs>
     {#if _gradient}

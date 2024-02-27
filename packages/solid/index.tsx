@@ -9,34 +9,24 @@ export default function QRX($props: Props) {
 
   const svg = createMemo(() => getSVGData(props))
 
-  const group = (
-    <g fill={svg().fills.path}>
-      <path d={svg().paths.body} />
-      <For each={svg().eyeItems}>
-        {item => <For each={svg().markers}>{marker => <use href={`#${svg().ids[item]}`} {...marker} />}</For>}
-      </For>
-    </g>
-  )
-
   return (
     <svg width='100%' {...rest} viewBox={`0 0 ${svg().length} ${svg().length}`}>
-      {svg().isMasked ? (
-        <g>
-          <mask id='mask'>{group}</mask>
-          <rect x='0' y='0' width='100%' height='100%' fill={svg().fills.rect} mask="url('#mask')" />
-        </g>
-      ) : (
-        group
-      )}
+      <path
+        d={svg().path}
+        fill={
+          svg().gradient || props.fillImage
+            ? `url(#${svg().gradient ? `${svg().gradient?.attributes.id}` : svg().ids.image})`
+            : 'currentColor'
+        }
+      />
 
       <defs>
-        <For each={svg().eyeItems}>{item => <path id={svg().ids[item]} d={svg().paths[item]} />}</For>
         <Show
           when={svg().gradient}
           fallback={
             <Show when={props.fillImage}>
               <pattern id={svg().ids.image} patternUnits='userSpaceOnUse' width='100%' height='100%'>
-                <image href={props.fillImage} x='0' y='0' width='100%' height='100%' preserveAspectRatio='xMidYMid slice' />
+                <image x='0' y='0' width='100%' height='100%' href={props.fillImage} preserveAspectRatio='xMidYMid slice' />
               </pattern>
             </Show>
           }

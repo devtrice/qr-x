@@ -1,5 +1,5 @@
 import { Default, FillImage, LinearGradient, RadialGradient, defaultMeta, renderMultiple } from '@common/stories'
-import QRX from './src/QRX.vue'
+import QRX from './index.vue'
 
 const Multiple = () => renderMultiple(QRX as never)
 
