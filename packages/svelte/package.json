@@ -25,13 +25,11 @@
   "devDependencies": {
     "@common/stories": "workspace:*",
     "@common/tsconfig": "workspace:*",
-    "@storybook/svelte": "^7.6.4",
-    "@storybook/svelte-vite": "^7.6.4",
     "@sveltejs/adapter-auto": "^2.0.0",
     "@sveltejs/kit": "^1.27.4",
     "@sveltejs/package": "^2.2.3",
     "@tsconfig/svelte": "^5.0.2",
-    "svelte": "^4.2.8",
+    "svelte": "^4.2.12",
     "typescript": "^5.3.3"
   },
   "peerDependencies": {

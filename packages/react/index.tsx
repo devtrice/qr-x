@@ -34,7 +34,7 @@ export default function QRX({ data, level, shapes, gradient: $gradient, fillImag
                   width='100%'
                   height='100%'
                   href={fillImage}
-                  xlinkHref={fillImage}
+                  xlinkHref={fillImage} // !Note: Must use both href and xlinkHref to link a source
                   preserveAspectRatio='xMidYMid slice'
                 />
               </pattern>
@@ -43,5 +43,3 @@ export default function QRX({ data, level, shapes, gradient: $gradient, fillImag
     </svg>
   )
 }
-
-// !Note: Must use both href and xlinkHref to link a source

@@ -9,8 +9,6 @@ export default function QRX($props: Props) {
 
   const svg = createMemo(() => getSVGData(props))
 
-  const logoSqueezeFactor = 6 // smaller number = larger logo
-
   const group = (
     <g fill={svg().fills.path}>
       <path d={svg().paths.body} />

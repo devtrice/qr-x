@@ -1,1 +1,1 @@
-export { default as QRX } from './QRX.svelte'
+export { default as QRX } from './index.svelte'
