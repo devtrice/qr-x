@@ -13,6 +13,11 @@
     "qr",
     "code"
   ],
+  "exports": {
+    "types": "./dist/index.d.ts",
+    "import": "./dist/index.esm.js",
+    "default": "./dist/index.cjs.js"
+  },
   "scripts": {
     "build": "rm -rf dist && pnpm build:dts && pnpm build:esm && pnpm build:cjs",
     "build:dts": "tsc -p tsconfig.build.json --outDir ./dist",
