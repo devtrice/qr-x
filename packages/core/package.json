@@ -1,7 +1,7 @@
 {
   "name": "@qr-x/core",
   "license": "MIT",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "",
   "main": "dist/index.cjs.js",
   "types": "dist/index.d.ts",
@@ -14,8 +14,10 @@
     "code"
   ],
   "exports": {
+    "node": "./dist/index.cjs.js",
     "types": "./dist/index.d.ts",
     "import": "./dist/index.esm.js",
+    "require": "./dist/index.cjs.js",
     "default": "./dist/index.cjs.js"
   },
   "scripts": {
