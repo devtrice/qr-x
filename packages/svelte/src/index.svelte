@@ -33,7 +33,7 @@
       </svelte:element>
     {:else if fillImage}
       <pattern id={ids.image} patternUnits="userSpaceOnUse" width="100%" height="100%">
-        <image x="0" y="0" width="100%" height="100%" href={fillImage}  preserveAspectRatio="xMidYMid slice" />
+        <image x="0" y="0" width="100%" height="100%" href={fillImage} xlink:href={fillImage}  preserveAspectRatio="xMidYMid slice" />
       </pattern>
     {/if}
   </defs>
