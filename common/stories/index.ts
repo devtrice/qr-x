@@ -57,7 +57,12 @@ export const LinearGradient: Story = {
     data: URL,
     gradient: {
       type: 'linear',
-      colors: ['#f97316', '#f59e0b', '#facc15'],
+      colors: ['#f97316', '#f59e0b', '#facc15', '#f9ff23', '#dfdc80', '#ff0000'],
+    },
+    shapes: {
+      body: 'circle',
+      eyeball: 'leaf',
+      eyeframe: 'leaf',
     },
   },
 }
@@ -76,7 +81,7 @@ export const FillImage: Story = {
   args: {
     data: URL,
     fillImage:
-      'https://images.unsplash.com/photo-1437413646517-e98caade5a58?q=80&w=480&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+      'https://images.unsplash.com/photo-1682687218608-5e2522b04673?q=80&w=2875&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
   },
 }
 
@@ -86,8 +91,8 @@ export const renderMultiple = (component: (props: Props) => any) => {
     'https://images.unsplash.com/photo-1704138162406-bc43d5b9ff97?q=80&w=480&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
   ]
   const gradients = [
-    ['#0ea5e9', '#22d3ee'],
-    ['#f97316', '#f59e0b', '#facc15'],
+    ['#0ea5e9', '#22d3ee', '#38f9d7', '#4cfcb3', '#5ffea1'],
+    ['#f97316', '#f59e0b', '#facc15', '#f9d423', '#ffdc80'],
   ]
   return [
     ...images.map(image => component({ data: URL, fillImage: image })),

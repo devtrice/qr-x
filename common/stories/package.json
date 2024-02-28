@@ -3,6 +3,6 @@
   "version": "0.0.2",
   "dependencies": {
     "@qr-x/core": "workspace:*",
-    "@storybook/react": "^7.6.4"
+    "@storybook/react": "^7.6.17"
   }
 }

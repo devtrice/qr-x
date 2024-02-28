@@ -1,1 +1,3 @@
-export { default as QRX } from './QRX.svelte'
+import QRX from './index.svelte'
+
+export default QRX

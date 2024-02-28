@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import G from './G.vue'
 import { SVGAttributes } from 'vue'
 import { Options, getSVGData } from '@qr-x/core'
 
@@ -7,9 +6,9 @@ interface Props extends Options {}
 
 interface Props extends SVGAttributes {}
 
-const { data, level, image, shapes, fillImage, gradient: $gradient, ...rest } = defineProps<Props>()
+const { data, level, shapes, fillImage, gradient: $gradient, ...rest } = defineProps<Props>()
 
-const { ids, fills, paths, length, markers, gradient, eyeItems, isMasked } = getSVGData({
+const { ids, path, length, gradient } = getSVGData({
   data: data,
   level: level,
   shapes: shapes,
@@ -20,17 +19,12 @@ const { ids, fills, paths, length, markers, gradient, eyeItems, isMasked } = get
 
 <template>
   <svg v-bind="rest" width="100%" :viewBox="`0 0 ${length} ${length}`">
-    <g v-if="isMasked">
-      <mask id="mask">
-        <G :ids="ids" :paths="paths" :fills="fills" :markers="markers" :eyeItems="eyeItems" />
-      </mask>
-      <rect x="0" y="0" width="100%" height="100%" :fill="fills.rect" mask="url('#mask')" />
-    </g>
-    <G v-else :ids="ids" :paths="paths" :fills="fills" :markers="markers" :eyeItems="eyeItems" />
+    <path
+      :d="path"
+      :fill="gradient || fillImage ? `url(#${gradient ? `${gradient?.attributes.id}` : ids.image})` : 'currentColor'"
+    />
 
     <defs>
-      <path v-for="item in eyeItems" :key="item" :id="ids[item]" :d="paths[item]" />
-
       <component
         v-if="gradient"
         :is="gradient.isLinearGradient ? 'linearGradient' : 'radialGradient'"

@@ -1,7 +1,7 @@
 {
   "name": "@qr-x/core",
   "license": "MIT",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "",
   "main": "dist/index.cjs.js",
   "types": "dist/index.d.ts",
@@ -13,6 +13,11 @@
     "qr",
     "code"
   ],
+  "exports": {
+    "types": "./dist/index.d.ts",
+    "import": "./dist/index.esm.js",
+    "default": "./dist/index.cjs.js"
+  },
   "scripts": {
     "build": "rm -rf dist && pnpm build:dts && pnpm build:esm && pnpm build:cjs",
     "build:dts": "tsc -p tsconfig.build.json --outDir ./dist",
@@ -24,7 +29,8 @@
     "watch:cjs": "esbuild index.ts --bundle --watch --packages=external --format=cjs --outfile=./dist/index.cjs.js"
   },
   "dependencies": {
-    "qr.js": "^0.0.0"
+    "qr.js": "^0.0.0",
+    "svgpath": "2.3.0"
   },
   "devDependencies": {
     "@common/tsconfig": "workspace:*",

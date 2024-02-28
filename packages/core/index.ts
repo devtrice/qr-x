@@ -1,5 +1,6 @@
 import QR from 'qr.js'
 import { bodyShapes, eyeballShapes, eyeframeShapes } from './src/shapes'
+import svgpath from 'svgpath'
 
 type Shapes = {
   body: keyof typeof bodyShapes
@@ -36,10 +37,9 @@ function parseGradient({ id, type = 'linear', colors, ...rest }: Gradient & { id
 
 export function getSVGData({ data, shapes, gradient, fillImage, ...options }: Options) {
   const id = Math.random().toString(36).substring(2, 9)
+  const ids = { image: `image-${id}`, gradient: `gradient-${id}` }
   const $shapes = { body: 'square', eyeball: 'square', eyeframe: 'square', ...shapes } as const
   const { modules } = QR(data, options) as { modules: boolean[][] }
-
-  const ids = { image: `image-${id}`, eyeball: `eyeball-${id}`, eyeframe: `eyeframe-${id}`, gradient: `gradient-${id}` }
 
   const bodyPath = modules
     .map((row, i) =>
@@ -61,29 +61,23 @@ export function getSVGData({ data, shapes, gradient, fillImage, ...options }: Op
     .join('')
     .replace(/([\n]|[ ]{2})/g, '')
 
-  const isMasked = gradient || fillImage
-
   return {
     ids,
-    paths: {
-      body: bodyPath,
-      eyeball: eyeballShapes[$shapes.eyeball],
-      eyeframe: eyeframeShapes[$shapes.eyeframe],
-    },
+    path:
+      bodyPath +
+      `
+    ${eyeballShapes[$shapes.eyeball]} 
+    ${eyeframeShapes[$shapes.eyeframe]}
 
-    fills: {
-      /* not used */
-      rect: `url('#${gradient ? ids.gradient : ids.image}')`, // Note the only check gradient. Don't swap the condition with fillImage exist.
-      path: isMasked ? 'white' : 'currentColor', // Note! don't change white to any color.
-    },
+    
+    ${svgpath(eyeballShapes[$shapes.eyeball]).matrix([1, 0, 0, -1, 0, modules.length]).toString()}
+    ${svgpath(eyeframeShapes[$shapes.eyeframe]).matrix([1, 0, 0, -1, 0, modules.length]).toString()}
+
+    ${svgpath(eyeballShapes[$shapes.eyeball]).matrix([-1, 0, 0, 1, modules.length, 0]).toString()}
+    ${svgpath(eyeframeShapes[$shapes.eyeframe]).matrix([-1, 0, 0, 1, modules.length, 0]).toString()} 
+   
+  `,
     length: modules.length,
-    markers: [
-      { x: 0, y: 0 },
-      { x: -modules.length, y: 0, transform: 'scale(-1 1)' },
-      { x: 0, y: -modules.length, transform: 'scale(1 -1)' },
-    ],
-    isMasked /* not used */,
-    eyeItems: ['eyeball', 'eyeframe'] as const,
     gradient: gradient ? parseGradient({ id: ids.gradient, ...gradient }) : undefined,
   }
 }
