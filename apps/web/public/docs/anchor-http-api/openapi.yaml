@@ -1,0 +1,753 @@
+openapi: 3.0.1
+info:
+  title: Iroh HTTP API
+  description: |
+    This is the API documentation for the **Iroh HTTP API**: a service for 
+    interacting with Iroh network infrastructure.
+    The Iroh protocol itself is documented elsewhere.
+  termsOfService: http://swagger.io/terms/
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  version: 0.1.0
+externalDocs:
+  description: Find out more about Iroh
+  url: https://khay.com
+servers:
+  - url: 'https://api.iroh.network'
+tags:
+  - name: health
+    description: API service health
+  - name: user
+    description: Operations about user
+  - name: projects
+    description: a group of related resources owned by a user or team
+  - name: blobs
+    description: 'opaque binary objects referenced by hash'
+  - name: docs
+    description: 'replicated, prefix-value stores'
+
+security:
+  - bearerAuth: []
+
+paths:
+  /token:
+    post:
+      tags:
+        - user
+      summary: get an API access token (UCAN)
+      operationId: createToken
+      responses:
+        200:
+          description: API access token
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  token:
+                    type: string
+  /user/me:
+    get:
+      tags:
+        - user
+      summary: describe the current logged-in user
+      operationId: sessionUser
+      security:
+        - bearerAuth: []
+      responses:
+        200:
+          description: session user
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+  /user/me/projects:
+    get:
+      tags:
+        - projects
+      summary: list projects available to the current user
+      description: Multiple status values can be provided with comma separated strings
+      operationId: getUserNetworks
+      security:
+        - bearerAuth: []
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Projects'
+
+  /projects/:username:
+    get:
+      tags:
+        - projects
+      summary: list projects for a given user
+      operationId: listUserProjects
+      security:
+        - bearerAuth: []
+      parameters:
+        - $ref: '#/components/parameters/UsernameOrTeamnameParam'
+      responses:
+        200:
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Projects'
+    put:
+      tags:
+        - projects
+      summary: update project details
+      operationId: updateProject
+      security:
+        - bearerAuth: []
+      parameters:
+        - $ref: '#/components/parameters/UsernameOrTeamnameParam'
+      responses:
+        200:
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Project'
+    post:
+      tags:
+        - projects
+      summary: create a project
+      operationId: createProject
+      security:
+        - bearerAuth: []
+      parameters:
+        - $ref: '#/components/parameters/UsernameOrTeamnameParam'
+      responses:
+        200:
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Project'
+    delete:
+      tags:
+        - projects
+      summary: delete a project
+      operationId: deleteProject
+      security:
+        - bearerAuth: []
+      parameters:
+        - $ref: '#/components/parameters/UsernameOrTeamnameParam'
+      responses:
+        200:
+          description: success
+  /projects/:username/:project:
+    get:
+      tags:
+        - projects
+      summary: get project details
+      operationId: getProject
+      security:
+        - bearerAuth: []
+      parameters:
+        - $ref: '#/components/parameters/UsernameOrTeamnameParam'
+        - $ref: '#/components/parameters/ProjectNamePathParam'
+      responses:
+        200:
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Project'
+  /projects/:username/:project/settings:
+    get:
+      tags:
+        - projects
+      summary: project settings
+      operationId: getProjectSettings
+      security:
+        - bearerAuth: []
+      parameters:
+        - $ref: '#/components/parameters/UsernameOrTeamnameParam'
+        - $ref: '#/components/parameters/ProjectNamePathParam'
+      responses:
+        200:
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProjectSettings'
+    put:
+      tags:
+        - projects
+      summary: project settings
+      operationId: updateProjectSettings
+      security:
+        - bearerAuth: []
+      parameters:
+        - $ref: '#/components/parameters/UsernameOrTeamnameParam'
+        - $ref: '#/components/parameters/ProjectNamePathParam'
+      responses:
+        200:
+          description: success
+          content:
+            application/json:
+  /docs/:username/:project:
+    get:
+      tags:
+        - docs
+      summary: list project documents
+      operationId: get_docs
+      security:
+        - bearerAuth: []
+      parameters:
+        - $ref: '#/components/parameters/UsernameOrTeamnameParam'
+        - $ref: '#/components/parameters/ProjectNamePathParam'
+      responses:
+        200:
+          description: user's docs
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DocDetails'
+    post:
+      tags:
+        - docs
+      summary: create a new document
+      operationId: create_doc
+      security:
+        - bearerAuth: []
+      parameters:
+        - $ref: '#/components/parameters/UsernameOrTeamnameParam'
+        - $ref: '#/components/parameters/ProjectNamePathParam'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateDocRequest'
+      responses:
+        200:
+          description: created document
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DocDetails'
+  /docs/:username/:project/:doc_id:
+    get:
+      tags:
+        - docs
+      summary: get a document
+      operationId: get_doc
+      security:
+        - bearerAuth: []
+      parameters:
+        - $ref: '#/components/parameters/UsernameOrTeamnameParam'
+        - $ref: '#/components/parameters/ProjectNamePathParam'
+        - $ref: '#/components/parameters/DocIdParam'
+      responses:
+        200:
+          description: document
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DocDetails'
+
+  /docs/:username/:project/:doc_id/set:
+    post:
+      tags:
+        - docs
+      summary: set a key in a document
+      operationId: doc_set
+      security:
+        - bearerAuth: []
+      parameters:
+        - $ref: '#/components/parameters/UsernameOrTeamnameParam'
+        - $ref: '#/components/parameters/ProjectNamePathParam'
+        - $ref: '#/components/parameters/DocIdParam'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateDocRequest'
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+      responses:
+        200:
+          description: updated document
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DocDetails'
+  /docs/:username/:project/:doc_id/del:
+    delete:
+      tags:
+        - docs
+      summary: delete a prefix in a document
+      operationId: doc_del
+      security:
+        - bearerAuth: []
+      parameters:
+        - $ref: '#/components/parameters/UsernameOrTeamnameParam'
+        - $ref: '#/components/parameters/ProjectNamePathParam'
+        - $ref: '#/components/parameters/DocIdParam'
+      responses:
+        200:
+          description: updated document
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DocDetails'
+  /docs/:username/:project/:doc_id/drop:
+    delete:
+      tags:
+        - docs
+      summary: delete an entire document
+      operationId: doc_drop
+      security:
+        - bearerAuth: []
+      parameters:
+        - $ref: '#/components/parameters/UsernameOrTeamnameParam'
+        - $ref: '#/components/parameters/ProjectNamePathParam'
+        - $ref: '#/components/parameters/DocIdParam'
+      responses:
+        200:
+          description: document deleted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Deleted'
+  /docs/:username/:project/:doc_id/name:
+    get:
+      tags:
+        - docs
+      summary: get a document name
+      operationId: get_doc_name
+      security:
+        - bearerAuth: []
+      parameters:
+        - $ref: '#/components/parameters/UsernameOrTeamnameParam'
+        - $ref: '#/components/parameters/ProjectNamePathParam'
+        - $ref: '#/components/parameters/DocIdParam'
+      responses:
+        200:
+          description: user's docs
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DocDetails'
+    post:
+      tags:
+        - docs
+      summary: create a new document
+      operationId: set_doc_name
+      security:
+        - bearerAuth: []
+      parameters:
+        - $ref: '#/components/parameters/UsernameOrTeamnameParam'
+        - $ref: '#/components/parameters/ProjectNamePathParam'
+        - $ref: '#/components/parameters/DocIdParam'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateDocRequest'
+      responses:
+        200:
+          description: created document
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DocDetails'
+  # TODO - not implemented yet, need to think through a query API
+  # /docs/:username/:doc_id/get/:key:
+  /docs/:username/:project/:doc_id/share:
+    post:
+      tags:
+        - docs
+      summary: share access to a document
+      operationId: doc_share
+      security:
+        - bearerAuth: []
+      parameters:
+        - $ref: '#/components/parameters/UsernameOrTeamnameParam'
+        - $ref: '#/components/parameters/ProjectNamePathParam'
+        - $ref: '#/components/parameters/DocIdParam'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TicketRequest'
+      responses:
+        200:
+          description: document ticket
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TicketResponse'
+  /docs/:username/:project/:doc_id/join:
+    post:
+      tags:
+        - docs
+      summary: join a document from a share ticket
+      operationId: doc_join
+      security:
+        - bearerAuth: []
+      parameters:
+        - $ref: '#/components/parameters/UsernameOrTeamnameParam'
+        - $ref: '#/components/parameters/ProjectNamePathParam'
+        - $ref: '#/components/parameters/DocIdParam'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                ticket:
+                  type: string
+      responses:
+        200:
+          description: joined document
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DocDetails'
+
+  /blobs/:username/:project:
+    get:
+      tags:
+        - blobs
+      summary: list a user's blobs
+      operationId: blob_get
+      security:
+        - bearerAuth: []
+      parameters:
+        - $ref: '#/components/parameters/UsernameOrTeamnameParam'
+        - $ref: '#/components/parameters/ProjectNamePathParam'
+        - in: query
+          name: offset
+          required: false
+          schema:
+            type: integer
+        - in: query
+          name: limit
+          required: false
+          schema:
+            type: integer
+      responses:
+        200:
+          description: blob list
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/BlobReference'
+    post:
+      tags:
+        - blobs
+      summary: delete a n array of blob hashes from this project
+      operationId: uploadBlob
+      security:
+        - bearerAuth: []
+      parameters:
+        - $ref: '#/components/parameters/UsernameOrTeamnameParam'
+        - $ref: '#/components/parameters/ProjectNamePathParam'
+      responses:
+        200:
+          description: success
+          content:
+            application/json:
+
+    delete:
+      tags:
+        - blobs
+      summary: upload a blob or collection to a project
+      operationId: deleteBlobs
+      security:
+        - bearerAuth: []
+      parameters:
+        - $ref: '#/components/parameters/UsernameOrTeamnameParam'
+        - $ref: '#/components/parameters/ProjectNamePathParam'
+      responses:
+        200:
+          description: success
+          content:
+            application/json:
+  /blobs/:username/:project/:hash:
+    delete:
+      tags:
+        - blobs
+      summary: delete a single blob
+      operationId: deleteBlob
+      parameters:
+        - $ref: '#/components/parameters/UsernameOrTeamnameParam'
+        - $ref: '#/components/parameters/ProjectNamePathParam'
+        - $ref: '#/components/parameters/HashPathParam'
+      responses:
+        200:
+          description: success
+          content:
+            application/json:
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: UCAN (JWT)
+  responses: {}
+  examples: {}
+  requestBodies: {}
+  headers: {}
+  parameters:
+    UsernameOrTeamnameParam:
+      name: username
+      in: path
+      description: the username or team name to scope the request to
+      required: true
+      schema:
+        type: string
+    DocIdParam:
+      name: doc_id
+      in: path
+      description: a document identifier
+      required: true
+      schema:
+        type: string
+    NetworkNamePathParam:
+      name: network_id
+      in: path
+      description: ID of the network to list collections for
+      required: true
+      schema:
+        $ref: '#/components/schemas/Uuid'
+    ProjectNamePathParam:
+      name: project
+      in: path
+      description: Name of the project
+      required: true
+      schema:
+        type: string
+    HashPathParam:
+      name: hash
+      in: path
+      description: an iroh hash
+      required: true
+      schema:
+        type: string
+  schemas:
+    Projects:
+      type: array
+      items:
+        $ref: '#/components/schemas/Project'
+    Project:
+      type: object
+      properties:
+        name:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+        owner_id:
+          $ref: '#/components/schemas/Uuid'
+    UserProjects:
+      type: array
+      items:
+        type: object
+        properties:
+          user:
+            $ref: '#/components/schemas/User'
+          projects:
+            $ref: '#/components/schemas/Projects'
+    BlobReference:
+      type: object
+      properties:
+        path:
+          type: string
+        hash:
+          type: string
+        size:
+          type: integer
+    Cid:
+      type: string
+      example: 'bafkr4ihaehdb5yar357djzt4vzwd565w7rpluruvvwnhap7yknbydbadam'
+    Collection:
+      type: object
+      properties:
+        pub_key:
+          type: string
+          format: ''
+          example: ''
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+        created_by:
+          # optional
+          $ref: '#/components/schemas/Uuid'
+        network_id:
+          $ref: '#/components/schemas/Uuid'
+        cid:
+          $ref: '#/components/schemas/Cid'
+        name:
+          type: string
+        item_count:
+          type: integer
+          format: int32
+        size:
+          type: integer
+          format: uint64
+        signature:
+          type: string
+    CreateDocRequest:
+      type: object
+      properties:
+        name:
+          type: string
+    Deleted:
+      type: object
+      properties:
+        deleted:
+          type: boolean
+    DocDetails:
+      type: object
+      properties:
+        doc_id:
+          type: string
+        name:
+          type: string
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/DocEntry'
+    DocEntry:
+      type: object
+      properties:
+        author_id:
+          type: string
+        hash:
+          type: string
+        content_length:
+          type: integer
+        timestamp:
+          type: integer
+    DocId:
+      type: string
+      length: 52
+    IrohNetworkCreate:
+      type: object
+      properties:
+        created_by:
+          $ref: '#/components/schemas/Uuid'
+        pretty_name:
+          type: string
+        name:
+          type: string
+        anchor_url:
+          type: string
+        accept_content:
+          type: boolean
+        provide_content:
+          type: string
+          enum:
+            - Disabled
+            - Public
+            - Private
+        connection_policy:
+          type: string
+          enum:
+            - Public
+            - SharedSecret
+        kubo_egress:
+          type: string
+          enum:
+            - Disabled
+            - BlakeThreeOnlyWithConvertedCollections
+        kubo_ingress:
+          type: string
+          enum:
+            - Disabled
+            - BlakeThreeOnlyWithConvertedCollections
+    ProjectSettings:
+      type: object
+      properties:
+        http_gateway_enabled:
+          type: boolean
+    ProviderInfo:
+      type: object
+      properties:
+        node_id:
+          type: string
+        addr:
+          type: string
+    TicketRequest:
+      type: object
+      properties:
+        doc_id:
+          $ref: '#/components/schemas/DocId'
+        mode:
+          enum:
+            - read
+            - write
+    TicketResponse:
+      type: object
+      properties:
+        doc_id:
+          $ref: '#/components/schemas/DocId'
+        ticket:
+          type: string
+    UserCreated:
+      type: object
+      properties:
+        user_id:
+          $ref: '#/components/schemas/Uuid'
+        user_role:
+          type: string
+          enum:
+            - ADMIN
+            - USER
+        name:
+          type: string
+    User:
+      type: object
+      properties:
+        user_id:
+          $ref: '#/components/schemas/Uuid'
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+        name:
+          type: string
+        user_role:
+          type: string
+          enum:
+            - ADMIN
+            - USER
+        pub_key:
+          type: string
+        profile_photo_url_small:
+          type: string
+        profile_photo_url_large:
+          type: string
+    Uuid:
+      type: string
+      format: uuid
+      example: '550e8400-e29b-41d4-a716-446655440000'
