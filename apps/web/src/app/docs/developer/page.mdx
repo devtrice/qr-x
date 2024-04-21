@@ -1,0 +1,202 @@
+export const metadata = {
+  title: 'Developer',
+  description:
+    `Understanding which browsers Tailwind supports and how to manage vendor prefixes.`,
+}
+
+
+
+
+## Understanding which browsers Tailwind supports and how to manage vendor prefixes.
+
+
+While most of the features in Tailwind CSS will work in all modern browsers, Tailwind also includes APIs for several bleeding-edge features that aren’t yet supported by all browsers, for example the :focus-visible pseudo-class and backdrop-filter utilities.
+
+
+<CodeGroup>
+
+```
+python {{ title: 'python' }}
+import os
+import shutil
+
+from iroh import IrohNode, Query, path_to_key 
+
+# Create folder
+os.mkdir("tmp")
+
+try:
+    root = os.path.abspath(os.path.join("tmp"))
+    print("Created dir \"tmp\"")
+
+    file_names = ["foo", "bar", "bat"]
+    # Create three files in the folder
+    for file_name in file_names:
+        file_path = os.path.join("tmp", file_name)
+        with open(file_path, "w") as f:
+            f.write(f"{file_name}")
+        print(f"Created file {file_path}")
+
+    # Create an Iroh node
+    node = IrohNode("iroh_data_dir")
+
+    # Create author and document
+    author = node.author_create()
+    print(f"Created author {author.to_string()}")
+
+    doc = node.doc_create()
+    print(f"Created document {doc.id().to_string()}")
+
+    prefix = "import-example"
+    # Import the files
+    for file_name in file_names:
+        path = os.path.abspath(os.path.join("tmp", file_name))
+        # create a key from the path, use the `iroh.PathToKey` function to ensure
+		# that we strip the root correctly, and add any prefix we want to add for
+		# organizational purposes
+        key = path_to_key(path, prefix, root)
+        doc.import_file(author, key, path, False, None)
+
+    # Get all the entries with default filtering and sorting
+    query = Query.all(None)
+    entries = doc.get_many(query)
+
+    print("One entry for each file:")
+    for entry in entries:
+        key = entry.key()
+        hash = entry.content_hash()
+        content = entry.content_bytes(doc)
+        print(f"{key.decode('utf-8')}: {content.decode('utf-8')} (hash: {hash.to_string()})")
+
+except Exception as e:
+    print("error: ", e)
+
+# cleanup dir
+shutil.rmtree("tmp")
+
+# Output:
+# Created dir "tmp"
+# Created file tmp/foo
+# Created file tmp/bar
+# Created file tmp/bat
+# Created author kpksn2yl2c3nlppjtnpxa2h2utmu2fdnutuwptybenr3gxdlrkiq
+# Created document af7klzttoegn6kvr7p6j7tgw6tz2w54n5bfzqvpcfmy2mrkk3pgq
+# One entry for each file:
+# import-examplebar: bar (hash: bafkr4ihs5cl65v6sa3gykxkecwmpuuq2xr22vfuvh2l4amgjmewdbqjjhu)
+# import-examplebat: bat (hash: bafkr4iabccdb2eyeu764xoewbcqv62sjaggxibtmxx5tnmwer3wp3rquq4)
+# import-examplefoo: foo (hash: bafkr4iae4c5tt4yldi76xcpvg3etxykqkvec352im5fqbutolj2xo5yc5e)
+
+```
+
+```swift {{ title: 'go' }}
+package main
+
+import (
+	"fmt"
+	"os"
+	"path/filepath"
+
+	"github.com/n0-computer/iroh-ffi/iroh-go/iroh"
+)
+
+func main() {
+	// create folder
+	if err := os.Mkdir("tmp", os.ModePerm); err != nil {
+		panic(err)
+	}
+	defer func() {
+		os.RemoveAll("tmp")
+		fmt.Println("Removed dir 'tmp'")
+	}()
+
+	root, err := filepath.Abs(filepath.Join("tmp"))
+	if err != nil {
+		panic(err)
+	}
+
+	fmt.Println("Created dir \"tmp\"")
+
+	fileNames := []string{"foo", "bar", "bat"}
+	// create three files in the folder
+	for _, fileName := range fileNames {
+		path := filepath.Join("tmp", fileName)
+		f, err := os.Create(path)
+		if err != nil {
+			panic(err)
+		}
+		_, err = f.WriteString(fmt.Sprintf("%s", fileName))
+		if err != nil {
+			panic(err)
+		}
+		fmt.Printf("Created file %q\n", path)
+	}
+
+	node, err := iroh.NewIrohNode("iroh_data_dir")
+	if err != nil {
+		panic(err)
+	}
+
+	author, err := node.AuthorCreate()
+	if err != nil {
+		panic(err)
+	}
+	fmt.Printf("Created author %s\n", author.ToString())
+
+	doc, err := node.DocCreate()
+	if err != nil {
+		panic(err)
+	}
+	fmt.Printf("Created document %s\n", doc.Id().ToString())
+
+	prefix := "import-example"
+	// import the files
+	for _, fileName := range fileNames {
+		path, err := filepath.Abs(filepath.Join("tmp", fileName))
+		if err != nil {
+			panic(err)
+		}
+		// create a key from the path, use the `iroh.PathToKey` function to ensure
+		// that we strip the root correctly, and add any prefix we want to add for
+		// organizational purposes
+		key, err := iroh.PathToKey(path, &prefix, &root)
+		if err != nil {
+			panic(err)
+		}
+
+		doc.ImportFile(author, key, path, false, nil)
+	}
+
+	// get all the entries with default filtering and sorting
+	query := iroh.QueryAll(nil)
+	entries, err := doc.GetMany(query)
+	if err != nil {
+		panic(err)
+	}
+
+	fmt.Println("One entry for each file:")
+	for _, entry := range entries {
+		key := entry.Key()
+		hash := entry.ContentHash()
+		content, err := entry.ContentBytes(doc)
+		if err != nil {
+			panic(err)
+		}
+		fmt.Printf("%s: %q (hash: %s)\n", string(key), string(content), hash.ToString())
+	}
+
+	// Output:
+	// Created dir "tmp"
+	// Created file "tmp/foo"Created file "tmp/bar"Created file "tmp/bat"Created author kup6o2nnubm67rupuzo4mxjjwafpo6fbvhjjfjxdmvvm337i2txq
+	// Created document rezwubpa2pxt5ikvrwr65oifq5csnz6h3eeq7l2yrkfewo6dji2a
+	// One entry for each file:
+	// import-examplebar: "bar" (hash: bafkr4ihs5cl65v6sa3gykxkecwmpuuq2xr22vfuvh2l4amgjmewdbqjjhu)
+	// import-examplebat: "bat" (hash: bafkr4iabccdb2eyeu764xoewbcqv62sjaggxibtmxx5tnmwer3wp3rquq4)
+	// import-examplefoo: "foo" (hash: bafkr4iae4c5tt4yldi76xcpvg3etxykqkvec352im5fqbutolj2xo5yc5e)
+	// Removed dir 'tmp'
+}
+```
+</CodeGroup>
+
+
+
+
