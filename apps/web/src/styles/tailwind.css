@@ -1,66 +1,17 @@
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700&family=Space+Mono&display=swap');
-
 @layer base {
-  :root {
-    --shiki-color-text: theme('colors.white');
-    --shiki-token-constant: theme('colors.irohPurple.300');
-    --shiki-token-string: theme('colors.irohPurple.300');
-    --shiki-token-comment: theme('colors.zinc.500');
-    --shiki-token-keyword: theme('colors.sky.300');
-    --shiki-token-parameter: theme('colors.pink.300');
-    --shiki-token-function: theme('colors.violet.300');
-    --shiki-token-string-expression: theme('colors.irohPurple.300');
-    --shiki-token-punctuation: theme('colors.zinc.200');
-  }
-
   [inert] ::-webkit-scrollbar {
     display: none;
   }
 }
-
-p,
-h2,
-h3,
-h1,
-h4,
-ul,
-li {
-  font-family: 'Shan', ui-sans-serif, system-ui, -apple-system !important;
-}
-
-h1 {
-  font-family: 'Shan', ui-sans-serif, system-ui, -apple-system;
-}
-
-article p a {
-  @apply !text-primary dark:text-blue-100;
-}
-/* @font-face {
-  font-family: "Shan";
-  font-weight: 400;
-  src:
-    local("Shan"),
-    url("/fonts/Shan/Shan.ttf") format("ttf"),
-    url("/fonts/Shan/Shan.woff2") format("woff2"),
-    url("/fonts/Shan/Shan.woff") format("woff");
-} */
 
 .no-visible-scrollbar {
   scrollbar-width: none;
   -ms-overflow-style: none;
   -webkit-overflow-scrolling: touch;
 }
- 
+
 .no-visible-scrollbar::-webkit-scrollbar {
   display: none;
-}
-
-@font-face {
-  font-family: 'Shan';
-  src: local('Shan'), url('/fonts/Shan/Shan.woff') format('woff');
-  font-weight: 300;
-  font-style: normal;
-  font-display: swap;
 }
 
 @tailwind base;

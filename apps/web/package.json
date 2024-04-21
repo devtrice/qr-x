@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "watch": "next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
@@ -19,6 +19,7 @@
     "@lottiefiles/react-lottie-player": "^3.5.3",
     "@mdx-js/loader": "^2.3.0",
     "@mdx-js/react": "^2.3.0",
+    "@next/font": "^14.2.2",
     "@next/mdx": "13.4.16",
     "@sindresorhus/slugify": "^2.2.1",
     "@tabler/icons-react": "^3.1.0",
@@ -28,6 +29,7 @@
     "acorn": "^8.10.0",
     "autoprefixer": "^10.4.16",
     "axios": "^1.6.8",
+    "class-variance-authority": "^0.7.0",
     "clsx": "^1.2.1",
     "embla-carousel-react": "^8.0.0",
     "fast-glob": "^3.3.1",
