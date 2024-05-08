@@ -1,4 +1,4 @@
 import { App } from 'vue'
-import QRX from './src/QRX.vue'
+import QRX from './index.vue'
 
 export default QRX

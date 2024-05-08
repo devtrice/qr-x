@@ -1,5 +1,5 @@
 {
-  "extends": "@common/tsconfig/base.json",
+  "extends": ["@common/tsconfig/base.json", "@tsconfig/svelte/tsconfig.json"],
   "compilerOptions": {
     "module": "ESNext",
     "sourceMap": true,

@@ -6,7 +6,7 @@ const Multiple = () => {
   const elements = renderMultiple(createQRX)
   const grid = document.createElement('div')
   grid.className = 'grid'
-  elements.forEach(element => grid.appendChild(element))
+  grid.innerHTML = elements.join('')
   return grid
 }
 
