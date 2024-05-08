@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="@n0computer" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="n0.computer" />
+    <meta name="twitter:title" content="" />
+    <meta property="og:title" content="" />
+    <meta name="twitter:description" content="Reducing net work for networks" />
+    <meta property="og:description" content="Reducing net work for networks" />
+    <meta
+      name="twitter:image"
+      content="https://khay.com/img/logos/wordmark-small-salmon.svg"
+    />
+    <meta
+      property="og:image"
+      content="https://khay.com/img/logos/wordmark-small-salmon.svg"
+    />
+    <meta name="twitter:image-alt" content="n0" />
+    <meta property="og:url" content="https://khay.com" />
+
+    <link href="/styles/style.css" rel="stylesheet" />
+
+    <title> </title>
+  </head>
+  <body
+    class="h-screen justify-between bg-irohGray-900 font-space text-irohGray-700"
+  >
+    <nav
+      id="navbar"
+      class="fixed w-full transition-colors duration-1000 ease-in"
+    >
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-10">
+        <div class="relative flex h-20 items-center justify-between">
+          <div class="absolute inset-y-0 right-0 flex items-center sm:hidden">
+            <!-- Mobile menu button-->
+            <button
+              id="toggle-mobile-menu"
+              type="button"
+              class="inline-flex items-center justify-center rounded-md p-2 text-irohGray-400 hover:bg-irohGray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
+              aria-controls="mobile-menu"
+              aria-expanded="false"
+            >
+              <span class="sr-only">Open main menu</span>
+              <svg
+                class="block h-6 w-6"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="2"
+                stroke="currentColor"
+                aria-hidden="true"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M4 6h16M4 12h16M4 18h16"
+                />
+              </svg>
+              <svg
+                class="hidden h-6 w-6"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="2"
+                stroke="currentColor"
+                aria-hidden="true"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M6 18L18 6M6 6l12 12"
+                />
+              </svg>
+            </button>
+          </div>
+          <div class="flex flex-1 sm:items-stretch sm:justify-start">
+            <a href="/" class="mr-auto block flex flex-shrink-0 items-center">
+              <img
+                class="block h-8 w-auto"
+                src="img/logo/iroh-wordmark-purple.svg"
+                alt="Iroh"
+              />
+            </a>
+
+            <div class="inset-y-0 hidden sm:inset-auto sm:block sm:pr-0">
+              <div class="flex space-x-5">
+                <a
+                  href="/docs"
+                  class="delay-50 rounded-md px-3 py-2 text-sm font-medium text-irohGray-400 transition transition-colors ease-in-out hover:text-white"
+                  >docs</a
+                >
+                <a
+                  href="https://github.com/n0-computer/iroh"
+                  class="delay-50 rounded-md px-3 py-2 text-sm font-medium text-irohGray-400 transition transition-colors ease-in-out hover:text-white"
+                  >github</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mobile menu, show/hide based on menu state. -->
+      <div
+        id="mobile-menu"
+        class="hidden bg-irohGray-100 transition-colors duration-1000 ease-in sm:hidden"
+        aria-hidden="true"
+        role="menu"
+        aria-orientation="vertical"
+        aria-labelledby="user-menu-button"
+        tabindex="-1"
+      >
+        <div class="space-y-1 px-2 pb-3 pt-2">
+          <a
+            href="/docs"
+            class="block rounded-md px-3 py-2 text-base font-medium hover:text-white"
+            >docs</a
+          >
+          <a
+            href="https://github.com/n0-computer"
+            class="block rounded-md px-3 py-2 text-base font-medium hover:text-white"
+            >github</a
+          >
+        </div>
+      </div>
+    </nav>
+
+    <main class="mb-auto flex min-h-screen flex-col">
+      <div class="flex w-full flex-col pt-40">
+        <div class="mx-auto w-full max-w-6xl px-3 sm:px-6 lg:px-10">
+          <h1 class="text-bold mx-auto my-6 text-2xl">Legal</h1>
+          <!-- Content -->
+          <div id="page-content" class="text-bold mt-2">
+            <p>This is the legal page</p>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer class="bg-irohGray-1000 pb-16 pt-20">
+      <div
+        class="mx-auto flex w-full max-w-7xl flex-col px-4 sm:flex-row sm:px-6 lg:px-10"
+      >
+        <div class="w-full sm:w-3/12">
+          <a href="/" class="inline-block align-bottom">
+            <img
+              class="h-6 w-auto"
+              src="img/logo/iroh-wordmark-purple.svg"
+              alt="Iroh"
+            />
+            <!-- <img class="hidden md:block h-8 w-auto" src="img/logos/wordmark-full-gray.svg" alt="Number Zero"> -->
+          </a>
+          <span class="mx-1 mt-2 inline-block">by</span>
+          <a href="https://n0.computer" class="inline-block align-bottom">
+            <img
+              class="h-8 w-10"
+              src="img/logo/n0-wordmark-gray.svg"
+              alt="Number Zero"
+            />
+          </a>
+        </div>
+        <div class="w-full text-right sm:w-9/12">
+          <a href="/contact" target="blank" class="mx-4">contact</a>
+          <a href="/legal" target="blank" class="mx-4">legal</a>
+        </div>
+      </div>
+    </footer>
+
+    <!--- scripts --->
+    <script defer src="/js/site.js"></script>
+    <script
+      defer
+      data-domain="n0.computer"
+      src="https://plausible.io/js/plausible.js"
+    ></script>
+  </body>
+</html>

@@ -9,7 +9,8 @@
     "dev:solid": "PLATFORM=solid storybook dev -p 6006 --no-open",
     "dev:vanilla": "PLATFORM=vanilla storybook dev -p 6006 --no-open",
     "dev:svelte": "concurrently 'turbo run watch --filter=@qr-x/svelte' 'PLATFORM=svelte storybook dev -p 6006 --no-open'",
-    "dev:vue": "PLATFORM=vue storybook dev -p 6006 --no-open"
+    "dev:vue": "PLATFORM=vue storybook dev -p 6006 --no-open",
+    "dev:web": "turbo run watch --filter=qr-x-web"
   },
   "dependencies": {
     "@common/tsconfig": "workspace:*",
