@@ -26,7 +26,8 @@
     "build:dts": "tsc -p tsconfig.build.json --outDir ./dist"
   },
   "dependencies": {
-    "@qr-x/core": "workspace:*"
+    "@qr-x/core": "workspace:*",
+    "@vitejs/plugin-vue": "^5.0.4"
   },
   "devDependencies": {
     "@common/stories": "workspace:*",
