@@ -1,23 +1,23 @@
-"use client"
+'use client'
 
-import React from "react";
-import useIllustration from '@/hooks/useIllustration';
+import React from 'react'
+import useIllustration from '@/hooks/useIllustration'
 
 import { motion } from 'framer-motion'
 
-function GroupIcon({color}) {
-    const { ref, fadeAnimation, drawAnimation } = useIllustration()
+function GroupIcon({ color }) {
+  const { ref, fadeAnimation, drawAnimation } = useIllustration()
 
-    console.log("color;", color)
+  console.log('color;', color)
   return (
-    <svg ref={ref}   enable-background="new 0 0 700 490" viewBox="0 0 600 316">
+    <svg ref={ref} enable-background="new 0 0 700 490" viewBox="0 0 600 316">
       <motion.path
         fill="none"
         {...drawAnimation({
           delay: 1,
           duration: 1,
         })}
-        stroke={color || "#000"}
+        stroke={color || '#000'}
         strokeLinecap="round"
         strokeLinejoin="round"
         strokeWidth="2"
@@ -31,7 +31,7 @@ function GroupIcon({color}) {
           delay: 1,
           duration: 1,
         })}
-        stroke={color || "#000"}
+        stroke={color || '#000'}
         strokeLinecap="round"
         strokeLinejoin="round"
         strokeWidth="2"
@@ -39,12 +39,12 @@ function GroupIcon({color}) {
         opacity="1"
       />
       <motion.path
-         {...drawAnimation({
+        {...drawAnimation({
           delay: 1,
           duration: 1,
         })}
         fill="none"
-        stroke={color || "#000"}
+        stroke={color || '#000'}
         strokeLinecap="round"
         strokeLinejoin="round"
         strokeWidth="2"
@@ -57,7 +57,7 @@ function GroupIcon({color}) {
           delay: 1,
           duration: 1,
         })}
-        stroke={color || "#000"}
+        stroke={color || '#000'}
         strokeLinecap="round"
         strokeLinejoin="round"
         strokeWidth="2"
@@ -70,7 +70,7 @@ function GroupIcon({color}) {
           delay: 1,
           duration: 1,
         })}
-        stroke={color || "#000"}
+        stroke={color || '#000'}
         strokeLinecap="round"
         strokeLinejoin="round"
         strokeWidth="3"
@@ -83,7 +83,7 @@ function GroupIcon({color}) {
           delay: 1,
           duration: 1,
         })}
-        stroke={color || "#000"}
+        stroke={color || '#000'}
         strokeLinecap="round"
         strokeLinejoin="round"
         strokeWidth="2"
@@ -96,7 +96,7 @@ function GroupIcon({color}) {
           delay: 1,
           duration: 1,
         })}
-        stroke={color || "#000"}
+        stroke={color || '#000'}
         strokeLinecap="round"
         strokeLinejoin="round"
         strokeWidth="2"
@@ -105,7 +105,7 @@ function GroupIcon({color}) {
       ></motion.path>
       <motion.path
         fill="none"
-        stroke={color || "#000"}
+        stroke={color || '#000'}
         strokeLinecap="round"
         strokeLinejoin="round"
         strokeWidth="2"
@@ -118,7 +118,7 @@ function GroupIcon({color}) {
           delay: 1,
           duration: 1,
         })}
-        stroke={color || "#000"}
+        stroke={color || '#000'}
         strokeLinecap="round"
         strokeLinejoin="round"
         strokeWidth="2"
@@ -127,7 +127,7 @@ function GroupIcon({color}) {
       ></motion.path>
       <motion.path
         fill="none"
-        stroke={color || "#000"}
+        stroke={color || '#000'}
         {...drawAnimation({
           delay: 1,
           duration: 1,
@@ -144,7 +144,7 @@ function GroupIcon({color}) {
           delay: 1,
           duration: 1,
         })}
-        stroke={color || "#000"}
+        stroke={color || '#000'}
         strokeLinecap="round"
         strokeLinejoin="round"
         strokeWidth="2"
@@ -157,7 +157,7 @@ function GroupIcon({color}) {
           delay: 1,
           duration: 1,
         })}
-        stroke={color || "#000"}
+        stroke={color || '#000'}
         strokeLinecap="round"
         strokeLinejoin="round"
         strokeWidth="3"
@@ -170,7 +170,7 @@ function GroupIcon({color}) {
           delay: 1,
           duration: 1,
         })}
-        stroke={color || "#000"}
+        stroke={color || '#000'}
         strokeLinecap="round"
         strokeLinejoin="round"
         strokeWidth="2"
@@ -179,7 +179,7 @@ function GroupIcon({color}) {
       ></motion.path>
       <motion.path
         fill="none"
-        stroke={color || "#000"}
+        stroke={color || '#000'}
         {...drawAnimation({
           delay: 1,
           duration: 1,
@@ -196,7 +196,7 @@ function GroupIcon({color}) {
           delay: 1,
           duration: 1,
         })}
-        stroke={color || "#000"}
+        stroke={color || '#000'}
         strokeLinecap="round"
         strokeLinejoin="round"
         strokeWidth="4"
@@ -205,7 +205,7 @@ function GroupIcon({color}) {
       ></motion.path>
       <motion.path
         fill="none"
-        stroke={color || "#000"}
+        stroke={color || '#000'}
         {...drawAnimation({
           delay: 1,
           duration: 1,
@@ -218,7 +218,7 @@ function GroupIcon({color}) {
       ></motion.path>
       <motion.path
         fill="none"
-        stroke={color || "#000"}
+        stroke={color || '#000'}
         {...drawAnimation({
           delay: 1,
           duration: 1,
@@ -235,7 +235,7 @@ function GroupIcon({color}) {
           delay: 1,
           duration: 1,
         })}
-        stroke={color || "#000"}
+        stroke={color || '#000'}
         strokeLinecap="round"
         strokeLinejoin="round"
         strokeWidth="3"
@@ -248,7 +248,7 @@ function GroupIcon({color}) {
           delay: 1,
           duration: 1,
         })}
-        stroke={color || "#000"}
+        stroke={color || '#000'}
         strokeLinecap="round"
         strokeLinejoin="round"
         strokeWidth="2"
@@ -257,7 +257,7 @@ function GroupIcon({color}) {
       ></motion.path>
       <motion.path
         fill="none"
-        stroke={color || "#000"}
+        stroke={color || '#000'}
         strokeLinecap="round"
         strokeLinejoin="round"
         strokeWidth="3"
@@ -265,12 +265,12 @@ function GroupIcon({color}) {
         opacity="1"
       ></motion.path>
       <motion.path
-         {...drawAnimation({
+        {...drawAnimation({
           delay: 1,
           duration: 1,
         })}
         fill="none"
-        stroke={color || "#000"}
+        stroke={color || '#000'}
         strokeLinecap="round"
         strokeLinejoin="round"
         strokeWidth="2"
@@ -278,7 +278,7 @@ function GroupIcon({color}) {
         opacity="1"
       ></motion.path>
     </svg>
-  );
+  )
 }
 
-export default GroupIcon;
+export default GroupIcon

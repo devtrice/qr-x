@@ -3,9 +3,16 @@
   "version": "0.0.3",
   "license": "MIT",
   "description": "",
-  "main": "dist/index.cjs.js",
-  "types": "./dist/index.d.js",
-  "module": "./dist/index.esm.js",
+  "types": "./dist/index.d.ts",
+  "main": "./dist/qr-x-vue.umd.js",
+  "module": "./dist/qr-x-vue.mjs",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/qr-x-vue.mjs",
+      "require": "./dist/qr-x-vue.umd.js"
+    }
+  },
   "files": [
     "dist"
   ],
@@ -15,11 +22,12 @@
     "vue"
   ],
   "scripts": {
-    "build": "rm -rf dist && pnpm build:dts",
+    "build": "rm -rf dist && vue-tsc --noEmit && vite build",
     "build:dts": "tsc -p tsconfig.build.json --outDir ./dist"
   },
   "dependencies": {
-    "@qr-x/core": "workspace:*"
+    "@qr-x/core": "workspace:*",
+    "@vitejs/plugin-vue": "^5.0.4"
   },
   "devDependencies": {
     "@common/stories": "workspace:*",
@@ -28,7 +36,9 @@
     "@vue/runtime-dom": "^3.4.13",
     "esbuild": "^0.19.8",
     "esbuild-plugin-vue-next": "^0.1.4",
-    "vue": "^3.3.11"
+    "vite-plugin-dts": "^3.9.1",
+    "vue": "^3.3.11",
+    "vue-tsc": "^2.0.16"
   },
   "peerDependencies": {
     "vue": "^3.x"
