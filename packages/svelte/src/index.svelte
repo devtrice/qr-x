@@ -3,6 +3,8 @@
   import type { Options } from '@qr-x/core'
   import type { SVGAttributes } from 'svelte/elements'
 
+  const { getSVGData }= qrXCore;
+
   type Props = SVGAttributes<never> & Options
 
   interface $$Props extends Props {}
@@ -13,7 +15,7 @@
   export let gradient: Options['gradient'] = undefined
   export let fillImage: Options['fillImage'] = undefined
 
-  $: svgData = qrXCore.getSVGData({
+  $: svgData = getSVGData({
     data,
     level,
     shapes,
