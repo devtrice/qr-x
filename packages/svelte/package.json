@@ -12,7 +12,7 @@
   "exports": {
     ".": {
       "types": "./dist/index.d.js",
-      "default": "./dist/index.js"
+      "svelte": "./dist/index.js"
     }
   },
   "scripts": {
