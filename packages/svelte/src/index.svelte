@@ -1,9 +1,7 @@
 <script lang="ts">
-  import qrXCore from '@qr-x/core'
+  import { getSVGData } from '@qr-x/core'
   import type { Options } from '@qr-x/core'
   import type { SVGAttributes } from 'svelte/elements'
-
-  const { getSVGData }= qrXCore;
 
   type Props = SVGAttributes<never> & Options
 
