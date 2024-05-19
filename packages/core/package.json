@@ -14,11 +14,9 @@
     "code"
   ],
   "exports": {
-    "node": "./dist/index.cjs.js",
     "types": "./dist/index.d.ts",
     "import": "./dist/index.esm.js",
-    "require": "./dist/index.cjs.js",
-    "default": "./dist/index.cjs.js"
+    "require": "./dist/index.cjs.js"
   },
   "scripts": {
     "build": "rm -rf dist && pnpm build:dts && pnpm build:esm && pnpm build:cjs",
