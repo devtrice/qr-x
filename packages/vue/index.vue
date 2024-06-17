@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { SVGAttributes, reactive, watch } from 'vue'
+import { SVGAttributes, computed } from 'vue'
 import { Options, getSVGData } from '@qr-x/core'
 
 interface Props extends Options {}
@@ -7,37 +7,15 @@ interface Props extends SVGAttributes {}
 
 const props = defineProps<Props>()
 
-const { ids, path, length, gradient } = getSVGData({
-  data: props.data,
-  level: props.level,
-  shapes: props.shapes,
-  gradient: props.gradient,
-  fillImage: props.fillImage,
-})
-
-const svgState = reactive({
-  ids,
-  path,
-  length,
-  gradient,
-})
-
-const updateSVGData = () => {
-  const { ids, path, length, gradient } = getSVGData({
+const svgState = computed(() =>
+  getSVGData({
     data: props.data,
     level: props.level,
     shapes: props.shapes,
     gradient: props.gradient,
     fillImage: props.fillImage,
-  })
-
-  svgState.ids = ids
-  svgState.path = path
-  svgState.length = length
-  svgState.gradient = gradient
-}
-
-watch(() => props.data, updateSVGData, { immediate: true })
+  }),
+)
 </script>
 
 <template>
