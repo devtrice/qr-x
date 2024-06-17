@@ -18,6 +18,7 @@ export type Options = {
   shapes?: Shapes
   gradient?: Gradient
   fillImage?: string
+  fillVideo?: string
 }
 
 function parseGradient({ id, type = 'linear', colors, ...rest }: Gradient & { id: string }) {
@@ -37,7 +38,7 @@ function parseGradient({ id, type = 'linear', colors, ...rest }: Gradient & { id
 
 export function getSVGData({ data, shapes, gradient, fillImage, ...options }: Options) {
   const id = Math.random().toString(36).substring(2, 9)
-  const ids = { image: `image-${id}`, gradient: `gradient-${id}` }
+  const ids = { video: `video-${id}`, image: `image-${id}`, gradient: `gradient-${id}` }
   const $shapes = { body: 'square', eyeball: 'square', eyeframe: 'square', ...shapes } as const
   const { modules } = QR(data, options) as { modules: boolean[][] }
 
