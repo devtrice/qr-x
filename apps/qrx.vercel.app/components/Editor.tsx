@@ -30,10 +30,10 @@ export default function Editor({ values }: Props) {
               const selected = (e.target as HTMLInputElement).id
               setFramework(selected as Framework)
             }}
-            className='flex p-0.5'
+            className='flex p-0.5 cursor-pointer'
           >
             {editorFrameworks.map(framework => (
-              <label key={framework} className='capitalize rounded-lg px-3 flex items-center has-[input:checked]:bg-primary'>
+              <label key={framework} className='capitalize cursor-pointer rounded-lg px-3 flex items-center has-[input:checked]:bg-primary'>
                 {framework}
                 <input
                   type='radio'

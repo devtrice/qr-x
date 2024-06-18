@@ -1,6 +1,6 @@
 export default function HeroIllustration() {
   return (
-    <svg width='1235' viewBox='0 0 1235 287' fill='none'>
+    <svg width='1235' className="w-full" viewBox='0 0 1235 287' fill='none'>
       <path
         d='M0 25C0 11.1929 11.1929 0 25 0C38.8071 0 50 11.1929 50 25V50H25C11.1929 50 0 38.8071 0 25Z'
         fill='url(#paint0_linear_100_371)'

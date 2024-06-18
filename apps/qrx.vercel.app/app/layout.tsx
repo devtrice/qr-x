@@ -15,12 +15,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang='en'>
       <body className={`font-sans ${mono.variable} ${sans.variable}`}>
-        <header className='fixed top-0 border-b z-5 border-slate-800/75 w-full backdrop-blur-sm py-6'>
-          <div className='max-w-screen-xl mx-auto flex justify-between items-center px-8 '>
-            <span className='text-transparent bg-clip-text bg-primary text-3xl font-bold'>QR-X</span>
+        <header className='fixed md:px-20 px-0  top-0 border-b z-5 border-slate-800/75 w-full backdrop-blur-sm py-6'>
+          <div className='max-w-screen-xl mx-auto flex justify-between items-center px-6 '>
+            <span className='md:text-3xl text-lg text-transparent bg-clip-text bg-primary font-bold'>QR-X</span>
             <Logo />
             <a
-              className='text-transparent bg-clip-text bg-primary text-3xl font-bold'
+              className='md:text-3xl text-lg text-transparent bg-clip-text bg-primary font-bold'
               href='https://github.com/devtrice/qr-x'
               target='_blank'
               rel='noreferrer'

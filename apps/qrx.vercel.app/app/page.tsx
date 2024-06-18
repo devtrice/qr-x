@@ -5,7 +5,7 @@ import { frameworks, title } from 'constant'
 
 export default function Home() {
   return (
-    <main className='py-10 lg:py-32 space-y-20 lg:space-y-40 bg-[#22222B]'>
+    <main className='py-10 w-full  lg:py-32 md:space-y-20 space-y-20 min-h-screen max-h-full lg:space-y-40 bg-[#22222B]'>
       <HeroSection />
       <FrameworkSection />
       <PlaygroundSection />
@@ -16,9 +16,9 @@ export default function Home() {
 function HeroSection() {
   return (
     <section className='paging space-y-10 lg:space-y-20'>
-      <h1 className='text-7xl leading-snug font-extrabold'>
+      <h1 className='md:text-7xl text-3xl md:mt-0 mt-20 leading-snug font-extrabold'>
         <span className='text-transparent bg-clip-text bg-primary animate-in block'>The fully-fledged</span>
-        <span className='text-transparent bg-clip-text bg-primary animate-in animate-delay-[0.35s] block ml-[27.5vw]'>
+        <span className='text-transparent pt-2 md:pt-5 bg-clip-text bg-primary animate-in animate-delay-[0.35s] block md:ml-[27.5vw]'>
           QR Code generator
         </span>
       </h1>
@@ -29,7 +29,7 @@ function HeroSection() {
 
 function FrameworkSection() {
   return (
-    <section className='flex items-center justify-between lg:space-x-10 paging'>
+    <section className='flex items-center md:justify-between md:flex-row flex-col lg:space-x-10 paging'>
       <div className='max-w-xl'>
         <h2 className='text-4xl font-bold text-white animate-duration-150 max-w-lg'>
           {title.map((word, i) => (
@@ -50,12 +50,12 @@ function FrameworkSection() {
           for your development experience
         </p>
       </div>
-      <ul className='flex space-x-4'>
+      <ul className='flex w-full  py-5 md:py-2 space-x-4'>
         {frameworks.map(({ icon, label }, i) => (
           <li
             key={label}
             style={{ '--animate-delay': `${1000 + 150 * i}ms` } as never}
-            className='animate-in size-24 bg-primary rounded-full p-[1px] animate-duration-150'
+            className='animate-in md:size-24 size-20 bg-primary rounded-full p-[1px] animate-duration-150'
           >
             <a className='bg-grey-dark size-full flex flex-center rounded-full'>{icon}</a>
           </li>

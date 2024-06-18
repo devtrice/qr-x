@@ -39,7 +39,7 @@ export default function Playground() {
     >
       {({ values, register, setValue }) => (
         <Fragment>
-          <div className='flex-col space-x-5 justify-between flex md:flex-row'>
+          <div className='flex-col w-full space-x-5 justify-between flex md:flex-row'>
             <Motion className='flex-1 max-w-xl space-y-8 my-8'>
               <fieldset>
                 <label className='text-base font-medium mb-4 block text-white' htmlFor='data'>
@@ -101,7 +101,7 @@ export default function Playground() {
               </fieldset>
             </Motion>
             <div>
-              <Motion>
+              <Motion className='md:pl-0 mr-[1rem] md:mb-0 mb-8'>
                 <div ref={qrRef} className='max-w-[30rem] flex flex-col flex-center bg-white rounded-3xl overflow-hidden'>
                   <div className='p-8'>
                     <QRX
@@ -113,7 +113,7 @@ export default function Playground() {
                         eyeball: values.eyeBallShape as never,
                         eyeframe: values.eyeFrameShape as never,
                       }}
-                      className='w-96'
+                      className='md:w-96 w-full'
                     />
                   </div>
                   <div
@@ -223,7 +223,7 @@ function DownloadButton({ qrRef }: { qrRef: RefObject<HTMLDivElement> }) {
           className='fixed w-screen inset-0 bg-black/20'
         ></div>
       )}
-      <div className='relative'>
+      <div className='relative md:mb-0 mb-8'>
         {showDropdown && (
           <>
             <div className='[--animate-duration:150ms] animate-in absolute -bottom-40 text-white flex flex-col bg-zinc-700 rounded-xl p-2 w-1/3 right-0'>
