@@ -143,10 +143,15 @@ export default function Playground() {
   )
 }
 
-async function downloadQR(qrRef: RefObject<HTMLDivElement>, type: 'svg' | 'png') {
+async function downloadQR(qrRef: RefObject<HTMLDivElement>, type: 'svg' | 'png' | 'copy-png' | 'copy-svg') {
   const svgDocument = elementToSVG(qrRef.current)
   await inlineResources(svgDocument.documentElement)
   const svgString = new XMLSerializer().serializeToString(svgDocument)
+
+  if (type === 'copy-svg') {
+    navigator.clipboard.writeText(svgString)
+    return
+  }
 
   if (type === 'svg') {
     const url = URL.createObjectURL(new Blob([svgString], { type: 'image/svg+xml' }))
@@ -166,6 +171,10 @@ async function downloadQR(qrRef: RefObject<HTMLDivElement>, type: 'svg' | 'png')
     outputFormat: 'blob',
   })
     .then(function (blob: any) {
+      if (type === 'copy-png') {
+        navigator.clipboard.writeText(URL.createObjectURL(blob))
+        return
+      }
       const url = URL.createObjectURL(blob)
       const a = document.createElement('a')
       a.href = url
