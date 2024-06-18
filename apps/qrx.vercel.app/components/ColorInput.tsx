@@ -22,7 +22,7 @@ export default function ColorInput({ setValue, values }: Props) {
         style={{
           backgroundColor: value,
         }}
-        className='rounded-xl absolute right-4 top-1/2 -translate-y-1/2 w-6 h-6'
+        className='rounded-xl absolute right-4 top-1/2 -translate-y-1/2 w-6 h-6 border border-white/60'
       >
         <span className='sr-only'>Pick color</span>
       </button>

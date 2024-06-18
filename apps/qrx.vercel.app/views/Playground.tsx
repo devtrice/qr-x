@@ -21,6 +21,9 @@ const shapes = {
   leaf: { name: 'leaf', icon: <Leaf /> },
   square: { name: 'square', icon: <Square /> },
   circle: { name: 'circle', icon: <Circle /> },
+  heart: { name: 'heart', icon: '❤️' },
+  diamond: { name: 'diamond', icon: '♦️' },
+  triangle: { name: 'triangle', icon: '▲' },
 }
 
 function ShapePicker({
@@ -55,6 +58,16 @@ const codes = {
   color='${color}'
   shapes={{ body:'${bodyShape}', eyeball:'${eyeBallShape}', eyeframe:'${eyeFrameShape}' }} 
 />`,
+  vue: ({ data, color, bodyShape, eyeBallShape, eyeFrameShape }: any) => `<script>
+import QRX from '@qr-x/vue';
+</script>
+<template>
+  <QRX 
+    data='${data}' 
+    color='${color}'
+    :shapes='{ body:"${bodyShape}", eyeball:"${eyeBallShape}", eyeframe:"${eyeFrameShape}" }' 
+  />
+</template>`,
 }
 
 export default function Playground() {
@@ -91,7 +104,7 @@ export default function Playground() {
                 </label>
                 <ShapePicker
                   shape={values.bodyShape}
-                  shapes={[shapes.square, shapes.circle, shapes.leaf]}
+                  shapes={[shapes.square, shapes.circle, shapes.leaf, shapes.heart, shapes.diamond, shapes.triangle]}
                   setShape={shape => setValue('bodyShape', shape)}
                 />
               </fieldset>
@@ -131,7 +144,7 @@ export default function Playground() {
               </div>
             </Motion>
           </div>
-          <Editor code={codes.react(values)} />
+          <Editor values={values} />
         </Fragment>
       )}
     </Form>
