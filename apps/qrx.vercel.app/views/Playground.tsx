@@ -67,20 +67,24 @@ export default function Playground() {
             <Motion className='flex-1 max-w-xl space-y-8 my-8'>
               <fieldset>
                 <label className='text-base font-medium mb-4 block text-white' htmlFor='data'>
-                  Data URL
+                  Text / URL
                 </label>
                 <textarea
                   id='data'
                   name='data'
-                  className='bg-white rounded-xl w-full min-h-20 resize-none p-2'
+                  className='text-white border border-primary/50 focus-visible:border-primary focus-visible:bg-primary/20 bg-primary/10  rounded-xl w-full min-h-20 resize-none py-3 px-4'
                   onChange={e => setValue('data', e.target.value)}
                 ></textarea>
               </fieldset>
               <fieldset>
                 <label className='text-base font-medium mb-4 block text-white' htmlFor='color'>
-                  Color code
+                  Color
                 </label>
-                <input name='color' id='color' className='bg-white rounded-xl w-full h-10 p-2'></input>
+                <input
+                  name='color'
+                  id='color'
+                  className='text-white border border-primary/50 focus-visible:border-primary focus-visible:bg-primary/20 bg-primary/10 rounded-xl w-full h-10 py-6 px-4'
+                ></input>
               </fieldset>
               <fieldset>
                 <label className='text-base font-medium mb-4 block text-white' htmlFor='color'>

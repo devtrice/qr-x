@@ -15,6 +15,11 @@ const config: Config = {
     zIndex: zIndexes.reduce((z, n) => ({ ...z, [n * 5]: n * 5 }), {}),
     extend: {
       colors: {
+        primary: {
+          blue: '#64B2FF',
+          DEFAULT: '#8E84FF',
+          pink: '#D499ED',
+        },
         white: '#F2F2F2',
         grey: {
           dark: '#353535',
