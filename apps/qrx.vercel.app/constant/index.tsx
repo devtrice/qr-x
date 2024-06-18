@@ -1,11 +1,12 @@
-import { React, Vue, Solid } from 'icons/Libraries'
+import { React, Vue, Solid, Next } from 'icons/Libraries'
 import { Circle, Leaf, Square } from 'icons/Shapes'
 
 export const title = ['Integrates', 'in', 'popular', 'frontend', 'libraries', 'and', 'frameworks']
 
 export const frameworks = [
-  { icon: <Vue />, label: 'Vue JS' },
   { icon: <React />, label: 'React JS' },
+  { icon: <Next />, label: 'Next JS' },
+  { icon: <Vue />, label: 'Vue JS' },
   { icon: <Solid />, label: 'Solid JS' },
 ]
 

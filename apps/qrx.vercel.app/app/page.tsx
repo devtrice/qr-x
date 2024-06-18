@@ -5,7 +5,7 @@ import { frameworks, title } from 'constant'
 
 export default function Home() {
   return (
-    <main className='py-10 lg:py-20 space-y-20 lg:space-y-40 bg-[#22222B]'>
+    <main className='py-10 lg:py-32 space-y-20 lg:space-y-40 bg-[#22222B]'>
       <HeroSection />
       <FrameworkSection />
       <PlaygroundSection />
