@@ -3,9 +3,9 @@ export const Square = () => (
     <path fill='url(#a)' d='M0 .665h26.335V27H0z' />
     <defs>
       <linearGradient id='a' x1='4.082' y1='5.932' x2='22.253' y2='22.786' gradientUnits='userSpaceOnUse'>
-        <stop stop-color='#64B2FF' />
-        <stop offset='.505' stop-color='#8E84FF' />
-        <stop offset='1' stop-color='#D499ED' />
+        <stop stopColor='#64B2FF' />
+        <stop offset='.505' stopColor='#8E84FF' />
+        <stop offset='1' stopColor='#D499ED' />
       </linearGradient>
     </defs>
   </svg>
@@ -16,9 +16,9 @@ export const Circle = () => (
     <rect y='.677' width='30.335' height='30.335' rx='15.168' fill='url(#a)' />
     <defs>
       <linearGradient id='a' x1='4.702' y1='6.744' x2='25.633' y2='26.159' gradientUnits='userSpaceOnUse'>
-        <stop stop-color='#64B2FF' />
-        <stop offset='.505' stop-color='#8E84FF' />
-        <stop offset='1' stop-color='#D499ED' />
+        <stop stopColor='#64B2FF' />
+        <stop offset='.505' stopColor='#8E84FF' />
+        <stop offset='1' stopColor='#D499ED' />
       </linearGradient>
     </defs>
   </svg>
@@ -32,9 +32,9 @@ export const Leaf = () => (
     />
     <defs>
       <linearGradient id='a' x1='4.702' y1='6.067' x2='25.633' y2='25.482' gradientUnits='userSpaceOnUse'>
-        <stop stop-color='#64B2FF' />
-        <stop offset='.505' stop-color='#8E84FF' />
-        <stop offset='1' stop-color='#D499ED' />
+        <stop stopColor='#64B2FF' />
+        <stop offset='.505' stopColor='#8E84FF' />
+        <stop offset='1' stopColor='#D499ED' />
       </linearGradient>
     </defs>
   </svg>
@@ -45,9 +45,9 @@ export const Diamond = () => (
     <rect x='14.8492' width='21' height='21' transform='rotate(45 14.8492 0)' fill='url(#paint0_linear_373_298)' />
     <defs>
       <linearGradient id='paint0_linear_373_298' x1='18.1042' y1='4.2' x2='32.5942' y2='17.64' gradientUnits='userSpaceOnUse'>
-        <stop stop-color='#64B2FF' />
-        <stop offset='0.505' stop-color='#8E84FF' />
-        <stop offset='1' stop-color='#D499ED' />
+        <stop stopColor='#64B2FF' />
+        <stop offset='0.505' stopColor='#8E84FF' />
+        <stop offset='1' stopColor='#D499ED' />
       </linearGradient>
     </defs>
   </svg>
@@ -61,9 +61,9 @@ export const Heart = () => (
     />
     <defs>
       <linearGradient id='a' x1='4.829' y1='5.9' x2='25.234' y2='25.743' gradientUnits='userSpaceOnUse'>
-        <stop stop-color='#64B2FF' />
-        <stop offset='.505' stop-color='#8E84FF' />
-        <stop offset='1' stop-color='#D499ED' />
+        <stop stopColor='#64B2FF' />
+        <stop offset='.505' stopColor='#8E84FF' />
+        <stop offset='1' stopColor='#D499ED' />
       </linearGradient>
     </defs>
   </svg>
@@ -74,9 +74,9 @@ export const Triangle = () => (
     <path d='m15.1 0 14.849 23.35H.25z' fill='url(#a)' />
     <defs>
       <linearGradient id='a' x1='4.853' y1='4.67' x2='20.792' y2='23.473' gradientUnits='userSpaceOnUse'>
-        <stop stop-color='#64B2FF' />
-        <stop offset='.505' stop-color='#8E84FF' />
-        <stop offset='1' stop-color='#D499ED' />
+        <stop stopColor='#64B2FF' />
+        <stop offset='.505' stopColor='#8E84FF' />
+        <stop offset='1' stopColor='#D499ED' />
       </linearGradient>
     </defs>
   </svg>
@@ -87,9 +87,9 @@ export const Rounded = () => (
     <rect width='26.335' height='26.335' rx='7' fill='url(#a)' />
     <defs>
       <linearGradient id='a' x1='4.082' y1='5.267' x2='22.253' y2='22.122' gradientUnits='userSpaceOnUse'>
-        <stop stop-color='#64B2FF' />
-        <stop offset='.505' stop-color='#8E84FF' />
-        <stop offset='1' stop-color='#D499ED' />
+        <stop stopColor='#64B2FF' />
+        <stop offset='.505' stopColor='#8E84FF' />
+        <stop offset='1' stopColor='#D499ED' />
       </linearGradient>
     </defs>
   </svg>

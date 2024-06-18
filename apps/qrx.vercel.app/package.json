@@ -14,7 +14,6 @@
     "@next/mdx": "^14.1.0",
     "@qr-x/react": "workspace:*",
     "@radix-ui/react-select": "^2.0.0",
-    "dom-to-image-more": "^3.3.0",
     "dom-to-svg": "^0.12.2",
     "framer-motion": "^11.2.10",
     "hast-util-to-html": "^9.0.0",

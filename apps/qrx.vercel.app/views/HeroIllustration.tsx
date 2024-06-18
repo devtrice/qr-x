@@ -326,109 +326,109 @@ export default function HeroIllustration() {
       />
       <defs>
         <linearGradient id='paint0_linear_100_371' x1='7.75' y1='10' x2='42.25' y2='42' gradientUnits='userSpaceOnUse'>
-          <stop stop-color='#64B2FF' />
-          <stop offset='0.505' stop-color='#8E84FF' />
-          <stop offset='1' stop-color='#D499ED' />
+          <stop stopColor='#64B2FF' />
+          <stop offset='0.505' stopColor='#8E84FF' />
+          <stop offset='1' stopColor='#D499ED' />
         </linearGradient>
         <linearGradient id='paint1_linear_100_371' x1='165.75' y1='25.8' x2='222.585' y2='46.2329' gradientUnits='userSpaceOnUse'>
-          <stop stop-color='#64B2FF' />
-          <stop offset='0.505' stop-color='#8E84FF' />
-          <stop offset='1' stop-color='#D499ED' />
+          <stop stopColor='#64B2FF' />
+          <stop offset='0.505' stopColor='#8E84FF' />
+          <stop offset='1' stopColor='#D499ED' />
         </linearGradient>
         <linearGradient id='paint2_linear_100_371' x1='244.75' y1='10' x2='279.25' y2='42' gradientUnits='userSpaceOnUse'>
-          <stop stop-color='#64B2FF' />
-          <stop offset='0.505' stop-color='#8E84FF' />
-          <stop offset='1' stop-color='#D499ED' />
+          <stop stopColor='#64B2FF' />
+          <stop offset='0.505' stopColor='#8E84FF' />
+          <stop offset='1' stopColor='#D499ED' />
         </linearGradient>
         <linearGradient id='paint3_linear_100_371' x1='323.75' y1='10' x2='358.25' y2='42' gradientUnits='userSpaceOnUse'>
-          <stop stop-color='#64B2FF' />
-          <stop offset='0.505' stop-color='#8E84FF' />
-          <stop offset='1' stop-color='#D499ED' />
+          <stop stopColor='#64B2FF' />
+          <stop offset='0.505' stopColor='#8E84FF' />
+          <stop offset='1' stopColor='#D499ED' />
         </linearGradient>
         <linearGradient id='paint4_linear_100_371' x1='402.75' y1='10' x2='437.25' y2='42' gradientUnits='userSpaceOnUse'>
-          <stop stop-color='#64B2FF' />
-          <stop offset='0.505' stop-color='#8E84FF' />
-          <stop offset='1' stop-color='#D499ED' />
+          <stop stopColor='#64B2FF' />
+          <stop offset='0.505' stopColor='#8E84FF' />
+          <stop offset='1' stopColor='#D499ED' />
         </linearGradient>
         <linearGradient id='paint5_linear_100_371' x1='481.75' y1='10' x2='516.25' y2='42' gradientUnits='userSpaceOnUse'>
-          <stop stop-color='#64B2FF' />
-          <stop offset='0.505' stop-color='#8E84FF' />
-          <stop offset='1' stop-color='#D499ED' />
+          <stop stopColor='#64B2FF' />
+          <stop offset='0.505' stopColor='#8E84FF' />
+          <stop offset='1' stopColor='#D499ED' />
         </linearGradient>
         <linearGradient id='paint6_linear_100_371' x1='651.995' y1='10' x2='676.612' y2='68.9086' gradientUnits='userSpaceOnUse'>
-          <stop stop-color='#64B2FF' />
-          <stop offset='0.505' stop-color='#8E84FF' />
-          <stop offset='1' stop-color='#D499ED' />
+          <stop stopColor='#64B2FF' />
+          <stop offset='0.505' stopColor='#8E84FF' />
+          <stop offset='1' stopColor='#D499ED' />
         </linearGradient>
         <linearGradient id='paint7_linear_100_371' x1='797.75' y1='10' x2='832.25' y2='42' gradientUnits='userSpaceOnUse'>
-          <stop stop-color='#64B2FF' />
-          <stop offset='0.505' stop-color='#8E84FF' />
-          <stop offset='1' stop-color='#D499ED' />
+          <stop stopColor='#64B2FF' />
+          <stop offset='0.505' stopColor='#8E84FF' />
+          <stop offset='1' stopColor='#D499ED' />
         </linearGradient>
         <linearGradient id='paint8_linear_100_371' x1='875.5' y1='7' x2='913' y2='43.75' gradientUnits='userSpaceOnUse'>
-          <stop stop-color='#FFFAD1' />
-          <stop offset='0.495' stop-color='#FABFB2' />
-          <stop offset='1' stop-color='#F47B8F' />
+          <stop stopColor='#FFFAD1' />
+          <stop offset='0.495' stopColor='#FABFB2' />
+          <stop offset='1' stopColor='#F47B8F' />
         </linearGradient>
         <linearGradient id='paint9_linear_100_371' x1='955.75' y1='10' x2='990.25' y2='42' gradientUnits='userSpaceOnUse'>
-          <stop stop-color='#64B2FF' />
-          <stop offset='0.505' stop-color='#8E84FF' />
-          <stop offset='1' stop-color='#D499ED' />
+          <stop stopColor='#64B2FF' />
+          <stop offset='0.505' stopColor='#8E84FF' />
+          <stop offset='1' stopColor='#D499ED' />
         </linearGradient>
         <linearGradient id='paint10_linear_100_371' x1='1034.75' y1='10' x2='1069.25' y2='42' gradientUnits='userSpaceOnUse'>
-          <stop stop-color='#64B2FF' />
-          <stop offset='0.505' stop-color='#8E84FF' />
-          <stop offset='1' stop-color='#D499ED' />
+          <stop stopColor='#64B2FF' />
+          <stop offset='0.505' stopColor='#8E84FF' />
+          <stop offset='1' stopColor='#D499ED' />
         </linearGradient>
         <linearGradient id='paint11_linear_100_371' x1='1192.75' y1='10' x2='1227.25' y2='42' gradientUnits='userSpaceOnUse'>
-          <stop stop-color='#64B2FF' />
-          <stop offset='0.505' stop-color='#8E84FF' />
-          <stop offset='1' stop-color='#D499ED' />
+          <stop stopColor='#64B2FF' />
+          <stop offset='0.505' stopColor='#8E84FF' />
+          <stop offset='1' stopColor='#D499ED' />
         </linearGradient>
         <linearGradient id='paint12_linear_100_371' x1='7.75' y1='89' x2='42.25' y2='121' gradientUnits='userSpaceOnUse'>
-          <stop stop-color='#64B2FF' />
-          <stop offset='0.505' stop-color='#8E84FF' />
-          <stop offset='1' stop-color='#D499ED' />
+          <stop stopColor='#64B2FF' />
+          <stop offset='0.505' stopColor='#8E84FF' />
+          <stop offset='1' stopColor='#D499ED' />
         </linearGradient>
         <linearGradient id='paint13_linear_100_371' x1='86.75' y1='89' x2='121.25' y2='121' gradientUnits='userSpaceOnUse'>
-          <stop stop-color='#64B2FF' />
-          <stop offset='0.505' stop-color='#8E84FF' />
-          <stop offset='1' stop-color='#D499ED' />
+          <stop stopColor='#64B2FF' />
+          <stop offset='0.505' stopColor='#8E84FF' />
+          <stop offset='1' stopColor='#D499ED' />
         </linearGradient>
         <linearGradient id='paint14_linear_100_371' x1='401.5' y1='86' x2='439' y2='122.75' gradientUnits='userSpaceOnUse'>
-          <stop stop-color='#FFFAD1' />
-          <stop offset='0.495' stop-color='#FABFB2' />
-          <stop offset='1' stop-color='#F47B8F' />
+          <stop stopColor='#FFFAD1' />
+          <stop offset='0.495' stopColor='#FABFB2' />
+          <stop offset='1' stopColor='#F47B8F' />
         </linearGradient>
         <linearGradient id='paint15_linear_100_371' x1='560.75' y1='89' x2='595.25' y2='121' gradientUnits='userSpaceOnUse'>
-          <stop stop-color='#64B2FF' />
-          <stop offset='0.505' stop-color='#8E84FF' />
-          <stop offset='1' stop-color='#D499ED' />
+          <stop stopColor='#64B2FF' />
+          <stop offset='0.505' stopColor='#8E84FF' />
+          <stop offset='1' stopColor='#D499ED' />
         </linearGradient>
         <linearGradient id='paint16_linear_100_371' x1='638.5' y1='86' x2='676' y2='122.75' gradientUnits='userSpaceOnUse'>
-          <stop stop-color='#FFFAD1' />
-          <stop offset='0.495' stop-color='#FABFB2' />
-          <stop offset='1' stop-color='#F47B8F' />
+          <stop stopColor='#FFFAD1' />
+          <stop offset='0.495' stopColor='#FABFB2' />
+          <stop offset='1' stopColor='#F47B8F' />
         </linearGradient>
         <linearGradient id='paint17_linear_100_371' x1='718.75' y1='89' x2='753.25' y2='121' gradientUnits='userSpaceOnUse'>
-          <stop stop-color='#64B2FF' />
-          <stop offset='0.505' stop-color='#8E84FF' />
-          <stop offset='1' stop-color='#D499ED' />
+          <stop stopColor='#64B2FF' />
+          <stop offset='0.505' stopColor='#8E84FF' />
+          <stop offset='1' stopColor='#D499ED' />
         </linearGradient>
         <linearGradient id='paint18_linear_100_371' x1='797.75' y1='89' x2='832.25' y2='121' gradientUnits='userSpaceOnUse'>
-          <stop stop-color='#64B2FF' />
-          <stop offset='0.505' stop-color='#8E84FF' />
-          <stop offset='1' stop-color='#D499ED' />
+          <stop stopColor='#64B2FF' />
+          <stop offset='0.505' stopColor='#8E84FF' />
+          <stop offset='1' stopColor='#D499ED' />
         </linearGradient>
         <linearGradient id='paint19_linear_100_371' x1='955.75' y1='89' x2='990.25' y2='121' gradientUnits='userSpaceOnUse'>
-          <stop stop-color='#64B2FF' />
-          <stop offset='0.505' stop-color='#8E84FF' />
-          <stop offset='1' stop-color='#D499ED' />
+          <stop stopColor='#64B2FF' />
+          <stop offset='0.505' stopColor='#8E84FF' />
+          <stop offset='1' stopColor='#D499ED' />
         </linearGradient>
         <linearGradient id='paint20_linear_100_371' x1='1033.5' y1='86' x2='1071' y2='122.75' gradientUnits='userSpaceOnUse'>
-          <stop stop-color='#FFFAD1' />
-          <stop offset='0.495' stop-color='#FABFB2' />
-          <stop offset='1' stop-color='#F47B8F' />
+          <stop stopColor='#FFFAD1' />
+          <stop offset='0.495' stopColor='#FABFB2' />
+          <stop offset='1' stopColor='#F47B8F' />
         </linearGradient>
         <linearGradient
           id='paint21_linear_100_371'
@@ -438,74 +438,74 @@ export default function HeroIllustration() {
           y2='125.233'
           gradientUnits='userSpaceOnUse'
         >
-          <stop stop-color='#64B2FF' />
-          <stop offset='0.505' stop-color='#8E84FF' />
-          <stop offset='1' stop-color='#D499ED' />
+          <stop stopColor='#64B2FF' />
+          <stop offset='0.505' stopColor='#8E84FF' />
+          <stop offset='1' stopColor='#D499ED' />
         </linearGradient>
         <linearGradient id='paint22_linear_100_371' x1='1192.75' y1='89' x2='1227.25' y2='121' gradientUnits='userSpaceOnUse'>
-          <stop stop-color='#64B2FF' />
-          <stop offset='0.505' stop-color='#8E84FF' />
-          <stop offset='1' stop-color='#D499ED' />
+          <stop stopColor='#64B2FF' />
+          <stop offset='0.505' stopColor='#8E84FF' />
+          <stop offset='1' stopColor='#D499ED' />
         </linearGradient>
         <linearGradient id='paint23_linear_100_371' x1='86.75' y1='168' x2='121.25' y2='200' gradientUnits='userSpaceOnUse'>
-          <stop stop-color='#64B2FF' />
-          <stop offset='0.505' stop-color='#8E84FF' />
-          <stop offset='1' stop-color='#D499ED' />
+          <stop stopColor='#64B2FF' />
+          <stop offset='0.505' stopColor='#8E84FF' />
+          <stop offset='1' stopColor='#D499ED' />
         </linearGradient>
         <linearGradient id='paint24_linear_100_371' x1='165.75' y1='168' x2='200.25' y2='200' gradientUnits='userSpaceOnUse'>
-          <stop stop-color='#64B2FF' />
-          <stop offset='0.505' stop-color='#8E84FF' />
-          <stop offset='1' stop-color='#D499ED' />
+          <stop stopColor='#64B2FF' />
+          <stop offset='0.505' stopColor='#8E84FF' />
+          <stop offset='1' stopColor='#D499ED' />
         </linearGradient>
         <linearGradient id='paint25_linear_100_371' x1='323.75' y1='168' x2='358.25' y2='200' gradientUnits='userSpaceOnUse'>
-          <stop stop-color='#64B2FF' />
-          <stop offset='0.505' stop-color='#8E84FF' />
-          <stop offset='1' stop-color='#D499ED' />
+          <stop stopColor='#64B2FF' />
+          <stop offset='0.505' stopColor='#8E84FF' />
+          <stop offset='1' stopColor='#D499ED' />
         </linearGradient>
         <linearGradient id='paint26_linear_100_371' x1='402.75' y1='168' x2='437.25' y2='200' gradientUnits='userSpaceOnUse'>
-          <stop stop-color='#64B2FF' />
-          <stop offset='0.505' stop-color='#8E84FF' />
-          <stop offset='1' stop-color='#D499ED' />
+          <stop stopColor='#64B2FF' />
+          <stop offset='0.505' stopColor='#8E84FF' />
+          <stop offset='1' stopColor='#D499ED' />
         </linearGradient>
         <linearGradient id='paint27_linear_100_371' x1='569.77' y1='165' x2='595.426' y2='229.868' gradientUnits='userSpaceOnUse'>
-          <stop stop-color='#FFFAD1' />
-          <stop offset='0.495' stop-color='#FABFB2' />
-          <stop offset='1' stop-color='#F47B8F' />
+          <stop stopColor='#FFFAD1' />
+          <stop offset='0.495' stopColor='#FABFB2' />
+          <stop offset='1' stopColor='#F47B8F' />
         </linearGradient>
         <linearGradient id='paint28_linear_100_371' x1='876.75' y1='168' x2='911.25' y2='200' gradientUnits='userSpaceOnUse'>
-          <stop stop-color='#64B2FF' />
-          <stop offset='0.505' stop-color='#8E84FF' />
-          <stop offset='1' stop-color='#D499ED' />
+          <stop stopColor='#64B2FF' />
+          <stop offset='0.505' stopColor='#8E84FF' />
+          <stop offset='1' stopColor='#D499ED' />
         </linearGradient>
         <linearGradient id='paint29_linear_100_371' x1='1034.75' y1='168' x2='1069.25' y2='200' gradientUnits='userSpaceOnUse'>
-          <stop stop-color='#64B2FF' />
-          <stop offset='0.505' stop-color='#8E84FF' />
-          <stop offset='1' stop-color='#D499ED' />
+          <stop stopColor='#64B2FF' />
+          <stop offset='0.505' stopColor='#8E84FF' />
+          <stop offset='1' stopColor='#D499ED' />
         </linearGradient>
         <linearGradient id='paint30_linear_100_371' x1='1192.75' y1='168' x2='1227.25' y2='200' gradientUnits='userSpaceOnUse'>
-          <stop stop-color='#64B2FF' />
-          <stop offset='0.505' stop-color='#8E84FF' />
-          <stop offset='1' stop-color='#D499ED' />
+          <stop stopColor='#64B2FF' />
+          <stop offset='0.505' stopColor='#8E84FF' />
+          <stop offset='1' stopColor='#D499ED' />
         </linearGradient>
         <linearGradient id='paint31_linear_100_371' x1='19.995' y1='247' x2='44.6116' y2='305.909' gradientUnits='userSpaceOnUse'>
-          <stop stop-color='#64B2FF' />
-          <stop offset='0.505' stop-color='#8E84FF' />
-          <stop offset='1' stop-color='#D499ED' />
+          <stop stopColor='#64B2FF' />
+          <stop offset='0.505' stopColor='#8E84FF' />
+          <stop offset='1' stopColor='#D499ED' />
         </linearGradient>
         <linearGradient id='paint32_linear_100_371' x1='165.75' y1='247' x2='200.25' y2='279' gradientUnits='userSpaceOnUse'>
-          <stop stop-color='#64B2FF' />
-          <stop offset='0.505' stop-color='#8E84FF' />
-          <stop offset='1' stop-color='#D499ED' />
+          <stop stopColor='#64B2FF' />
+          <stop offset='0.505' stopColor='#8E84FF' />
+          <stop offset='1' stopColor='#D499ED' />
         </linearGradient>
         <linearGradient id='paint33_linear_100_371' x1='243.5' y1='244' x2='281' y2='280.75' gradientUnits='userSpaceOnUse'>
-          <stop stop-color='#FFFAD1' />
-          <stop offset='0.495' stop-color='#FABFB2' />
-          <stop offset='1' stop-color='#F47B8F' />
+          <stop stopColor='#FFFAD1' />
+          <stop offset='0.495' stopColor='#FABFB2' />
+          <stop offset='1' stopColor='#F47B8F' />
         </linearGradient>
         <linearGradient id='paint34_linear_100_371' x1='323.75' y1='247' x2='358.25' y2='279' gradientUnits='userSpaceOnUse'>
-          <stop stop-color='#64B2FF' />
-          <stop offset='0.505' stop-color='#8E84FF' />
-          <stop offset='1' stop-color='#D499ED' />
+          <stop stopColor='#64B2FF' />
+          <stop offset='0.505' stopColor='#8E84FF' />
+          <stop offset='1' stopColor='#D499ED' />
         </linearGradient>
         <linearGradient
           id='paint35_linear_100_371'
@@ -515,49 +515,49 @@ export default function HeroIllustration() {
           y2='204.516'
           gradientUnits='userSpaceOnUse'
         >
-          <stop stop-color='#64B2FF' />
-          <stop offset='0.505' stop-color='#8E84FF' />
-          <stop offset='1' stop-color='#D499ED' />
+          <stop stopColor='#64B2FF' />
+          <stop offset='0.505' stopColor='#8E84FF' />
+          <stop offset='1' stopColor='#D499ED' />
         </linearGradient>
         <linearGradient id='paint36_linear_100_371' x1='560.75' y1='247' x2='595.25' y2='279' gradientUnits='userSpaceOnUse'>
-          <stop stop-color='#64B2FF' />
-          <stop offset='0.505' stop-color='#8E84FF' />
-          <stop offset='1' stop-color='#D499ED' />
+          <stop stopColor='#64B2FF' />
+          <stop offset='0.505' stopColor='#8E84FF' />
+          <stop offset='1' stopColor='#D499ED' />
         </linearGradient>
         <linearGradient id='paint37_linear_100_371' x1='639.75' y1='247' x2='674.25' y2='279' gradientUnits='userSpaceOnUse'>
-          <stop stop-color='#64B2FF' />
-          <stop offset='0.505' stop-color='#8E84FF' />
-          <stop offset='1' stop-color='#D499ED' />
+          <stop stopColor='#64B2FF' />
+          <stop offset='0.505' stopColor='#8E84FF' />
+          <stop offset='1' stopColor='#D499ED' />
         </linearGradient>
         <linearGradient id='paint38_linear_100_371' x1='718.75' y1='247' x2='753.25' y2='279' gradientUnits='userSpaceOnUse'>
-          <stop stop-color='#64B2FF' />
-          <stop offset='0.505' stop-color='#8E84FF' />
-          <stop offset='1' stop-color='#D499ED' />
+          <stop stopColor='#64B2FF' />
+          <stop offset='0.505' stopColor='#8E84FF' />
+          <stop offset='1' stopColor='#D499ED' />
         </linearGradient>
         <linearGradient id='paint39_linear_100_371' x1='797.75' y1='247' x2='832.25' y2='279' gradientUnits='userSpaceOnUse'>
-          <stop stop-color='#64B2FF' />
-          <stop offset='0.505' stop-color='#8E84FF' />
-          <stop offset='1' stop-color='#D499ED' />
+          <stop stopColor='#64B2FF' />
+          <stop offset='0.505' stopColor='#8E84FF' />
+          <stop offset='1' stopColor='#D499ED' />
         </linearGradient>
         <linearGradient id='paint40_linear_100_371' x1='955.75' y1='247' x2='990.25' y2='279' gradientUnits='userSpaceOnUse'>
-          <stop stop-color='#64B2FF' />
-          <stop offset='0.505' stop-color='#8E84FF' />
-          <stop offset='1' stop-color='#D499ED' />
+          <stop stopColor='#64B2FF' />
+          <stop offset='0.505' stopColor='#8E84FF' />
+          <stop offset='1' stopColor='#D499ED' />
         </linearGradient>
         <linearGradient id='paint41_linear_100_371' x1='1033.5' y1='244' x2='1071' y2='280.75' gradientUnits='userSpaceOnUse'>
-          <stop stop-color='#FFFAD1' />
-          <stop offset='0.495' stop-color='#FABFB2' />
-          <stop offset='1' stop-color='#F47B8F' />
+          <stop stopColor='#FFFAD1' />
+          <stop offset='0.495' stopColor='#FABFB2' />
+          <stop offset='1' stopColor='#F47B8F' />
         </linearGradient>
         <linearGradient id='paint42_linear_100_371' x1='1113.75' y1='247' x2='1148.25' y2='279' gradientUnits='userSpaceOnUse'>
-          <stop stop-color='#64B2FF' />
-          <stop offset='0.505' stop-color='#8E84FF' />
-          <stop offset='1' stop-color='#D499ED' />
+          <stop stopColor='#64B2FF' />
+          <stop offset='0.505' stopColor='#8E84FF' />
+          <stop offset='1' stopColor='#D499ED' />
         </linearGradient>
         <linearGradient id='paint43_linear_100_371' x1='1192.75' y1='247' x2='1227.25' y2='279' gradientUnits='userSpaceOnUse'>
-          <stop stop-color='#64B2FF' />
-          <stop offset='0.505' stop-color='#8E84FF' />
-          <stop offset='1' stop-color='#D499ED' />
+          <stop stopColor='#64B2FF' />
+          <stop offset='0.505' stopColor='#8E84FF' />
+          <stop offset='1' stopColor='#D499ED' />
         </linearGradient>
       </defs>
     </svg>
