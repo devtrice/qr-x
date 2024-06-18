@@ -12,6 +12,7 @@ import ShapePicker from 'components/ShapePicker'
 
 const schema = Yup.object({
   data: Yup.string().required(),
+  backgroundURL: Yup.string(),
   bodyShape: Yup.string().required(),
   eyeBallShape: Yup.string().required(),
   eyeFrameShape: Yup.string().required(),
@@ -22,7 +23,14 @@ export default function Playground() {
   return (
     <Form
       schema={schema}
-      defaults={{ data: '', bodyShape: 'square', eyeBallShape: 'square', eyeFrameShape: 'square', color: '#000000' }}
+      defaults={{
+        data: '',
+        backgroundURL: '',
+        bodyShape: 'square',
+        eyeBallShape: 'square',
+        eyeFrameShape: 'square',
+        color: '#000000',
+      }}
       onSubmit={() => {}}
     >
       {({ values, setValue }) => (
@@ -31,7 +39,7 @@ export default function Playground() {
             <Motion className='flex-1 max-w-xl space-y-8 my-8'>
               <fieldset>
                 <label className='text-base font-medium mb-4 block text-white' htmlFor='data'>
-                  Text / URL
+                  QR Data
                 </label>
                 <textarea
                   id='data'
@@ -39,6 +47,18 @@ export default function Playground() {
                   className='text-white border border-primary/50 focus-visible:border-primary focus-visible:bg-primary/20 bg-primary/10  rounded-xl w-full min-h-20 resize-none py-3 px-4'
                   onChange={e => setValue('data', e.target.value)}
                 ></textarea>
+              </fieldset>
+              <fieldset>
+                <label className='text-base font-medium mb-4 block text-white' htmlFor='backgroundURL'>
+                  Background Image/Video URL
+                </label>
+                <input
+                  id='backgroundURL'
+                  name='backgroundURL'
+                  type='url'
+                  className='text-white border border-primary/50 focus-visible:border-primary focus-visible:bg-primary/20 bg-primary/10  rounded-xl w-full py-3 px-4'
+                  onChange={e => setValue('backgroundURL', e.target.value)}
+                ></input>
               </fieldset>
               <fieldset>
                 <label className='text-base font-medium mb-4 block text-white' htmlFor='color'>
@@ -83,6 +103,7 @@ export default function Playground() {
                   className='w-96'
                   data={values.data}
                   color={values.color}
+                  fillImage={values.backgroundURL}
                   shapes={{
                     body: values.bodyShape as never,
                     eyeball: values.eyeBallShape as never,

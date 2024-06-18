@@ -15,7 +15,7 @@ function ShapePicker({
         <li
           key={name}
           role='button'
-          className={`size-[4.75rem] cursor-pointer duration-150 transition-colors flex flex-center rounded-2xl ${shape === name ? 'bg-white' : 'bg-black'}`}
+          className={`size-[4.75rem] cursor-pointer duration-150 transition-colors flex flex-center rounded-2xl ${shape === name ? 'bg-white text-black' : 'bg-black text-white'}`}
           onClick={() => setShape(name)}
         >
           {icon}
