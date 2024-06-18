@@ -7,12 +7,14 @@ import { Fragment, ReactNode } from 'react'
 import * as Yup from 'yup'
 import QRX from '@qr-x/react'
 import Editor from 'components/Editor'
+import ColorInput from 'components/ColorInput'
 
 const schema = Yup.object({
   data: Yup.string().required(),
   bodyShape: Yup.string().required(),
   eyeBallShape: Yup.string().required(),
   eyeFrameShape: Yup.string().required(),
+  color: Yup.string().required(),
 })
 
 const shapes = {
@@ -46,10 +48,11 @@ function ShapePicker({
 }
 
 const codes = {
-  react: ({ data, bodyShape, eyeBallShape, eyeFrameShape }: any) => `import QRX from '@qr-x/react';
+  react: ({ data, color, bodyShape, eyeBallShape, eyeFrameShape }: any) => `import QRX from '@qr-x/react';
 
 <QRX 
   data='${data}' 
+  color='${color}'
   shapes={{ body:'${bodyShape}', eyeball:'${eyeBallShape}', eyeframe:'${eyeFrameShape}' }} 
 />`,
 }
@@ -58,10 +61,10 @@ export default function Playground() {
   return (
     <Form
       schema={schema}
-      defaults={{ data: '', bodyShape: 'square', eyeBallShape: 'square', eyeFrameShape: 'square' }}
+      defaults={{ data: '', bodyShape: 'square', eyeBallShape: 'square', eyeFrameShape: 'square', color: '#000000' }}
       onSubmit={() => {}}
     >
-      {({ values, setValue }) => (
+      {({ values, register, setValue }) => (
         <Fragment>
           <div className='flex space-x-5 justify-between'>
             <Motion className='flex-1 max-w-xl space-y-8 my-8'>
@@ -80,11 +83,7 @@ export default function Playground() {
                 <label className='text-base font-medium mb-4 block text-white' htmlFor='color'>
                   Color
                 </label>
-                <input
-                  name='color'
-                  id='color'
-                  className='text-white border border-primary/50 focus-visible:border-primary focus-visible:bg-primary/20 bg-primary/10 rounded-xl w-full h-10 py-6 px-4'
-                ></input>
+                <ColorInput values={values} setValue={setValue} />
               </fieldset>
               <fieldset>
                 <label className='text-base font-medium mb-4 block text-white' htmlFor='color'>
@@ -121,6 +120,7 @@ export default function Playground() {
               <div className='size-[30rem] flex flex-center bg-white rounded-3xl'>
                 <QRX
                   data={values.data}
+                  color={values.color}
                   shapes={{
                     body: values.bodyShape as never,
                     eyeball: values.eyeBallShape as never,
