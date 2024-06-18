@@ -2,12 +2,13 @@
 
 import Form from 'components/Form'
 import Motion from 'components/Motion'
-import { Circle, Leaf, Square } from 'icons/Shapes'
-import { Fragment, ReactNode } from 'react'
+import { Fragment } from 'react'
 import * as Yup from 'yup'
 import QRX from '@qr-x/react'
 import Editor from 'components/Editor'
 import ColorInput from 'components/ColorInput'
+import { shapes } from 'constant'
+import ShapePicker from 'components/ShapePicker'
 
 const schema = Yup.object({
   data: Yup.string().required(),
@@ -17,59 +18,6 @@ const schema = Yup.object({
   color: Yup.string().required(),
 })
 
-const shapes = {
-  leaf: { name: 'leaf', icon: <Leaf /> },
-  square: { name: 'square', icon: <Square /> },
-  circle: { name: 'circle', icon: <Circle /> },
-  heart: { name: 'heart', icon: '❤️' },
-  diamond: { name: 'diamond', icon: '♦️' },
-  triangle: { name: 'triangle', icon: '▲' },
-}
-
-function ShapePicker({
-  shape,
-  shapes,
-  setShape,
-}: {
-  shape: string
-  shapes: { name: string; icon: ReactNode }[]
-  setShape: (shape: string) => void
-}) {
-  return (
-    <ul className='flex space-x-4'>
-      {shapes.map(({ name, icon }) => (
-        <li
-          key={name}
-          className={`size-[4.75rem] cursor-pointer duration-150 transition-colors flex flex-center rounded-2xl ${shape === name ? 'bg-white' : 'bg-black'}`}
-          onClick={() => setShape(name)}
-        >
-          {icon}
-        </li>
-      ))}
-    </ul>
-  )
-}
-
-const codes = {
-  react: ({ data, color, bodyShape, eyeBallShape, eyeFrameShape }: any) => `import QRX from '@qr-x/react';
-
-<QRX 
-  data='${data}' 
-  color='${color}'
-  shapes={{ body:'${bodyShape}', eyeball:'${eyeBallShape}', eyeframe:'${eyeFrameShape}' }} 
-/>`,
-  vue: ({ data, color, bodyShape, eyeBallShape, eyeFrameShape }: any) => `<script>
-import QRX from '@qr-x/vue';
-</script>
-<template>
-  <QRX 
-    data='${data}' 
-    color='${color}'
-    :shapes='{ body:"${bodyShape}", eyeball:"${eyeBallShape}", eyeframe:"${eyeFrameShape}" }' 
-  />
-</template>`,
-}
-
 export default function Playground() {
   return (
     <Form
@@ -77,9 +25,9 @@ export default function Playground() {
       defaults={{ data: '', bodyShape: 'square', eyeBallShape: 'square', eyeFrameShape: 'square', color: '#000000' }}
       onSubmit={() => {}}
     >
-      {({ values, register, setValue }) => (
+      {({ values, setValue }) => (
         <Fragment>
-          <div className='flex space-x-5 justify-between'>
+          <div className='flex-col space-x-5 justify-between flex md:flex-row'>
             <Motion className='flex-1 max-w-xl space-y-8 my-8'>
               <fieldset>
                 <label className='text-base font-medium mb-4 block text-white' htmlFor='data'>
@@ -132,6 +80,7 @@ export default function Playground() {
             <Motion>
               <div className='size-[30rem] flex flex-center bg-white rounded-3xl'>
                 <QRX
+                  className='w-96'
                   data={values.data}
                   color={values.color}
                   shapes={{
@@ -139,7 +88,6 @@ export default function Playground() {
                     eyeball: values.eyeBallShape as never,
                     eyeframe: values.eyeFrameShape as never,
                   }}
-                  className='w-96'
                 />
               </div>
             </Motion>

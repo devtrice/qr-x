@@ -16,7 +16,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className={`font-sans ${mono.variable} ${sans.variable}`}>
         <header className='fixed top-0 border-b z-5 border-slate-800/75 w-full backdrop-blur-sm'></header>
         {children}
-        <footer></footer>
+        <footer className='bg-black flex justify-center items-center p-10'>
+          <span className='text-transparent bg-clip-text bg-primary text-base font-bold'>
+            QRX &copy; {new Date().getFullYear()} - All Rights Reserved
+          </span>
+        </footer>
       </body>
     </html>
   )
