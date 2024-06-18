@@ -38,7 +38,6 @@ export function SVGToImage(settings: Setting): Promise<string | Blob> {
 
     let canvas = document.createElement('canvas')
     let context = canvas.getContext('2d')!
-    document.body.appendChild(canvas)
 
     // const s1 = unescape(encodeURIComponent(svgXml)) // This can escape emojis
     // const s2 = decodeURIComponent(encodeURIComponent(svgXml)) // This cannot escape emojis but the first one is deprecated
