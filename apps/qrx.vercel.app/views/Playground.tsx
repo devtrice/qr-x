@@ -143,7 +143,26 @@ export default function Playground() {
   )
 }
 
-async function downloadQR(qrRef: RefObject<HTMLDivElement>, type: 'svg' | 'png' | 'copy-png' | 'copy-svg') {
+const downloadActions = [
+  {
+    type: 'svg',
+    label: 'Download SVG',
+  },
+  {
+    type: 'png',
+    label: 'Download PNG',
+  },
+  {
+    type: 'copy-png',
+    label: 'Copy PNG',
+  },
+  {
+    type: 'copy-svg',
+    label: 'Copy SVG',
+  },
+] as const
+
+async function downloadQR(qrRef: RefObject<HTMLDivElement>, type: (typeof downloadActions)[number]['type']) {
   const svgDocument = elementToSVG(qrRef.current)
   await inlineResources(svgDocument.documentElement)
   const svgString = new XMLSerializer().serializeToString(svgDocument)
@@ -172,7 +191,11 @@ async function downloadQR(qrRef: RefObject<HTMLDivElement>, type: 'svg' | 'png' 
   })
     .then(function (blob: any) {
       if (type === 'copy-png') {
-        navigator.clipboard.writeText(URL.createObjectURL(blob))
+        navigator.clipboard.write([
+          new ClipboardItem({
+            'image/png': blob,
+          }),
+        ])
         return
       }
       const url = URL.createObjectURL(blob)
@@ -203,17 +226,17 @@ function DownloadButton({ qrRef }: { qrRef: RefObject<HTMLDivElement> }) {
       <div className='relative'>
         {showDropdown && (
           <>
-            <div className='[--animate-duration:150ms] animate-in absolute -bottom-24 text-white flex flex-col bg-zinc-700 rounded-xl p-2 w-1/3 right-0'>
-              {(['svg', 'png'] as const).map(type => (
+            <div className='[--animate-duration:150ms] animate-in absolute -bottom-40 text-white flex flex-col bg-zinc-700 rounded-xl p-2 w-1/3 right-0'>
+              {downloadActions.map(({ label, type }) => (
                 <button
                   key={type}
                   onClick={() => {
                     setShowDropdown(false)
                     downloadQR(qrRef, type)
                   }}
-                  className='hover:bg-primary/40 rounded-lg py-2'
+                  className='hover:bg-primary/40 rounded-lg py-2 text-sm'
                 >
-                  .{type}
+                  {label}
                 </button>
               ))}
             </div>
