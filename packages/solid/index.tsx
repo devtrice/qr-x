@@ -5,7 +5,7 @@ import { Dynamic } from 'solid-js/web'
 type Props = Options & JSX.SvgSVGAttributes<SVGSVGElement>
 
 export default function QRX($props: Props) {
-  const [props, rest] = splitProps($props, ['data', 'level', 'shapes', 'gradient', 'fillImage'])
+  const [props, rest] = splitProps($props, ['data', 'level', 'shapes', 'gradient'])
 
   const svg = createMemo(() => getSVGData(props))
 
@@ -14,7 +14,7 @@ export default function QRX($props: Props) {
       <path
         d={svg().path}
         fill={
-          svg().gradient || props.fillImage
+          svg().gradient || $props.fillImage
             ? `url(#${svg().gradient ? `${svg().gradient?.attributes.id}` : svg().ids.image})`
             : 'currentColor'
         }
@@ -24,9 +24,9 @@ export default function QRX($props: Props) {
         <Show
           when={svg().gradient}
           fallback={
-            <Show when={props.fillImage}>
+            <Show when={$props.fillImage}>
               <pattern id={svg().ids.image} patternUnits='userSpaceOnUse' width='100%' height='100%'>
-                <image x='0' y='0' width='100%' height='100%' href={props.fillImage} preserveAspectRatio='xMidYMid slice' />
+                <image x='0' y='0' width='100%' height='100%' href={$props.fillImage} preserveAspectRatio='xMidYMid slice' />
               </pattern>
             </Show>
           }

@@ -13,7 +13,6 @@ const svgState = computed(() =>
     level: props.level,
     shapes: props.shapes,
     gradient: props.gradient,
-    fillImage: props.fillImage,
   }),
 )
 </script>
