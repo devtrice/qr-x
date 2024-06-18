@@ -1,4 +1,6 @@
 'use client'
+
+import { codes, editorFrameworks, type Framework } from 'constant'
 import { toHtml } from 'hast-util-to-html'
 import { CheckMarkIcon, CopyIcon } from 'icons/Utils'
 import { useState } from 'react'
@@ -13,60 +15,6 @@ type Props = {
 refractor.alias({ javascript: ['js'] })
 
 refractor.register(langJavascript)
-
-const frameworks = ['react', 'vue', 'solid', 'svelte', 'vanilla']
-
-type Framework = (typeof frameworks)[number]
-
-const codes: Record<Framework, (vals: any) => string> = {
-  react: ({ data, color, bodyShape, eyeBallShape, eyeFrameShape }: any) => `import QRX from '@qr-x/react';
-
-<QRX 
-  data='${data}' 
-  color='${color}'
-  shapes={{ body:'${bodyShape}', eyeball:'${eyeBallShape}', eyeframe:'${eyeFrameShape}' }} 
-/>`,
-  vue: ({ data, color, bodyShape, eyeBallShape, eyeFrameShape }: any) => `<script>
-import QRX from '@qr-x/vue';
-</script>
-<template>
-  <QRX 
-    data='${data}' 
-    color='${color}'
-    :shapes='{ body:"${bodyShape}", eyeball:"${eyeBallShape}", eyeframe:"${eyeFrameShape}" }' 
-  />
-</template>`,
-  solid: ({ data, color, bodyShape, eyeBallShape, eyeFrameShape }: any) => `import QRX from '@qr-x/solid';
-
-<QRX 
-  data='${data}' 
-  color='${color}'
-  shapes={{ body:'${bodyShape}', eyeball:'${eyeBallShape}', eyeframe:'${eyeFrameShape}' }}
-/>`,
-  svelte: ({ data, color, bodyShape, eyeBallShape, eyeFrameShape }: any) => `<script>
-import QRX from '@qr-x/svelte';
-</script>
-<QRX 
-  data='${data}' 
-  color='${color}'
-  shapes={{ body:'${bodyShape}', eyeball:'${eyeBallShape}', eyeframe:'${eyeFrameShape}' }}
-/>`,
-  vanilla: ({ data, color, bodyShape, eyeBallShape, eyeFrameShape }: any) => `
-  <body>
-    <div id="qr-container"></div>
-  </body>
-  <script src="https://cdn.skypack.dev/@qr-x/vanilla"></script>
-  <script>
-    const qrx = createQRX({
-      data: '${data}',
-      color: '${color}',
-      shapes: { body: '${bodyShape}', eyeball: '${eyeBallShape}', eyeframe: '${eyeFrameShape}' },
-    })
-    const qrContainer = document.getElementById('qr-container')
-    qrContainer.innerHTML = qrx
-  </script>
-  `,
-}
 
 export default function Editor({ values }: Props) {
   const [framework, setFramework] = useState<Framework>('react')
@@ -84,7 +32,7 @@ export default function Editor({ values }: Props) {
             }}
             className='flex p-0.5'
           >
-            {frameworks.map(framework => (
+            {editorFrameworks.map(framework => (
               <label key={framework} className='capitalize rounded-lg px-3 flex items-center has-[input:checked]:bg-primary'>
                 {framework}
                 <input

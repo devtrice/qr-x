@@ -114,3 +114,49 @@ export const Solid = () => (
     </defs>
   </svg>
 )
+
+export const Next = () => (
+  <svg width='45' height='45' viewBox='0 0 45 45' fill='none' xmlns='http://www.w3.org/2000/svg'>
+    <mask id='mask0_204_1324' maskUnits='userSpaceOnUse' x='0' y='0' width='45' height='45'>
+      <path
+        d='M22.5 44.5C34.6503 44.5 44.5 34.6503 44.5 22.5C44.5 10.3497 34.6503 0.5 22.5 0.5C10.3497 0.5 0.5 10.3497 0.5 22.5C0.5 34.6503 10.3497 44.5 22.5 44.5Z'
+        fill='white'
+      />
+    </mask>
+    <g mask='url(#mask0_204_1324)'>
+      <path
+        d='M22.5 44.5C34.6503 44.5 44.5 34.6503 44.5 22.5C44.5 10.3497 34.6503 0.5 22.5 0.5C10.3497 0.5 0.5 10.3497 0.5 22.5C0.5 34.6503 10.3497 44.5 22.5 44.5Z'
+        fill='black'
+      />
+      <path
+        d='M37.0465 39.005L17.4013 13.7002H13.7V31.2928H16.6611V17.4608L34.722 40.7956C35.5357 40.2509 36.3122 39.6528 37.0465 39.005Z'
+        fill='url(#paint0_linear_204_1324)'
+      />
+      <path d='M28.6112 13.7002H31.5446V31.3002H28.6112V13.7002Z' fill='url(#paint1_linear_204_1324)' />
+    </g>
+    <defs>
+      <linearGradient
+        id='paint0_linear_204_1324'
+        x1='1312.53'
+        y1='1541.47'
+        x2='2092.17'
+        y2='2507.8'
+        gradientUnits='userSpaceOnUse'
+      >
+        <stop stop-color='white' />
+        <stop offset='1' stop-color='white' stop-opacity='0' />
+      </linearGradient>
+      <linearGradient
+        id='paint1_linear_204_1324'
+        x1='175.281'
+        y1='13.7002'
+        x2='170.318'
+        y2='1306.19'
+        gradientUnits='userSpaceOnUse'
+      >
+        <stop stop-color='white' />
+        <stop offset='1' stop-color='white' stop-opacity='0' />
+      </linearGradient>
+    </defs>
+  </svg>
+)

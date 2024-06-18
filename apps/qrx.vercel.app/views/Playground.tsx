@@ -1,64 +1,24 @@
 'use client'
 
+import QRX from '@qr-x/react'
+import ColorInput from 'components/ColorInput'
+import Editor from 'components/Editor'
 import Form from 'components/Form'
 import Motion from 'components/Motion'
-import { Circle, Diamond, Heart, Leaf, Rounded, Square, Triangle } from 'icons/Shapes'
-import { Fragment, ReactNode, useRef } from 'react'
+import ShapePicker from 'components/ShapePicker'
+import { shapes } from 'constant'
+import { elementToSVG, inlineResources } from 'dom-to-svg'
+import { Fragment, useRef } from 'react'
 import * as Yup from 'yup'
-import QRX from '@qr-x/react'
-import Editor from 'components/Editor'
-import ColorInput from 'components/ColorInput'
-import { documentToSVG, elementToSVG, inlineResources, formatXML } from 'dom-to-svg'
 
 const schema = Yup.object({
   data: Yup.string().required(),
+  backgroundURL: Yup.string(),
   bodyShape: Yup.string().required(),
   eyeBallShape: Yup.string().required(),
   eyeFrameShape: Yup.string().required(),
   color: Yup.string().required(),
 })
-
-const shapes = {
-  leaf: { name: 'leaf', icon: <Leaf /> },
-  square: { name: 'square', icon: <Square /> },
-  circle: { name: 'circle', icon: <Circle /> },
-  heart: { name: 'heart', icon: <Heart /> },
-  diamond: { name: 'diamond', icon: <Diamond /> },
-  triangle: { name: 'triangle', icon: <Triangle /> },
-  rounded: { name: 'rounded', icon: <Rounded /> },
-}
-
-function ShapePicker({
-  shape,
-  shapes,
-  setShape,
-}: {
-  shape: string
-  shapes: { name: string; icon: ReactNode }[]
-  setShape: (shape: string) => void
-}) {
-  const id = Math.random().toString(36).substring(7)
-  return (
-    <fieldset
-      onChange={e => {
-        setShape((e.target as HTMLInputElement).id)
-      }}
-    >
-      <ul className='flex space-x-4'>
-        {shapes.map(({ name, icon }) => (
-          <li key={name}>
-            <label
-              className={`focus-within:ring-2 focus-within:ring-primary/80 size-[4.75rem] cursor-pointer duration-150 transition-colors flex flex-center rounded-2xl ${shape === name ? 'bg-primary/20 border border-primary shadow shadow-primary-pink/30' : 'bg-black/60'}`}
-            >
-              <input type='radio' name={'shape' + id} id={name} className='sr-only' />
-              {icon}
-            </label>
-          </li>
-        ))}
-      </ul>
-    </fieldset>
-  )
-}
 
 export default function Playground() {
   const qrRef = useRef<HTMLDivElement>(null)
@@ -68,6 +28,7 @@ export default function Playground() {
       schema={schema}
       defaults={{
         data: 'https://qrx.vercel.app/',
+        backgroundURL: '',
         bodyShape: 'square',
         eyeBallShape: 'square',
         eyeFrameShape: 'square',
@@ -77,17 +38,29 @@ export default function Playground() {
     >
       {({ values, register, setValue }) => (
         <Fragment>
-          <div className='flex space-x-5 justify-between'>
+          <div className='flex-col space-x-5 justify-between flex md:flex-row'>
             <Motion className='flex-1 max-w-xl space-y-8 my-8'>
               <fieldset>
                 <label className='text-base font-medium mb-4 block text-white' htmlFor='data'>
-                  Text / URL
+                  QR Data
                 </label>
                 <textarea
                   id='data'
                   className='text-white border border-primary/50 focus-visible:border-primary focus-visible:bg-primary/20 bg-primary/10  rounded-xl w-full min-h-20 resize-none py-3 px-4'
                   {...register('data')}
                 ></textarea>
+              </fieldset>
+              <fieldset>
+                <label className='text-base font-medium mb-4 block text-white' htmlFor='backgroundURL'>
+                  Background Image/Video URL
+                </label>
+                <input
+                  id='backgroundURL'
+                  name='backgroundURL'
+                  type='url'
+                  className='text-white border border-primary/50 focus-visible:border-primary focus-visible:bg-primary/20 bg-primary/10  rounded-xl w-full py-3 px-4'
+                  onChange={e => setValue('backgroundURL', e.target.value)}
+                ></input>
               </fieldset>
               <fieldset>
                 <label className='text-base font-medium mb-4 block text-white' htmlFor='color'>
@@ -132,6 +105,7 @@ export default function Playground() {
                   <QRX
                     data={values.data}
                     color={values.color}
+                    fillImage={values.backgroundURL}
                     shapes={{
                       body: values.bodyShape as never,
                       eyeball: values.eyeBallShape as never,
