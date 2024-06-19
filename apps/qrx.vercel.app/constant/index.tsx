@@ -20,7 +20,7 @@ export const shapes = {
   rounded: { name: 'rounded', icon: <Rounded /> },
 }
 
-export const editorFrameworks = ['react', 'vue', 'solid', 'svelte', 'vanilla'] as const
+export const editorFrameworks = ['react', 'vue', 'solid', 'vanilla'] as const
 
 export type Framework = (typeof editorFrameworks)[number]
 
@@ -49,14 +49,6 @@ import QRX from '@qr-x/vue';
   color='${color}'
   shapes={{ body:'${bodyShape}', eyeball:'${eyeBallShape}', eyeframe:'${eyeFrameShape}' }}
 />`,
-  svelte: ({ data, color, bodyShape, eyeBallShape, eyeFrameShape }: any) => `<script>
-import QRX from '@qr-x/svelte';
-</script>
-<QRX 
-  data='${data}' 
-  color='${color}'
-  shapes={{ body:'${bodyShape}', eyeball:'${eyeBallShape}', eyeframe:'${eyeFrameShape}' }}
-/>`,
   vanilla: ({ data, color, bodyShape, eyeBallShape, eyeFrameShape }: any) => `
   <body>
     <div id="qr-container"></div>
@@ -72,4 +64,12 @@ import QRX from '@qr-x/svelte';
     qrContainer.innerHTML = qrx
   </script>
   `,
+  //   svelte: ({ data, color, bodyShape, eyeBallShape, eyeFrameShape }: any) => `<script>
+  // import QRX from '@qr-x/svelte';
+  // </script>
+  // <QRX
+  //   data='${data}'
+  //   color='${color}'
+  //   shapes={{ body:'${bodyShape}', eyeball:'${eyeBallShape}', eyeframe:'${eyeFrameShape}' }}
+  // />`,
 }

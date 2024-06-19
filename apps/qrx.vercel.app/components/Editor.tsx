@@ -23,7 +23,7 @@ export default function Editor({ values }: Props) {
 
   return (
     <div className='rounded-xl bg-primary p-[1px]'>
-      <div className='rounded-xl overflow-hidden space-y-[1px]'>
+      <div className='rounded-xl overflow-hidden space-y-[1px] relative'>
         <div className='h-14 flex overflow-x-auto justify-between bg-black text-white p-2'>
           <fieldset
             onChange={e => {
