@@ -39,7 +39,7 @@ export default function Playground() {
     >
       {({ values, register, setValue }) => (
         <Fragment>
-          <div className='flex-col w-full space-x-5 justify-between flex md:flex-row'>
+          <div className='flex-col w-full space-x-5 justify-between flex lg:flex-row'>
             <Motion className='flex-1 max-w-xl space-y-8 my-8'>
               <fieldset>
                 <label className='text-base font-medium mb-4 block text-white' htmlFor='data'>
