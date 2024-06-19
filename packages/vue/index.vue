@@ -28,11 +28,11 @@ const svgState = computed(() =>
         :xlinkHref="fillImage"
         preserveAspectRatio="xMidYMid slice"
       />
-      <foreignObject v-if="fillVideo" v-bind="svgState.cords">
+      <!-- <foreignObject v-if="fillVideo" v-bind="svgState.cords">
         <div :style="{ position: 'relative' }">
           <video :src="fillVideo" width="100%" height="100%" muted autoPlay :style="{ objectFit: 'cover' }" />
         </div>
-      </foreignObject>
+      </foreignObject> -->
     </g>
 
     <defs>

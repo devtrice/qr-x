@@ -3,7 +3,7 @@ import React, { SVGAttributes } from 'react'
 
 type Props = Options & SVGAttributes<SVGSVGElement>
 
-export default function QRX({ data, level, shapes, gradient, fillImage, fillVideo, ...rest }: Props) {
+export default function QRX({ data, level, shapes, gradient, fillImage, ...rest }: Props) {
   const { id, path, cords, length, $gradient } = getSVGData({ data, level, shapes, gradient })
 
   return (
@@ -17,13 +17,6 @@ export default function QRX({ data, level, shapes, gradient, fillImage, fillVide
             xlinkHref={fillImage} // !Note: Must use both href and xlinkHref to link a source
             preserveAspectRatio='xMidYMid slice'
           />
-        )}
-        {fillVideo && (
-          <foreignObject {...cords}>
-            <div style={{ position: 'relative' }}>
-              <video src={fillVideo} width='100%' height='100%' muted autoPlay style={{ objectFit: 'cover' }} />
-            </div>
-          </foreignObject>
         )}
       </g>
       <defs>

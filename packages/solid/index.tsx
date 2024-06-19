@@ -5,7 +5,7 @@ import { Dynamic } from 'solid-js/web'
 type Props = Options & JSX.SvgSVGAttributes<SVGSVGElement>
 
 export default function QRX($props: Props) {
-  const [props, rest] = splitProps($props, ['data', 'level', 'shapes', 'gradient', 'fillImage', 'fillVideo'])
+  const [props, rest] = splitProps($props, ['data', 'level', 'shapes', 'gradient', 'fillImage'])
   const svg = createMemo(() => getSVGData(props))
 
   return (
@@ -21,13 +21,13 @@ export default function QRX($props: Props) {
             preserveAspectRatio='xMidYMid slice'
           />
         </Show>
-        <Show when={props.fillVideo}>
+        {/* <Show when={props.fillVideo}>
           <foreignObject {...svg().cords}>
             <div style={{ position: 'relative' }}>
               <video src={props.fillVideo} width='100%' height='100%' muted autoplay style={{ 'object-fit': 'cover' }} />
             </div>
           </foreignObject>
-        </Show>
+        </Show> */}
       </g>
       <defs>
         <clipPath id={svg().id}>

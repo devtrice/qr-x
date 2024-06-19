@@ -18,7 +18,7 @@ export type Options = {
   shapes?: Shapes
   gradient?: Gradient
   fillImage?: string
-  fillVideo?: string
+  // fillVideo?: string
 }
 
 function parseGradient({ id, type = 'linear', colors, ...rest }: Gradient & { id: string }) {
