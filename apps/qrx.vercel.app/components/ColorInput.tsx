@@ -1,22 +1,18 @@
 'use client'
 
-import { UseFormRegister } from 'react-hook-form'
-
 type Props = {
-  values: any
-  setValue: any
+  value?: string
+  onChange: React.ChangeEventHandler<HTMLInputElement>
 }
 
-export default function ColorInput({ setValue, values }: Props) {
-  const value = values.color
-  const handleChange = (e: any) => setValue('color', e.target.value)
+export default function ColorInput({ onChange, value }: Props) {
   return (
     <div className='relative'>
       <input
         type='text'
         className='text-white border border-primary/50 focus-visible:border-primary focus-visible:bg-primary/20 bg-primary/10 rounded-xl w-full h-10 py-6 px-4'
         value={value}
-        onChange={handleChange}
+        onChange={onChange}
       />
       <button
         style={{
@@ -31,7 +27,7 @@ export default function ColorInput({ setValue, values }: Props) {
         type='color'
         className='rounded-xl absolute right-4 top-1/2 -translate-y-1/2 size-6 opacity-0 cursor-pointer'
         value={value}
-        onChange={handleChange}
+        onChange={onChange}
       />
     </div>
   )
