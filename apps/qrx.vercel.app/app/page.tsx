@@ -5,7 +5,7 @@ import { frameworks, title } from 'constant'
 
 export default function Home() {
   return (
-    <main className='py-10 w-full  lg:py-32 md:space-y-20 space-y-20 min-h-screen max-h-full lg:space-y-40 bg-[#22222B]'>
+    <main className='md:py-32 py-10 w-full  lg:py-32 md:space-y-20 space-y-20 min-h-screen max-h-full lg:space-y-40 bg-[#22222B]'>
       <HeroSection />
       <FrameworkSection />
       <PlaygroundSection />
@@ -18,7 +18,7 @@ function HeroSection() {
     <section className='paging space-y-10 lg:space-y-20'>
       <h1 className='md:text-7xl text-3xl md:mt-0 mt-20 leading-snug font-extrabold'>
         <span className='text-transparent bg-clip-text bg-primary animate-in block'>The fully-fledged</span>
-        <span className='text-transparent pt-2 md:pt-5 bg-clip-text bg-primary animate-in animate-delay-[0.35s] block md:ml-[27.5vw]'>
+        <span className='text-transparent pt-2 md:pt-5 bg-clip-text bg-primary animate-in animate-delay-[0.35s] block lg:ml-[27.5vw]'>
           QR Code generator
         </span>
       </h1>

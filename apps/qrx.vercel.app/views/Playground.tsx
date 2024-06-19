@@ -39,7 +39,7 @@ export default function Playground() {
     >
       {({ values, register, setValue }) => (
         <Fragment>
-          <div className='flex-col w-full gap-x-5 justify-between flex md:flex-row'>
+          <div className='flex-col w-full gap-x-5 justify-between flex lg:flex-row'>
             <Motion className='flex-1 max-w-xl space-y-8 my-8'>
               <fieldset>
                 <label className='text-base font-medium mb-4 block text-white' htmlFor='data'>
@@ -229,7 +229,7 @@ function DownloadButton({ qrRef }: { qrRef: RefObject<HTMLDivElement> }) {
       <div className='relative md:mb-0 mb-8'>
         {showDropdown && (
           <>
-            <div className='[--animate-duration:150ms] animate-in absolute -bottom-40 text-white flex flex-col bg-zinc-700 rounded-xl p-2 w-1/3 right-0'>
+            <div className='[--animate-duration:150ms] animate-in absolute -bottom-40 text-white flex flex-col bg-gray-500 rounded-xl p-2 w-full right-0'>
               {downloadActions.map(({ label, type }) => (
                 <button
                   key={type}
@@ -246,7 +246,7 @@ function DownloadButton({ qrRef }: { qrRef: RefObject<HTMLDivElement> }) {
           </>
         )}
         <button
-          className='w-full bg-primary text-black rounded-xl py-3 font-semibold mt-4'
+          className='w-full bg-primary text-black rounded-xl py-3 font-semibold mt-4 mb-10 lg:mb-0'
           onClick={() => {
             setShowDropdown(!showDropdown)
           }}
