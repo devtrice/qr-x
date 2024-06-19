@@ -53,7 +53,7 @@ export default function Playground() {
               </fieldset>
               <fieldset>
                 <label className='text-base font-medium mb-4 block text-white' htmlFor='backgroundURL'>
-                  Background Image/Video URL
+                  Background Image URL
                 </label>
                 <input
                   id='backgroundURL'
