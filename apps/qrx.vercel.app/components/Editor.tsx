@@ -24,7 +24,7 @@ export default function Editor({ values }: Props) {
   return (
     <div className='rounded-xl bg-primary p-[1px]'>
       <div className='rounded-xl overflow-hidden space-y-[1px]'>
-        <div className='h-14 flex justify-between bg-black text-white p-2'>
+        <div className='h-14 flex overflow-x-auto justify-between bg-black text-white p-2'>
           <fieldset
             onChange={e => {
               const selected = (e.target as HTMLInputElement).id
@@ -33,7 +33,10 @@ export default function Editor({ values }: Props) {
             className='flex p-0.5 cursor-pointer'
           >
             {editorFrameworks.map(framework => (
-              <label key={framework} className='capitalize cursor-pointer rounded-lg px-3 flex items-center has-[input:checked]:bg-primary'>
+              <label
+                key={framework}
+                className='capitalize cursor-pointer rounded-lg px-3 flex items-center has-[input:checked]:bg-primary'
+              >
                 {framework}
                 <input
                   type='radio'

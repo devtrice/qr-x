@@ -55,9 +55,11 @@ function FrameworkSection() {
           <li
             key={label}
             style={{ '--animate-delay': `${1000 + 150 * i}ms` } as never}
-            className='animate-in md:size-24 size-20 bg-primary rounded-full p-[1px] animate-duration-150'
+            className='animate-in md:size-24 h-fit size-20 bg-primary rounded-full p-[1px] animate-duration-150'
           >
-            <a className='bg-grey-dark size-full flex flex-center rounded-full'>{icon}</a>
+            <a className='bg-grey-dark size-full flex flex-center p-4 h-fit rounded-full [&>svg]:size-6 md:[&>svg]:size-full aspect-square'>
+              {icon}
+            </a>
           </li>
         ))}
       </ul>

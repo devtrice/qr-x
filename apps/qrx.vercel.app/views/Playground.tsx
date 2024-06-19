@@ -39,7 +39,7 @@ export default function Playground() {
     >
       {({ values, register, setValue }) => (
         <Fragment>
-          <div className='flex-col w-full space-x-5 justify-between flex lg:flex-row'>
+          <div className='flex-col w-full gap-x-5 justify-between flex md:flex-row'>
             <Motion className='flex-1 max-w-xl space-y-8 my-8'>
               <fieldset>
                 <label className='text-base font-medium mb-4 block text-white' htmlFor='data'>
@@ -101,9 +101,12 @@ export default function Playground() {
               </fieldset>
             </Motion>
             <div>
-              <Motion className='md:pl-0 mr-[1rem] md:mb-0 mb-8'>
-                <div ref={qrRef} className='max-w-[30rem] flex flex-col flex-center bg-white rounded-3xl overflow-hidden'>
-                  <div className='p-8'>
+              <Motion className='md:pl-0 lg:mr-[1rem] md:mb-0 mb-3'>
+                <div
+                  ref={qrRef}
+                  className='max-w-[30rem] flex flex-col justify-between items-center bg-white rounded-3xl overflow-hidden'
+                >
+                  <div className='p-8 w-full'>
                     <QRX
                       data={values.data}
                       color={values.color}
@@ -129,7 +132,7 @@ export default function Playground() {
                       }}
                       className='absolute top-0 left-0 right-0 h-3'
                     ></div>
-                    <p className='relative text-xs text-white'>Powered by QRX</p>
+                    <p className='relative text-xs text-white'>Powered by QR-X</p>
                   </div>
                 </div>
               </Motion>
@@ -185,7 +188,7 @@ async function downloadQR(qrRef: RefObject<HTMLDivElement>, type: (typeof downlo
     svg: svgString,
     mimetype: 'image/png',
     width: 1200,
-    height: 1232, // For the little banner at the bottom
+    height: 1285.7, // (+85.7) For the powered by banner at the bottom
     quality: 1,
     outputFormat: 'blob',
   })

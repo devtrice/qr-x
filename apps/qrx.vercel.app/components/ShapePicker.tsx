@@ -16,7 +16,7 @@ function ShapePicker({
         setShape((e.target as HTMLInputElement).id)
       }}
     >
-      <ul className='w-full grid flex-shrink-0  gap-6 mx-auto grid-cols-4 lg:grid-cols-5  xl:grid-cols-6'>
+      <ul className='w-full flex flex-wrap gap-5'>
         {shapes.map(({ name, icon }) => (
           <li key={name}>
             <label
