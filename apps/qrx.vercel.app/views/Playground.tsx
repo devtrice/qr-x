@@ -12,20 +12,39 @@ import { SVGToImage } from 'lib/utils'
 import { Fragment, RefObject, useRef, useState } from 'react'
 import * as Yup from 'yup'
 
+type ColorType = 'solid' | 'gradient'
+
+type GradientType = 'linear' | 'radial'
+
+type Values = {
+  data: string
+  backgroundURL?: string
+  bodyShape: string
+  eyeBallShape: string
+  eyeFrameShape: string
+  colorType: ColorType
+  color: string
+  gradientType: GradientType
+  gradientColors: string[]
+}
+
 const schema = Yup.object({
   data: Yup.string().required(),
   backgroundURL: Yup.string(),
   bodyShape: Yup.string().required(),
   eyeBallShape: Yup.string().required(),
   eyeFrameShape: Yup.string().required(),
+  colorType: Yup.mixed<ColorType>().oneOf(['solid', 'gradient']).required(),
   color: Yup.string().required(),
+  gradientType: Yup.mixed<GradientType>().oneOf(['linear', 'radial']).required(),
+  gradientColors: Yup.array().of(Yup.string().required()).required(),
 })
 
 export default function Playground() {
   const qrRef = useRef<HTMLDivElement>(null)
 
   return (
-    <Form
+    <Form<Values>
       schema={schema}
       defaults={{
         data: 'https://qrx.vercel.app/',
@@ -33,7 +52,10 @@ export default function Playground() {
         bodyShape: 'square',
         eyeBallShape: 'square',
         eyeFrameShape: 'square',
+        colorType: 'solid',
         color: '#000000',
+        gradientType: 'linear',
+        gradientColors: ['', ''],
       }}
       onSubmit={() => {}}
     >
@@ -64,11 +86,64 @@ export default function Playground() {
                 ></input>
               </fieldset>
               <fieldset>
-                <label className='text-base font-medium mb-4 block text-white' htmlFor='color'>
-                  Color
+                <label className='text-base font-medium mb-4 block text-white' htmlFor='gradientType'>
+                  Color Type
                 </label>
-                <ColorInput values={values} setValue={setValue} />
+                <select
+                  id='colorType'
+                  name='colorType'
+                  value={values.colorType}
+                  className='text-white border border-primary/50 focus-visible:border-primary focus-visible:bg-primary/20 bg-primary/10 rounded-xl w-full py-3 px-4'
+                  onChange={e => setValue('colorType', e.target.value as ColorType)}
+                >
+                  <option value='solid'>Solid</option>
+                  <option value='gradient'>Gradient</option>
+                </select>
               </fieldset>
+              {values.colorType === 'solid' && (
+                <fieldset>
+                  <label className='text-base font-medium mb-4 block text-white' htmlFor='color'>
+                    Color
+                  </label>
+                  <ColorInput value={values.color} onChange={e => setValue('color', e.target.value)} />
+                </fieldset>
+              )}
+              {values.colorType === 'gradient' && (
+                <Fragment>
+                  <fieldset>
+                    <label className='text-base font-medium mb-4 block text-white' htmlFor='gradientType'>
+                      Type
+                    </label>
+                    <select
+                      id='gradientType'
+                      name='gradientType'
+                      className='text-white border border-primary/50 focus-visible:border-primary focus-visible:bg-primary/20 bg-primary/10 rounded-xl w-full py-3 px-4'
+                      value={values.gradientType}
+                      onChange={e => setValue('gradientType', e.target.value as GradientType)}
+                    >
+                      <option value='linear'>Linear</option>
+                      <option value='radial'>Radial</option>
+                    </select>
+                  </fieldset>
+                  <fieldset>
+                    <label className='text-base font-medium mb-4 block text-white' htmlFor='gradientColors'>
+                      Color
+                    </label>
+                    <div className='grid gap-8'>
+                      {values.gradientColors.map((gradientColor, index) => (
+                        <ColorInput
+                          value={gradientColor}
+                          onChange={e => {
+                            const colors = [...values.gradientColors]
+                            colors[index] = e.target.value
+                            setValue('gradientColors', colors)
+                          }}
+                        />
+                      ))}
+                    </div>
+                  </fieldset>
+                </Fragment>
+              )}
               <fieldset>
                 <label className='text-base font-medium mb-4 block text-white' htmlFor='color'>
                   Body
@@ -111,6 +186,14 @@ export default function Playground() {
                       data={values.data}
                       color={values.color}
                       fillImage={values.backgroundURL}
+                      gradient={
+                        values.colorType === 'gradient'
+                          ? {
+                              type: values.gradientType,
+                              colors: values.gradientColors,
+                            }
+                          : undefined
+                      }
                       shapes={{
                         body: values.bodyShape as never,
                         eyeball: values.eyeBallShape as never,
@@ -121,14 +204,20 @@ export default function Playground() {
                   </div>
                   <div
                     style={{
-                      backgroundColor: values.color,
+                      background:
+                        values.colorType === 'gradient'
+                          ? `linear-gradient(-90deg, ${values.gradientColors[0]}, ${values.gradientColors[1]})`
+                          : values.color,
                     }}
                     className='relative rounded-3xl flex flex-center w-full py-2'
                   >
                     {/* This is a workaround to be able to get correct styling for border raduis in svg conversion */}
                     <div
                       style={{
-                        backgroundColor: values.color,
+                        background:
+                          values.colorType === 'gradient'
+                            ? `${values.gradientType}-gradient(270deg, ${values.gradientColors[0]}, ${values.gradientColors[1]})`
+                            : values.color,
                       }}
                       className='absolute top-0 left-0 right-0 h-3'
                     ></div>
