@@ -18,6 +18,7 @@ export type Options = {
   shapes?: Shapes
   gradient?: Gradient
   fillImage?: string
+  // fillVideo?: string
 }
 
 function parseGradient({ id, type = 'linear', colors, ...rest }: Gradient & { id: string }) {
@@ -35,9 +36,8 @@ function parseGradient({ id, type = 'linear', colors, ...rest }: Gradient & { id
   }
 }
 
-export function getSVGData({ data, shapes, gradient, fillImage, ...options }: Options) {
-  const id = Math.random().toString(36).substring(2, 9)
-  const ids = { image: `image-${id}`, gradient: `gradient-${id}` }
+export function getSVGData({ data, shapes, gradient, ...options }: Omit<Options, 'fillImage' | 'fillVideo'>) {
+  const id = `id-${Math.random().toString(36).substring(2, 9)}`
   const $shapes = { body: 'square', eyeball: 'square', eyeframe: 'square', ...shapes } as const
   const { modules } = QR(data, options) as { modules: boolean[][] }
 
@@ -62,7 +62,7 @@ export function getSVGData({ data, shapes, gradient, fillImage, ...options }: Op
     .replace(/([\n]|[ ]{2})/g, '')
 
   return {
-    ids,
+    id,
     path:
       bodyPath +
       `
@@ -77,7 +77,8 @@ export function getSVGData({ data, shapes, gradient, fillImage, ...options }: Op
     ${svgpath(eyeframeShapes[$shapes.eyeframe]).matrix([-1, 0, 0, 1, modules.length, 0]).toString()} 
    
   `,
+    cords: { x: 0, y: 0, width: '100%', height: '100%' },
     length: modules.length,
-    gradient: gradient ? parseGradient({ id: ids.gradient, ...gradient }) : undefined,
+    $gradient: gradient ? parseGradient({ id: `gradient-${id}`, ...gradient }) : undefined,
   }
 }
