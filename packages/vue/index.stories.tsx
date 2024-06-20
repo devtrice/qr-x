@@ -1,4 +1,4 @@
-import { Default, FillImage, LinearGradient, RadialGradient, defaultMeta, renderMultiple } from '@common/stories'
+import { Default, FillImage, LinearGradient, RadialGradient, defaultMeta, renderMultiple, FillVideo } from '@common/stories'
 import QRX from './index.vue'
 
 const Multiple = () => renderMultiple(QRX as never)
@@ -9,4 +9,4 @@ export default {
   ...defaultMeta,
 }
 
-export { Default, FillImage, LinearGradient, Multiple, RadialGradient }
+export { Default, FillImage, FillVideo, LinearGradient, Multiple, RadialGradient }
