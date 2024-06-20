@@ -9,7 +9,7 @@ type Shapes = {
 }
 
 type Gradient = ({ type?: 'linear'; rotate?: number } | { type: 'radial'; rotate?: never }) & {
-  colors: string[]
+  colors: string[] | { value: string; stop: number }[]
 }
 
 export type Options = {
@@ -24,10 +24,14 @@ export type Options = {
 function parseGradient({ id, type = 'linear', colors, ...rest }: Gradient & { id: string }) {
   const isLinearGradient = type === 'linear'
   return {
-    colors: colors.map((color, index, colors) => ({
-      color,
-      offset: `${(index / colors.length + 1 / colors.length) * 100}%`,
-    })),
+    colors: colors.map((color, index, colors) => {
+      const { value, stop } =
+        typeof color === 'string' ? { value: color, stop: (index / colors.length + 1 / colors.length) * 100 } : color
+      return {
+        color: value,
+        offset: `${stop}%`,
+      }
+    }),
     attributes: {
       id,
       gradientTransform: isLinearGradient ? `rotate(${rest.rotate || 45})` : undefined,
