@@ -1,0 +1,73 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  @apply outline-none;
+}
+
+.paging {
+  @apply px-5 lg:max-w-7xl lg:px-10 mx-auto;
+}
+
+.token {
+  &.string {
+    @apply text-emerald-500;
+  }
+  &.comment {
+    @apply text-slate-500;
+  }
+  &.keyword {
+    @apply text-fuchsia-500;
+  }
+  &.property {
+    @apply text-yellow-500;
+  }
+  &.function {
+    @apply text-rose-500;
+  }
+
+  &.parameter {
+    @apply text-orange-500;
+  }
+
+  &.operator,
+  &.punctuation {
+    @apply text-slate-300;
+  }
+}
+
+@layer base {
+  :root {
+    --animate-x: 0;
+    --animate-y: 0.5rem;
+    --animate-scale-x: 1;
+    --animate-scale-y: 1;
+    --animate-opacity: 0;
+    --animate-delay: 0s;
+    --animate-easing: theme('transitionTimingFunction.in');
+    --animate-duration: 0.35s;
+  }
+}
+
+@keyframes enter {
+  0% {
+    opacity: var(--animate-opacity);
+    transform: scale(var(--animate-scale-x), var(--animate-scale-y)) translate(var(--animate-x), var(--animate-y));
+  }
+  100% {
+    opacity: 1;
+    transform: scale(var(--tw-scale-x), var(--tw-scale-y)) translate(var(--tw-translate-x), var(--tw-translate-y));
+  }
+}
+
+@keyframes leave {
+  0% {
+    opacity: var(--animate-opacity);
+    transform: scale(var(--tw-scale-x), var(--tw-scale-y)) translate(var(--tw-translate-x), var(--tw-translate-y));
+  }
+  100% {
+    opacity: 0;
+    transform: scale(var(--animate-scale-x), var(--animate-scale-y)) translate(var(--animate-x), var(--animate-y));
+  }
+}
