@@ -29,7 +29,7 @@ function HeroSection() {
 
 function FrameworkSection() {
   return (
-    <section className='flex items-center md:justify-between md:flex-row flex-col lg:space-x-10 paging'>
+    <section className='flex lg:items-center lg:justify-between lg:flex-row flex-col space-y-5 lg:space-x-10 paging'>
       <div className='max-w-xl'>
         <h2 className='text-4xl font-bold text-white animate-duration-150 max-w-lg'>
           {title.map((word, i) => (
@@ -50,7 +50,7 @@ function FrameworkSection() {
           for your development experience
         </p>
       </div>
-      <ul className='flex w-full  py-5 md:py-2 space-x-4'>
+      <ul className='flex w-full  lg:justify-end py-5 md:py-2 space-x-4'>
         {frameworks.map(({ icon, label }, i) => (
           <li
             key={label}
