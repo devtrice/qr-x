@@ -1,59 +1,48 @@
 'use client'
 
-import { codes, editorFrameworks, type Framework } from 'constant'
+import { codes, portals } from 'constant'
 import { toHtml } from 'hast-util-to-html'
+import useParseColor from 'hooks/useParseColor'
 import { CheckMarkIcon, CopyIcon } from 'icons/Utils'
 import { useState } from 'react'
 import { refractor } from 'refractor'
 import langJavascript from 'refractor/lang/javascript'
-
-type Props = {
-  values: any
-  comment?: string
-}
+import langJsx from 'refractor/lang/jsx'
+import { FormValues } from 'types'
 
 refractor.alias({ javascript: ['js'] })
 
+refractor.register(langJsx)
 refractor.register(langJavascript)
 
-export default function Editor({ values }: Props) {
-  const [framework, setFramework] = useState<Framework>('react')
-  const code = codes[framework]?.(values) ?? 'Not added yet!'
-  const comment = ''
+export default function Editor({ data, color, ...rest }: FormValues) {
+  const [portal, setPortal] = useState('react')
+
+  const code = codes[portal as keyof typeof codes]({ ...rest, data, color: useParseColor(color) })
 
   return (
     <div className='rounded-xl bg-primary p-[1px]'>
       <div className='rounded-xl overflow-hidden space-y-[1px] relative'>
         <div className='h-14 flex overflow-x-auto justify-between bg-black text-white p-2'>
-          <fieldset
-            onChange={e => {
-              const selected = (e.target as HTMLInputElement).id
-              setFramework(selected as Framework)
-            }}
-            className='flex p-0.5 cursor-pointer'
-          >
-            {editorFrameworks.map(framework => (
-              <label
-                key={framework}
-                className='capitalize cursor-pointer rounded-lg px-3 flex items-center has-[input:checked]:bg-primary'
+          <div className='flex space-x-2 cursor-pointer' onChange={e => setPortal((e.target as HTMLInputElement).id)}>
+            {portals.map($portal => (
+              <button
+                key={$portal}
+                className={`capitalize cursor-pointer rounded-lg px-3 flex items-center transition-colors duration-300 ${$portal === portal ? 'bg-primary' : 'bg-transparent'}`}
+                onClick={() => setPortal($portal)}
               >
-                {framework}
-                <input
-                  type='radio'
-                  name='framework'
-                  id={framework}
-                  className='opacity-0 appearance-none'
-                  defaultChecked={framework === 'react'}
-                />
-              </label>
+                {$portal}
+              </button>
             ))}
-          </fieldset>
+          </div>
           <CopyButton code={code} />
         </div>
         <pre
-          className='font-medium font-mono p-5 not-prose overflow-auto text-white bg-black'
+          className='font-medium font-mono p-5 not-prose overflow-auto bg-black text-sky-600'
           dangerouslySetInnerHTML={{
-            __html: toHtml(refractor.highlight(`${code}${comment ? `\n\n/* ${comment} */` : ''}`, 'js') as never),
+            __html: toHtml(
+              refractor.highlight(code.replaceAll('":', ':').replaceAll('  "', '').replaceAll('"', "'"), 'js') as never,
+            ),
           }}
         />
       </div>

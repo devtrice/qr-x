@@ -1,11 +1,11 @@
 'use client'
 
 import QRX from '@qr-x/react'
-import ColorPicker from 'components/ColorPicker'
 import Editor from 'components/Editor'
 import Form from 'components/Form'
 import Motion from 'components/Motion'
-import ShapePicker from 'components/ShapePicker'
+import ColorPicker from 'components/Pickers/Color'
+import ShapePicker from 'components/Pickers/Shape'
 import { shapes } from 'constant'
 import { elementToSVG, inlineResources } from 'dom-to-svg'
 import useParseColor from 'hooks/useParseColor'
@@ -149,7 +149,7 @@ export default function Playground() {
             </div>
             <QRDisplay {...values} />
           </div>
-          <Editor values={values} />
+          <Editor {...values} />
         </Fragment>
       )}
     </Form>
