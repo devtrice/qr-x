@@ -10,7 +10,7 @@
     "dev:vanilla": "PLATFORM=vanilla storybook dev -p 6006 --no-open",
     "dev:svelte": "concurrently 'turbo run watch --filter=@qr-x/svelte' 'PLATFORM=svelte storybook dev -p 6006 --no-open'",
     "dev:vue": "PLATFORM=vue storybook dev -p 6006 --no-open",
-    "dev:web": "turbo run watch --filter=qr-x-web"
+    "dev:web": "turbo run dev --filter=qrx.vercel.app"
   },
   "dependencies": {
     "@common/tsconfig": "workspace:*",
@@ -32,7 +32,7 @@
     "storybook": "^7.6.17",
     "storybook-solidjs": "^1.0.0-beta.2",
     "storybook-solidjs-vite": "^1.0.0-beta.2",
-    "turbo": "latest",
+    "turbo": "2.0.4",
     "typescript": "^5.3.2",
     "vite": "^5.1.4"
   },
