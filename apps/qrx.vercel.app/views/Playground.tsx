@@ -66,7 +66,7 @@ export default function Playground() {
     <Form<Values>
       schema={schema}
       defaults={{
-        data: 'https://qr-x.vercel.app/',
+        data: 'https://qr-x.netlify.app/',
         color: '#000000',
         backgroundURL: '',
         bodyShape: 'square',
@@ -216,7 +216,7 @@ function DownloadButton({ qrRef }: { qrRef: RefObject<HTMLDivElement> }) {
       <div className='relative md:mb-0 mb-8'>
         {showDropdown && (
           <>
-            <div className='[--animate-duration:150ms] animate-in absolute -bottom-40 text-white flex flex-col bg-gray-500 rounded-xl p-2 w-full right-0'>
+            <div className='[--animate-duration:150ms] animate-in absolute z-100 -bottom-32 md:-bottom-40 text-white flex flex-col bg-gray-500 rounded-xl p-2 w-full right-0'>
               {downloadActions.map(({ label, type }) => (
                 <button
                   key={type}
