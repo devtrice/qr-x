@@ -69,7 +69,7 @@ function FrameworkSection() {
 
 function PlaygroundSection() {
   return (
-    <section className='paging'>
+    <section id='playground' className='paging'>
       <h3 className='text-transparent bg-clip-text bg-primary text-4xl leading-normal font-bold'>Try QR-X in action</h3>
       <Playground />
     </section>

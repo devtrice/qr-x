@@ -6,6 +6,8 @@ npm install @qr-x/react
 
 # Usage
 
+You can also try QR-X in action [here](#playground) or follow the examples below.
+
 ## Solid Background
 
 ```tsx
@@ -52,6 +54,6 @@ function App() {
 | shapes.eyeball   | `'square' \| 'circle' \| 'leaf' \| 'rounded'`                    | `'square'` |
 | shapes.eyeframe  | `'square' \| 'circle' \| 'leaf' \| 'rounded'`                    | `'square'` |
 | gradient.type    | `'linear' \| 'radial'`                                           |            |
-| gradients.colors | `string[]`                                                       |            |
+| gradients.colors | `string[] \| {value: string, stop: number}`                      |            |
 | gradients.rotate | `number` (This property only exist if gradient.type is 'radial') | `45`       |
 | fillImage        | `string`                                                         |            |
