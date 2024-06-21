@@ -1,3 +1,5 @@
+![⌛](https://raw.githubusercontent.com/devtrice/qr-x/main/.github/assets/banner.png)
+
 # Installation
 
 ```bash
