@@ -13,7 +13,7 @@ You can also try QR-X in action [here](#playground) or follow the examples below
 ## Solid Background
 
 ```ts
-import createQRX from "@qr-x/vanilla";
+import createQRX from "@qr-x/vanilla"
 
 const qrx = createQRX({
   data: 'https://qrx.vercel.app',
@@ -24,39 +24,58 @@ const qrx = createQRX({
     eyeframe: 'square' 
   },
 })
+
+const qrContainer = document.getElementById('qr-container')
+qrContainer.innerHTML = qrx
 ```
 
 ## Gradient Background
 
+### Linear Gradient
+
 ```ts
-import createQRX from "@qr-x/vanilla";
+import createQRX from "@qr-x/vanilla"
 
-
-// Linear Gradient
 const qrx = createQRX({
   data: 'https://qrx.vercel.app',
-  gradient={{ colors: ['#0ea5e9', '#a3e635', '#34d399'] }},
+  gradient: {
+    colors: ['#0ea5e9', '#a3e635', '#34d399'] 
+  },
 })
 
-// Radial Gradient
+const qrContainer = document.getElementById('qr-container')
+qrContainer.innerHTML = qrx
+```
+
+### Radial Gradient
+
+```ts
+import createQRX from "@qr-x/vanilla"
+
 const qrx = createQRX({
   data: 'https://qrx.vercel.app',
-  gradient={{ 
+  gradient: {
     type: 'radial', 
     colors: ['#0ea5e9', '#a3e635', '#34d399'] 
-  }}
+  }
 })
+
+const qrContainer = document.getElementById('qr-container')
+qrContainer.innerHTML = qrx
 ```
 
 ## Image Background
 
 ```ts
-import createQRX from "@qr-x/vanilla";
+import createQRX from "@qr-x/vanilla"
 
 const qrx = createQRX({
   data: 'https://qrx.vercel.app',
-  fillImage='https://images.unsplash.com/photo-1682687218608-5e2522b04673'
+  fillImage: 'https://images.unsplash.com/photo-1682687218608-5e2522b04673'
 })
+
+const qrContainer = document.getElementById('qr-container')
+qrContainer.innerHTML = qrx
 ```
 
 # Props

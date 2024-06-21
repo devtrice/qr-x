@@ -22,15 +22,21 @@ function App() {
 
 ## Gradient Background
 
+### Linear Gradient
+
 ```tsx
 import QRX from '@qr-x/core'
 
-// Linear Gradient
 function App() {
   return <QRX data='Helloworld' gradient={{ colors: ['#0ea5e9', '#a3e635', '#34d399'] }} />
 }
+```
 
-// Radial Gradient
+### Radial Gradient
+
+```tsx
+import QRX from '@qr-x/core'
+
 function App() {
   return <QRX data='Helloworld' gradient={{ type: 'radial', colors: ['#0ea5e9', '#a3e635', '#34d399'] }} />
 }
