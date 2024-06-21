@@ -1,4 +1,4 @@
 [build]
-base = "apps/web"
+base = "apps/qrx.vercel.app"
 publish = "apps/qrx.vercel.app/.next"
 command = "pnpm build"
