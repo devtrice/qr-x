@@ -31,9 +31,13 @@
     @apply text-orange-500;
   }
 
+  &.operator {
+    @apply px-0.5 inline-block;
+  }
+
   &.operator,
   &.punctuation {
-    @apply text-slate-300;
+    @apply text-orange-500;
   }
 }
 

@@ -16,7 +16,10 @@ export default function ColorPicker({ value, setValue }: Props) {
         <button onClick={() => setShow(true)} className='min-w-7 min-h-7 rounded-full' style={{ background: value }}></button>
       </div>
       {isShow && (
-        <div ref={ref} className='bg-primary/10 border border-primary/50 shadow-md rounded-lg absolute right-0 z-10 p-2 mt-2'>
+        <div
+          ref={ref}
+          className='bg-primary/10 backdrop-blur-md border border-primary/50 shadow-md rounded-lg absolute right-0 z-10 p-2 mt-2'
+        >
           <BestColorPicker value={value} onChange={setValue} />
         </div>
       )}

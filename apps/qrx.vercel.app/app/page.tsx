@@ -1,7 +1,7 @@
+import { frameworks } from 'constant'
 import { Fragment } from 'react'
 import HeroIllustration from 'views/HeroIllustration'
 import Playground from 'views/Playground'
-import { frameworks, title } from 'constant'
 
 export default function Home() {
   return (
@@ -29,6 +29,7 @@ function HeroSection() {
 }
 
 function FrameworkSection() {
+  const title = ['Integrates', 'in', 'popular', 'frontend', 'libraries', 'and', 'frameworks']
   return (
     <section className='flex lg:items-center lg:justify-between lg:flex-row flex-col space-y-5 lg:space-x-10 paging'>
       <div className='max-w-xl'>

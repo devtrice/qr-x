@@ -1,14 +1,12 @@
 import { ReactNode } from 'react'
 
-function ShapePicker({
-  shape,
-  shapes,
-  setShape,
-}: {
+type Props = {
   shape: string
   shapes: { name: string; icon: ReactNode }[]
   setShape: (shape: string) => void
-}) {
+}
+
+function ShapePicker({ shape, shapes, setShape }: Props) {
   const id = Math.random().toString(36).substring(7)
   return (
     <fieldset
