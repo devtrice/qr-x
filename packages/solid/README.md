@@ -8,7 +8,7 @@ npm install @qr-x/solid
 
 # Usage
 
-You can also try QR-X in action [here](#playground) or follow the examples below.
+You can also try QR-X in action [here](https://qr-x.netlify.app/#playground) or follow the examples below.
 
 ## Solid Background
 

@@ -8,14 +8,14 @@ npm install @qr-x/vue
 
 # Usage
 
-You can also try QR-X in action [here](#playground) or follow the examples below.
+You can also try QR-X in action [here](https://qr-x.netlify.app/#playground) or follow the examples below.
 
 ## Solid Background
 
-```tsx
+```ts
 import QRX from '@qr-x/vue'
 
-;<QRX data='Helloworld' color='#0284c7' />
+<QRX data='Helloworld' color='#0284c7' />
 ```
 
 ## Gradient Background
