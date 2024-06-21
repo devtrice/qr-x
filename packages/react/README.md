@@ -13,7 +13,7 @@ You can also try QR-X in action [here](#playground) or follow the examples below
 ## Solid Background
 
 ```tsx
-import QRX from '@qr-x/core'
+import QRX from '@qr-x/react'
 
 function App() {
   return <QRX data='Helloworld' color='#0284c7' />
@@ -25,7 +25,7 @@ function App() {
 ### Linear Gradient
 
 ```tsx
-import QRX from '@qr-x/core'
+import QRX from '@qr-x/react'
 
 function App() {
   return <QRX data='Helloworld' gradient={{ colors: ['#0ea5e9', '#a3e635', '#34d399'] }} />
@@ -35,7 +35,7 @@ function App() {
 ### Radial Gradient
 
 ```tsx
-import QRX from '@qr-x/core'
+import QRX from '@qr-x/react'
 
 function App() {
   return <QRX data='Helloworld' gradient={{ type: 'radial', colors: ['#0ea5e9', '#a3e635', '#34d399'] }} />
@@ -45,7 +45,7 @@ function App() {
 ## Image Background
 
 ```tsx
-import QRX from '@qr-x/core'
+import QRX from '@qr-x/react'
 
 function App() {
   return <QRX data='Helloworld' fillImage='https://images.unsplash.com/photo-1682687218608-5e2522b04673' />
