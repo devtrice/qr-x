@@ -9,6 +9,7 @@ import { refractor } from 'refractor'
 import langJavascript from 'refractor/lang/javascript'
 import langJsx from 'refractor/lang/jsx'
 import { FormValues } from 'types'
+import * as prettier from 'prettier'
 
 refractor.alias({ javascript: ['js'] })
 
@@ -19,6 +20,8 @@ export default function Editor({ data, color, ...rest }: FormValues) {
   const [portal, setPortal] = useState('react')
 
   const code = codes[portal as keyof typeof codes]({ ...rest, data, color: useParseColor(color) })
+    .replaceAll("':", ':')
+    .replaceAll("  '", '')
 
   return (
     <div className='rounded-xl bg-primary p-[1px]'>
@@ -40,9 +43,7 @@ export default function Editor({ data, color, ...rest }: FormValues) {
         <pre
           className='font-medium font-mono p-5 not-prose overflow-auto bg-black text-sky-600'
           dangerouslySetInnerHTML={{
-            __html: toHtml(
-              refractor.highlight(code.replaceAll('":', ':').replaceAll('  "', '').replaceAll('"', "'"), 'js') as never,
-            ),
+            __html: toHtml(refractor.highlight(code, 'js') as never),
           }}
         />
       </div>

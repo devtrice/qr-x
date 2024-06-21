@@ -7,10 +7,10 @@ import Motion from 'components/Motion'
 import ColorPicker from 'components/Pickers/Color'
 import ShapePicker from 'components/Pickers/Shape'
 import { shapes } from 'constant'
-import { elementToSVG, inlineResources } from 'dom-to-svg'
 import useParseColor from 'hooks/useParseColor'
-import { SVGToImage } from 'lib/utils'
+import { toBlob } from 'html-to-image'
 import { Fragment, RefObject, useRef, useState } from 'react'
+import QRWrapper from 'views/QRWrapper'
 import * as Yup from 'yup'
 
 type ColorType = 'solid' | 'gradient'
@@ -43,26 +43,17 @@ function QRDisplay({ data, color, bodyShape, eyeBallShape, eyeFrameShape, backgr
   const $color = useParseColor(color)
 
   return (
-    <div>
-      <Motion className='md:pl-0 lg:mr-[1rem] md:mb-0 mb-3'>
-        <div
-          ref={qrRef}
-          className='max-w-[30rem] flex flex-col justify-between items-center bg-white rounded-3xl overflow-hidden'
-        >
-          <div className='p-8 w-full'>
+    <div className='max-w-md w-full md:pl-0 lg:mr-[1rem] md:mb-0 mb-3'>
+      <Motion>
+        <div ref={qrRef}>
+          <QRWrapper color={$color?.gradient?.colors[0]?.value || $color?.color || '#000000'}>
             <QRX
               {...$color}
               data={data}
               shapes={{ body: bodyShape as never, eyeball: eyeBallShape as never, eyeframe: eyeFrameShape as never }}
               fillImage={backgroundURL}
-              className='md:w-96 w-full'
             />
-          </div>
-          <div style={{ background: color }} className='relative rounded-3xl flex flex-center w-full py-2'>
-            {/* This is a workaround to be able to get correct styling for border raduis in svg conversion */}
-            <div style={{ background: color }} className='absolute top-0 left-0 right-0 h-3'></div>
-            <p className='relative text-xs text-white'>Powered by QR-X</p>
-          </div>
+          </QRWrapper>
         </div>
       </Motion>
       <DownloadButton qrRef={qrRef} />
@@ -75,7 +66,7 @@ export default function Playground() {
     <Form<Values>
       schema={schema}
       defaults={{
-        data: 'https://qrx.vercel.app/',
+        data: 'https://qr-x.vercel.app/',
         color: '#000000',
         backgroundURL: '',
         bodyShape: 'square',
@@ -87,7 +78,7 @@ export default function Playground() {
       {({ values, register, setValue }) => (
         <Fragment>
           <div className='flex-col w-full gap-x-5 justify-between flex lg:flex-row'>
-            <div className='flex-1 max-w-xl space-y-8 my-8'>
+            <div className='flex-1  max-w-xl space-y-8 my-8'>
               <fieldset>
                 <label className='text-base font-medium mb-4 block text-white' htmlFor='data'>
                   QR Data
@@ -176,13 +167,10 @@ const downloadActions = [
 ] as const
 
 async function downloadQR(qrRef: RefObject<HTMLDivElement>, type: (typeof downloadActions)[number]['type']) {
-  const svgDocument = elementToSVG(qrRef.current)
-  await inlineResources(svgDocument.documentElement)
-  const svgString = new XMLSerializer().serializeToString(svgDocument)
+  const svgString = new XMLSerializer().serializeToString(qrRef.current!.firstChild!)
 
   if (type === 'copy-svg') {
-    navigator.clipboard.writeText(svgString)
-    return
+    return navigator.clipboard.writeText(svgString)
   }
 
   if (type === 'svg') {
@@ -194,32 +182,21 @@ async function downloadQR(qrRef: RefObject<HTMLDivElement>, type: (typeof downlo
     return
   }
 
-  SVGToImage({
-    svg: svgString,
-    mimetype: 'image/png',
-    width: 1200,
-    height: 1285.7, // (+85.7) For the powered by banner at the bottom
-    quality: 1,
-    outputFormat: 'blob',
-  })
-    .then(function (blob: any) {
-      if (type === 'copy-png') {
-        navigator.clipboard.write([
-          new ClipboardItem({
-            'image/png': blob,
-          }),
-        ])
-        return
-      }
-      const url = URL.createObjectURL(blob)
+  toBlob(qrRef.current!).then(blob => {
+    if (type === 'copy-png') {
+      return navigator.clipboard.write([
+        new ClipboardItem({
+          'image/png': blob!,
+        }),
+      ])
+    }
+    if (type === 'png') {
       const a = document.createElement('a')
-      a.href = url
+      a.href = URL.createObjectURL(blob!)
       a.download = 'QR Code.png'
       a.click()
-    })
-    .catch(function (err) {
-      console.error(err)
-    })
+    }
+  })
 }
 
 // Simple dropdown implementation [Not fully accessible]. I just don't want to install dropdown component just for this

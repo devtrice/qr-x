@@ -16,9 +16,10 @@ export default function Home() {
 function HeroSection() {
   return (
     <section className='paging space-y-10 lg:space-y-20'>
-      <h1 className='text-3xl md:text-7xl/tight md:mt-0 mt-20 font-extrabold'>
-        <span className='text-transparent bg-clip-text bg-primary animate-in block'>The fully-fledged</span>
-        <span className='text-transparent pt-2 md:pt-5 bg-clip-text bg-primary animate-in animate-delay-[0.35s] block lg:ml-[27.5vw]'>
+      <h1 className='md:text-7xl text-3xl md:mt-0 mt-20 leading-snug font-extrabold'>
+        <span className='text-transparent bg-clip-text bg-primary animate-in'>The fully-fledged</span>
+        <div className='pt-2 md:pt-7' />
+        <span className='text-transparent bg-clip-text bg-primary animate-in animate-delay-[0.35s] lg:ml-[27.5vw]'>
           QR Code generator
         </span>
       </h1>
@@ -32,10 +33,10 @@ function FrameworkSection() {
   return (
     <section className='flex lg:items-center lg:justify-between lg:flex-row flex-col space-y-5 lg:space-x-10 paging'>
       <div className='max-w-xl'>
-        <h2 className='text-4xl font-bold text-white animate-duration-150 max-w-lg'>
+        <h2 className='text-2xl md:text-4xl font-bold text-white animate-duration-150 max-w-lg'>
           {title.map((word, i) => (
             <Fragment key={word}>
-              <span className='overflow-hidden h-11 inline-flex'>
+              <span className='overflow-hidden h-8 md:h-11 inline-flex'>
                 <span
                   style={{ '--animate-delay': `${150 * i}ms` } as never}
                   className={`animate-in ${word === 'libraries' ? 'text-transparent bg-clip-text bg-primary' : word === 'frameworks' ? 'text-transparent bg-clip-text bg-secondary' : ''}`}
@@ -71,7 +72,9 @@ function FrameworkSection() {
 function PlaygroundSection() {
   return (
     <section id='playground' className='paging'>
-      <h3 className='text-transparent bg-clip-text bg-primary text-4xl leading-normal font-bold'>Try QR-X in action</h3>
+      <h3 className='text-transparent bg-clip-text bg-primary text-2xl md:text-4xl leading-normal font-bold'>
+        Try QR-X in action
+      </h3>
       <Playground />
     </section>
   )

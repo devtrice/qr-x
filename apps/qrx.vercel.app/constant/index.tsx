@@ -27,13 +27,25 @@ type $FormValues = Omit<FormValues, 'color'> & { color: ReturnType<typeof usePar
 // Apologies from ABBT. I don't have any other way
 export const codes = {
   vue: ({ data, color, bodyShape, eyeBallShape, eyeFrameShape }: $FormValues) => `<script>
-import QRX from '@qr-x/vue';
+  import QRX from '@qr-x/vue';
 </script>
+
 <template>
   <QRX 
-    data='${data}' 
-    color='${color}'
-    :shapes='{ body:"${bodyShape}", eyeball:"${eyeBallShape}", eyeframe:"${eyeFrameShape}" }' 
+    data="${data}"
+    ${
+      !color.gradient
+        ? `color="${color.color}"`
+        : `:gradient="${JSON.stringify(color.gradient, null, 8).replace(']', '    ]').replaceAll('"', "'").replaceAll('                ', '        ').replaceAll('              ', '         ').replace('            ]', '      ]')}"`.replace(
+            '}"',
+            '    }"',
+          )
+    }
+    :shapes="{ 
+      body: '${bodyShape}', 
+      eyeball: '${eyeBallShape}', 
+      eyeframe: '${eyeFrameShape}' 
+    }"
   />
 </template>`,
 
@@ -45,9 +57,10 @@ import QRX from '@qr-x/vue';
   ${
     !color.gradient
       ? `color='${color.color}'`
-      : `type='${color.gradient.type}'
-  colors={${JSON.stringify(color.gradient.colors, null, 4).replaceAll('":', ':').replaceAll('  "', '').replace(']', '  ]')}}
-  rotate={${color.gradient.rotate}}`
+      : `gradient={${JSON.stringify(color.gradient, null, 6).replaceAll('"', "'").replaceAll('            ', '      ').replaceAll('          ', '        ')}}`.replace(
+          '}}',
+          '  }}',
+        )
   }
   shapes={{ 
     body: '${bodyShape}', 
@@ -58,16 +71,17 @@ import QRX from '@qr-x/vue';
   },
 
   solid: ({ data, color, bodyShape, eyeBallShape, eyeFrameShape }: $FormValues) => {
-    return `import QRX from '@qr-x/solid';
+    return `import QRX from '@qr-x/react';
 
 <QRX 
   data='${data}'
   ${
     !color.gradient
       ? `color='${color.color}'`
-      : `type='${color.gradient.type}'
-  colors={${JSON.stringify(color.gradient.colors, null, 4).replaceAll('":', ':').replaceAll('  "', '').replace(']', '  ]')}}
-  rotate={${color.gradient.rotate}}`
+      : `gradient={${JSON.stringify(color.gradient, null, 6).replaceAll('"', "'").replaceAll('            ', '      ').replaceAll('          ', '        ')}}`.replace(
+          '}}',
+          '  }}',
+        )
   }
   shapes={{ 
     body: '${bodyShape}', 
@@ -81,6 +95,7 @@ import QRX from '@qr-x/vue';
     return `import createQRX from '@qr-x/vanilla';
 
 const qrx = createQRX(${JSON.stringify(object, null, 4)
+      .replaceAll('"', "'")
       .replaceAll('      ', '    ')
       .replaceAll('        ', '      ')
       .replaceAll(
