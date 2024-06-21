@@ -1,4 +1,4 @@
-![⌛](https://raw.githubusercontent.com/devtrice/qr-x/main/.github/assets/banner.png)
+![image](https://github.com/devtrice/qr-x/assets/26962987/d97e00b9-ddf1-4af7-b1b4-35cd003492d8)
 
 # Installation
 
