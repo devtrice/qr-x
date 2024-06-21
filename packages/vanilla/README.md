@@ -8,20 +8,20 @@ npm install @qr-x/vanilla
 
 # Usage
 
-You can also try QR-X in action [here](#playground) or follow the examples below.
+You can also try QR-X in action [here](https://qr-x.netlify.app/#playground) or follow the examples below.
 
 ## Solid Background
 
 ```ts
-import createQRX from "@qr-x/vanilla"
+import createQRX from '@qr-x/vanilla'
 
 const qrx = createQRX({
   data: 'https://qrx.vercel.app',
   color: '#0284c7',
-  shapes: { 
-    body: 'square', 
-    eyeball: 'square', 
-    eyeframe: 'square' 
+  shapes: {
+    body: 'square',
+    eyeball: 'square',
+    eyeframe: 'square',
   },
 })
 
@@ -34,12 +34,12 @@ qrContainer.innerHTML = qrx
 ### Linear Gradient
 
 ```ts
-import createQRX from "@qr-x/vanilla"
+import createQRX from '@qr-x/vanilla'
 
 const qrx = createQRX({
   data: 'https://qrx.vercel.app',
   gradient: {
-    colors: ['#0ea5e9', '#a3e635', '#34d399'] 
+    colors: ['#0ea5e9', '#a3e635', '#34d399'],
   },
 })
 
@@ -50,14 +50,14 @@ qrContainer.innerHTML = qrx
 ### Radial Gradient
 
 ```ts
-import createQRX from "@qr-x/vanilla"
+import createQRX from '@qr-x/vanilla'
 
 const qrx = createQRX({
   data: 'https://qrx.vercel.app',
   gradient: {
-    type: 'radial', 
-    colors: ['#0ea5e9', '#a3e635', '#34d399'] 
-  }
+    type: 'radial',
+    colors: ['#0ea5e9', '#a3e635', '#34d399'],
+  },
 })
 
 const qrContainer = document.getElementById('qr-container')
@@ -67,11 +67,11 @@ qrContainer.innerHTML = qrx
 ## Image Background
 
 ```ts
-import createQRX from "@qr-x/vanilla"
+import createQRX from '@qr-x/vanilla'
 
 const qrx = createQRX({
   data: 'https://qrx.vercel.app',
-  fillImage: 'https://images.unsplash.com/photo-1682687218608-5e2522b04673'
+  fillImage: 'https://images.unsplash.com/photo-1682687218608-5e2522b04673',
 })
 
 const qrContainer = document.getElementById('qr-container')
