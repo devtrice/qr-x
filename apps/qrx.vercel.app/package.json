@@ -17,6 +17,7 @@
     "dom-to-svg": "^0.12.2",
     "framer-motion": "^11.2.10",
     "hast-util-to-html": "^9.0.0",
+    "html-to-image": "^1.11.11",
     "next": "14.1.0",
     "react": "^18.2.0",
     "react-best-gradient-color-picker": "^3.0.8",
