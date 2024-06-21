@@ -7,7 +7,6 @@ import Form from 'components/Form'
 import Motion from 'components/Motion'
 import ShapePicker from 'components/ShapePicker'
 import { shapes } from 'constant'
-import { elementToSVG, inlineResources } from 'dom-to-svg'
 import useParseColor from 'hooks/useParseColor'
 import { toBlob } from 'html-to-image'
 import { Fragment, RefObject, useRef, useState } from 'react'
@@ -42,7 +41,7 @@ const schema = Yup.object({
 function QRDisplay({ data, color, bodyShape, eyeBallShape, eyeFrameShape, backgroundURL }: Values) {
   const qrRef = useRef<HTMLDivElement>(null)
   const $color = useParseColor(color)
-  console.log('$color', $color)
+
   return (
     <div className='max-w-md w-full md:pl-0 lg:mr-[1rem] md:mb-0 mb-3'>
       <Motion>
@@ -67,7 +66,7 @@ export default function Playground() {
     <Form<Values>
       schema={schema}
       defaults={{
-        data: 'https://qrx.vercel.app/',
+        data: 'https://qr-x.vercel.app/',
         color: '#000000',
         backgroundURL: '',
         bodyShape: 'square',
@@ -168,8 +167,6 @@ const downloadActions = [
 ] as const
 
 async function downloadQR(qrRef: RefObject<HTMLDivElement>, type: (typeof downloadActions)[number]['type']) {
-  const svgDocument = elementToSVG(qrRef.current)
-  await inlineResources(svgDocument.documentElement)
   const svgString = new XMLSerializer().serializeToString(qrRef.current!.firstChild!)
 
   if (type === 'copy-svg') {
