@@ -1,6 +1,6 @@
 import { useColorPicker } from 'react-best-gradient-color-picker'
 
-export default function useParseColor(color: string) {
+export default function useParseColor(color = '#000') {
   const { getGradientObject } = useColorPicker(color, () => {})
   const { isGradient, gradientType, colors, degrees } = getGradientObject() || {}
 

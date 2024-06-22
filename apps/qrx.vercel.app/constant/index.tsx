@@ -1,7 +1,7 @@
 import { React, Vue, Solid, Next } from 'icons/Libraries'
 import { Circle, Diamond, Heart, Leaf, Rounded, Square, Triangle } from 'icons/Shapes'
-import { FormValues } from 'types'
 import useParseColor from 'hooks/useParseColor'
+import { FormValues } from 'views/Playground'
 
 export const frameworks = [
   { icon: <React />, label: 'React JS' },
@@ -26,7 +26,53 @@ type $FormValues = Omit<FormValues, 'color'> & { color: ReturnType<typeof usePar
 
 // Apologies from ABBT. I don't have any other way
 export const codes = {
-  vue: ({ data, color, bodyShape, eyeBallShape, eyeFrameShape }: $FormValues) => `<script>
+  react: ({ data, color, image, bodyShape, eyeBallShape, eyeFrameShape, isImagePicked }: $FormValues) => {
+    return `import QRX from '@qr-x/react';
+
+<QRX 
+  data='${data}'
+  ${
+    isImagePicked
+      ? `image='${image}'`
+      : !color.gradient
+        ? `color='${color.color}'`
+        : `gradient={${JSON.stringify(color.gradient, null, 6).replaceAll('"', "'").replaceAll('          ', '    ').replaceAll('          ', '        ')}}`.replace(
+            '}}',
+            '  }}',
+          )
+  }
+  shapes={{ 
+    body: '${bodyShape}', 
+    eyeball: '${eyeBallShape}', 
+    eyeframe: '${eyeFrameShape}' 
+  }} 
+/>`
+  },
+
+  solid: ({ data, color, image, bodyShape, eyeBallShape, eyeFrameShape, isImagePicked }: $FormValues) => {
+    return `import QRX from '@qr-x/solid';
+
+<QRX 
+  data='${data}'
+  ${
+    isImagePicked
+      ? `image='${image}'`
+      : !color.gradient
+        ? `color='${color.color}'`
+        : `gradient={${JSON.stringify(color.gradient, null, 6).replaceAll('"', "'").replaceAll('          ', '    ').replaceAll('          ', '        ')}}`.replace(
+            '}}',
+            '  }}',
+          )
+  }
+  shapes={{ 
+    body: '${bodyShape}', 
+    eyeball: '${eyeBallShape}', 
+    eyeframe: '${eyeFrameShape}' 
+  }} 
+/>`
+  },
+
+  vue: ({ data, color, image, bodyShape, eyeBallShape, eyeFrameShape, isImagePicked }: $FormValues) => `<script>
   import QRX from '@qr-x/vue';
 </script>
 
@@ -34,12 +80,14 @@ export const codes = {
   <QRX 
     data="${data}"
     ${
-      !color.gradient
-        ? `color="${color.color}"`
-        : `:gradient="${JSON.stringify(color.gradient, null, 8).replace(']', '    ]').replaceAll('"', "'").replaceAll('                ', '        ').replaceAll('              ', '         ').replace('            ]', '      ]')}"`.replace(
-            '}"',
-            '    }"',
-          )
+      isImagePicked
+        ? `image="${image}"`
+        : !color.gradient
+          ? `color="${color.color}"`
+          : `:gradient="${JSON.stringify(color.gradient, null, 10).replace(']', '    ]').replaceAll('"', "'").replaceAll('                ', '        ').replaceAll('              ', '         ').replace('            ]', '      ]')}"`.replace(
+              '}"',
+              '     }"',
+            )
     }
     :shapes="{ 
       body: '${bodyShape}', 
@@ -49,49 +97,12 @@ export const codes = {
   />
 </template>`,
 
-  react: ({ data, color, bodyShape, eyeBallShape, eyeFrameShape }: $FormValues) => {
-    return `import QRX from '@qr-x/react';
-
-<QRX 
-  data='${data}'
-  ${
-    !color.gradient
-      ? `color='${color.color}'`
-      : `gradient={${JSON.stringify(color.gradient, null, 6).replaceAll('"', "'").replaceAll('            ', '      ').replaceAll('          ', '        ')}}`.replace(
-          '}}',
-          '  }}',
-        )
-  }
-  shapes={{ 
-    body: '${bodyShape}', 
-    eyeball: '${eyeBallShape}', 
-    eyeframe: '${eyeFrameShape}' 
-  }} 
-/>`
-  },
-
-  solid: ({ data, color, bodyShape, eyeBallShape, eyeFrameShape }: $FormValues) => {
-    return `import QRX from '@qr-x/react';
-
-<QRX 
-  data='${data}'
-  ${
-    !color.gradient
-      ? `color='${color.color}'`
-      : `gradient={${JSON.stringify(color.gradient, null, 6).replaceAll('"', "'").replaceAll('            ', '      ').replaceAll('          ', '        ')}}`.replace(
-          '}}',
-          '  }}',
-        )
-  }
-  shapes={{ 
-    body: '${bodyShape}', 
-    eyeball: '${eyeBallShape}', 
-    eyeframe: '${eyeFrameShape}' 
-  }} 
-/>`
-  },
-  vanilla: ({ data, color, bodyShape, eyeBallShape, eyeFrameShape }: $FormValues) => {
-    const object = { data, ...color, shapes: { body: bodyShape, eyeball: eyeBallShape, eyeframe: eyeFrameShape } }
+  vanilla: ({ data, color, image, bodyShape, eyeBallShape, eyeFrameShape, isImagePicked }: $FormValues) => {
+    const object = {
+      data,
+      ...(isImagePicked ? { image } : color),
+      shapes: { body: bodyShape, eyeball: eyeBallShape, eyeframe: eyeFrameShape },
+    }
     return `import createQRX from '@qr-x/vanilla';
 
 const qrx = createQRX(${JSON.stringify(object, null, 4)

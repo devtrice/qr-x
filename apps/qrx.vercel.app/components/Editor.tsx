@@ -8,18 +8,18 @@ import { useState } from 'react'
 import { refractor } from 'refractor'
 import langJavascript from 'refractor/lang/javascript'
 import langJsx from 'refractor/lang/jsx'
-import { FormValues } from 'types'
-import * as prettier from 'prettier'
+import Tab from './Tab'
+import { FormValues } from 'views/Playground'
 
 refractor.alias({ javascript: ['js'] })
 
 refractor.register(langJsx)
 refractor.register(langJavascript)
 
-export default function Editor({ data, color, ...rest }: FormValues) {
+export default function Editor({ color, ...rest }: FormValues) {
   const [portal, setPortal] = useState('react')
 
-  const code = codes[portal as keyof typeof codes]({ ...rest, data, color: useParseColor(color) })
+  const code = codes[portal as keyof typeof codes]({ ...rest, color: useParseColor(color) })
     .replaceAll("':", ':')
     .replaceAll("  '", '')
 
@@ -27,17 +27,7 @@ export default function Editor({ data, color, ...rest }: FormValues) {
     <div className='rounded-xl bg-primary p-[1px]'>
       <div className='rounded-xl overflow-hidden space-y-[1px] relative'>
         <div className='h-14 flex overflow-x-auto justify-between bg-black text-white p-2'>
-          <div className='flex space-x-2 cursor-pointer' onChange={e => setPortal((e.target as HTMLInputElement).id)}>
-            {portals.map($portal => (
-              <button
-                key={$portal}
-                className={`capitalize cursor-pointer rounded-lg px-3 flex items-center transition-colors duration-300 ${$portal === portal ? 'bg-primary' : 'bg-transparent'}`}
-                onClick={() => setPortal($portal)}
-              >
-                {$portal}
-              </button>
-            ))}
-          </div>
+          <Tab options={portals as unknown as string[]} onChange={setPortal} />
           <CopyButton code={code} />
         </div>
         <pre

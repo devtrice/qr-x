@@ -1,6 +1,6 @@
 {
   "name": "@qr-x/vue",
-  "version": "0.0.5",
+  "version": "1.0.0",
   "license": "MIT",
   "description": "",
   "types": "./dist/index.d.ts",
