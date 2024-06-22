@@ -10,6 +10,7 @@ export const metadata: Metadata = {
   title: 'QR-X: Customizable QR Code Generator for Modern Frontend Frameworks',
   description:
     'Discover QR-X, the ultimate QR code generator that seamlessly integrates with ReactJS, NextJS, VueJS, SolidJS, and VanillaJS. Create stunning, customizable QR codes with unique shapes, vibrant colors, and interactive backgrounds. Ideal for developers and businesses looking to enhance digital products with engaging QR code designs. Start crafting perfect QR codes today with QR-X.',
+  metadataBase: new URL('https://qr-x.devtrice.dev/'),
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
