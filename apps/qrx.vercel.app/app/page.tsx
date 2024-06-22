@@ -17,7 +17,7 @@ function HeroSection() {
   return (
     <section className='paging space-y-10 lg:space-y-20'>
       <h1 className='md:text-7xl text-3xl md:mt-0 mt-20 leading-snug font-extrabold'>
-        <span className='text-transparent bg-clip-text bg-primary animate-in'>The fully-fledged</span>
+        <span className='text-transparent bg-clip-text bg-primary animate-in'>An Elegant</span>
         <div className='pt-2 md:pt-7' />
         <span className='text-transparent bg-clip-text bg-primary animate-in animate-delay-[0.35s] lg:ml-[27.5vw]'>
           QR Code generator
