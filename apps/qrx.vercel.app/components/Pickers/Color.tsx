@@ -11,9 +11,13 @@ export default function ColorPicker({ value, setValue }: Props) {
 
   return (
     <div className='relative'>
-      <div className='text-white border border-primary/50 focus-visible:border-primary focus-visible:bg-primary/20 bg-primary/10 rounded-xl w-full py-3 px-4 flex justify-between items-center space-x-1'>
-        {value}
-        <button onClick={() => setShow(true)} className='min-w-7 min-h-7 rounded-full' style={{ background: value }}></button>
+      <div className='text-white border border-primary/50 focus-visible:border-primary focus-visible:bg-primary/20 bg-primary/10 rounded-xl w-full py-2.5 px-4 flex justify-between items-center space-x-1'>
+        <input value={value} className='bg-transparent w-full' />
+        <button
+          onClick={() => setShow(true)}
+          className='min-w-7 min-h-7 rounded-full rotate-90'
+          style={{ background: value }}
+        ></button>
       </div>
       {isShow && (
         <div
