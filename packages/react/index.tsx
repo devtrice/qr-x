@@ -19,6 +19,24 @@ export default function QRX({ data, level, shapes, gradient, fillImage, ...rest 
           />
         )}
       </g>
+      <foreignObject {...cords}>
+        <div
+          style={{
+            width: '256px',
+            height: '256px',
+            clipPath: `url(#${id})`,
+          }}
+        >
+          <video
+            src='https://videos.pexels.com/video-files/8333185/8333185-hd_1080_1080_30fps.mp4'
+            style={{ objectFit: 'cover', objectPosition: 'center', aspectRatio: '1 / 1' }}
+            loop
+            muted
+            autoPlay
+          />
+        </div>
+      </foreignObject>
+
       <defs>
         <clipPath id={id}>
           <path d={path} />
