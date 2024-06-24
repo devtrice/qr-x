@@ -56,8 +56,7 @@ export default function Playground() {
       defaults={{
         data: 'https://qr-x.devtrice.dev/',
         color: 'linear-gradient(45deg, #64B2FF 0%, #8E84FF 35%, #D499ED 100%)',
-        image:
-          'https://images.pexels.com/photos/6633/car-superhero-symbol-batman.jpg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+        image: 'https://images.unsplash.com/photo-1567360425618-1594206637d2?q=70&w=400&auto=format&fit=crop',
         bodyShape: 'square',
         eyeBallShape: 'square',
         eyeFrameShape: 'square',
