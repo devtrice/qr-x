@@ -18,9 +18,6 @@ export default function QRX({ data, level, shapes, gradient, fillImage, ...rest 
             preserveAspectRatio='xMidYMid slice'
           />
         )}
-        <foreignObject>
-          <img src='https://images.pexels.com/photos/6633/car-superhero-symbol-batman.jpg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2' />
-        </foreignObject>
       </g>
       <defs>
         <clipPath id={id}>
