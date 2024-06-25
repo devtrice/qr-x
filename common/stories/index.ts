@@ -92,6 +92,13 @@ export const FillVideo: Story = {
   },
 }
 
+export const Logo: Story = {
+  args: {
+    data: URL,
+    logo: 'https://img.freepik.com/free-vector/free-vector-panda-bamboo-mascot-logo_779267-1386.jpg?w=826&t=st=1719303625~exp=1719304225~hmac=e0670dc65254c1dd3a65df96df0c9b3f4a6cd9ffe5625298f266a6649b9b74d7',
+  },
+}
+
 export const renderMultiple = (component: (props: Props) => any) => {
   const images = [
     'https://images.unsplash.com/photo-1437413646517-e98caade5a58?q=80&w=480&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
