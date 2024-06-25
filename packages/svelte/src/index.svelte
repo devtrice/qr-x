@@ -17,24 +17,19 @@
     data,
     level,
     shapes,
-    gradient
+    gradient,
   })
   $: length = svgData.length
   $: _gradient = svgData.$gradient
 </script>
 
 <svg width="100%" {...$$props} viewBox={`0 0 ${length} ${length}`}>
-      <g clip-path={`url(#${svgData.id})`}>
-        <rect {...svgData.cords} fill={_gradient ? `url(#${_gradient.attributes.id})` : 'currentColor'} />
-        {#if fillImage}
-          <image
-            {...svgData.cords}
-            href={fillImage}
-            xlink:href={fillImage} 
-            preserveAspectRatio='xMidYMid slice'
-          />
-        {/if}
-      </g>
+  <g clip-path={`url(#${svgData.id})`}>
+    <rect {...svgData.cords} fill={_gradient ? `url(#${_gradient.attributes.id})` : 'currentColor'} />
+    {#if fillImage}
+      <image {...svgData.cords} href={fillImage} xlink:href={fillImage} preserveAspectRatio="xMidYMid slice" />
+    {/if}
+  </g>
 
   <defs>
     <clipPath id={svgData.id}>

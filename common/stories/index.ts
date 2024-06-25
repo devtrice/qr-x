@@ -95,7 +95,7 @@ export const FillVideo: Story = {
 export const Logo: Story = {
   args: {
     data: URL,
-    logo: 'https://img.freepik.com/free-vector/free-vector-panda-bamboo-mascot-logo_779267-1386.jpg?w=826&t=st=1719303625~exp=1719304225~hmac=e0670dc65254c1dd3a65df96df0c9b3f4a6cd9ffe5625298f266a6649b9b74d7',
+    logo: { src: 'https://static.zpao.com/favicon.png', width: 40, height: 40 },
   },
 }
 
