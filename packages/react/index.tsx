@@ -1,7 +1,17 @@
 import { getSVGData, Options } from '@qr-x/core'
 import React, { ComponentProps, ReactNode, SVGAttributes, useLayoutEffect } from 'react'
 
-type Props = SVGAttributes<SVGSVGElement> & Options & { central?: ImgProps | ReactNode }
+type Props = SVGAttributes<SVGSVGElement> &
+  Options & {
+    /**
+     * Renders an image or a component in the center of the QR code.
+     * - `string` as an image src to render an image with default width and height
+     * - `ComponentProps<'img'>` to render an image with custom properties.
+     * - `ReactNode` to render a component.
+     * @default width: 28, height: 28
+     */
+    central?: ImgProps | ReactNode
+  }
 
 type ImgProps = ComponentProps<'img'>
 
