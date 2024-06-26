@@ -119,3 +119,5 @@ function App() {
 | gradients.rotate | `number` (This property only exist if gradient.type is 'radial') | `45`       |
 | fillImage        | `string`                                                         |            |
 | central          | `string` \| `ComponentProps<'img'>` \| `ReactNode`               |            |
+| central.width    | `string` \| `number`                                             | `28`       |
+| central.height   | `string` \| `number`                                             | `28`       |

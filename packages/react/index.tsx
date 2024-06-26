@@ -1,5 +1,5 @@
 import { getSVGData, Options } from '@qr-x/core'
-import React, { ComponentProps, ReactNode, SVGAttributes, useLayoutEffect } from 'react'
+import React, { ComponentProps, ImgHTMLAttributes, ReactNode, SVGAttributes, useLayoutEffect } from 'react'
 
 type Props = SVGAttributes<SVGSVGElement> &
   Options & {
@@ -13,7 +13,18 @@ type Props = SVGAttributes<SVGSVGElement> &
     central?: ImgProps | ReactNode
   }
 
-type ImgProps = ComponentProps<'img'>
+type ImgProps = ComponentProps<'img'> & {
+  /**
+   * Width of the central image.
+   * @default 28
+   */
+  width?: ComponentProps<'img'>['width']
+  /**
+   * Height of the central image.
+   * @default 28
+   */
+  height?: ComponentProps<'img'>['height']
+}
 
 function useViewBox() {
   const ref = React.useRef<SVGSVGElement>(null)
