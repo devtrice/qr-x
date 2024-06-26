@@ -1,58 +1,34 @@
 import { getSVGData, Options } from '@qr-x/core'
-import React, { ComponentProps, SVGAttributes, useLayoutEffect } from 'react'
+import React, { ComponentProps, ReactNode, SVGAttributes, useLayoutEffect } from 'react'
 
-type LogoOptions = {
-  src: string
-  /**
-   * @default 8
-   * @description The number of QR pixels the logo will take up for the width
-   */
-  width?: number
-  /**
-   * @default 8
-   * @description The number of QR pixels the logo will take up for the width
-   */
-  height?: number
-} & ComponentProps<'img'>
+type Props = SVGAttributes<SVGSVGElement> & Options & { central?: ImgProps | ReactNode }
 
-type Props = SVGAttributes<SVGSVGElement> &
-  Options & {
-    logo?: string | LogoOptions | React.ReactNode
-  }
+type ImgProps = ComponentProps<'img'>
 
 function useViewBox() {
-  const svgRef = React.useRef<SVGSVGElement>(null)
+  const ref = React.useRef<SVGSVGElement>(null)
   const [viewBox, setViewBox] = React.useState('')
 
   useLayoutEffect(() => {
-    const rect = svgRef.current?.getBoundingClientRect()
-    setViewBox(`0 0 ${rect?.width} ${rect?.height}`)
+    if (ref.current) {
+      const { width, height } = ref.current.getBoundingClientRect()
+      setViewBox(`0 0 ${width} ${height}`)
+    }
   }, [])
 
-  return { svgRef, viewBox }
+  return { ref, viewBox }
 }
 
-const App = () => {
-  return (
-    <div>
-      <QRX
-        data='https://qr-x.dev'
-        logo={{
-          src: 'https://static.xx.fbcdn.net/rsrc.php/yT/r/aGT3gskzWBf.ico',
-          width: 30,
-          height: 30,
-        }}
-      />
-    </div>
-  )
+function CentralImage({ src, width = 28, height = 28, ...props }: ImgProps) {
+  return <img src={src} width={width} height={height} {...props} />
 }
 
-export default function QRX({ data, level, shapes, gradient, fillImage, logo, ...rest }: Props) {
+export default function QRX({ data, level, shapes, gradient, central, fillImage, ...rest }: Props) {
+  const { ref, viewBox } = useViewBox()
   const { id, path, cords, length, $gradient } = getSVGData({ data, level, shapes, gradient })
-  const { svgRef, viewBox } = useViewBox()
 
   return (
-    <svg ref={svgRef} width='100%' {...rest} viewBox={`0 0 ${length} ${length}`}>
+    <svg ref={ref} width='100%' {...rest} viewBox={`0 0 ${length} ${length}`}>
       <g clipPath={`url(#${id})`}>
         <rect {...cords} fill={$gradient ? `url(#${$gradient.attributes.id})` : 'currentColor'} />
         {fillImage && (
@@ -64,16 +40,20 @@ export default function QRX({ data, level, shapes, gradient, fillImage, logo, ..
           />
         )}
       </g>
-      {viewBox && (
-        <foreignObject x={0} y={0} width={'100%'} height={'100%'}>
+      {central && viewBox && (
+        <foreignObject {...cords}>
           <svg viewBox={viewBox}>
-            {logo && typeof logo === 'string' ? (
-              <Logo length={length} src={logo} />
-            ) : logo && typeof logo === 'object' && 'src' in logo ? (
-              <Logo length={length} {...logo} />
-            ) : (
-              logo
-            )}
+            <foreignObject {...cords} style={{ overflow: 'visible' }}>
+              <div style={{ width: '100%', height: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                {typeof central === 'string' ? (
+                  <CentralImage src={central} />
+                ) : typeof central === 'object' && 'src' in central ? (
+                  <CentralImage {...central} />
+                ) : (
+                  (central as ReactNode)
+                )}
+              </div>
+            </foreignObject>
           </svg>
         </foreignObject>
       )}
@@ -89,23 +69,5 @@ export default function QRX({ data, level, shapes, gradient, fillImage, logo, ..
           )}
       </defs>
     </svg>
-  )
-}
-
-function Logo({ length, src, height = 30, width = 30, ...props }: LogoOptions & { length: number }) {
-  return (
-    <foreignObject
-      style={{
-        overflow: 'visible',
-      }}
-      x={0}
-      y={0}
-      width={'100%'}
-      height={'100%'}
-    >
-      <div style={{ width: '100%', height: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-        <img width={width} height={height} {...props} />
-      </div>
-    </foreignObject>
   )
 }

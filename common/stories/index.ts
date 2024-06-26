@@ -92,17 +92,29 @@ export const FillVideo: Story = {
   },
 }
 
-export const Logo: Story = {
+export const CentralImage: Story = {
   args: {
     data: URL,
-    logo: { src: 'https://static.zpao.com/favicon.png', width: 40, height: 40 },
+    central: 'https://images.unsplash.com/photo-1579546929518-9e396f3cc809?q=80&w=40',
+  },
+}
+
+export const CentralImageCustom: Story = {
+  args: {
+    data: URL,
+    central: {
+      src: 'https://images.unsplash.com/photo-1579546929518-9e396f3cc809?q=80&w=40',
+      width: 40,
+      height: 40,
+      style: { border: '2px solid white', borderRadius: '50%' },
+    },
   },
 }
 
 export const renderMultiple = (component: (props: Props) => any) => {
   const images = [
-    'https://images.unsplash.com/photo-1437413646517-e98caade5a58?q=80&w=480&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-    'https://images.unsplash.com/photo-1704138162406-bc43d5b9ff97?q=80&w=480&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    'https://images.unsplash.com/photo-1437413646517-e98caade5a58?q=80&w=480',
+    'https://images.unsplash.com/photo-1704138162406-bc43d5b9ff97?q=80&w=480',
   ]
   const gradients = [
     ['#0ea5e9', '#22d3ee', '#38f9d7', '#4cfcb3', '#5ffea1'],
