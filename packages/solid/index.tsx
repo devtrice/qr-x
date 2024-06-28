@@ -13,6 +13,10 @@ import {
 } from 'solid-js'
 import { Dynamic } from 'solid-js/web'
 
+function isElement(element: any) {
+  return element instanceof Element || element instanceof HTMLDocument
+}
+
 // type Props = Options & JSX.SvgSVGAttributes<SVGSVGElement>
 type Props = JSX.SvgSVGAttributes<SVGSVGElement> &
   Options & {
@@ -39,20 +43,6 @@ type ImgProps = ComponentProps<'img'> & {
   height?: ComponentProps<'img'>['height']
 }
 
-function useViewBox() {
-  let ref!: SVGSVGElement
-  const [viewBox, setViewBox] = createSignal('')
-
-  // createRenderEffect(() => {
-  if (ref) {
-    const { width, height } = ref.getBoundingClientRect()
-    setViewBox(`0 0 ${width} ${height}`)
-  }
-  // })
-
-  return { ref, viewBox }
-}
-
 function CentralImage({ src, width = 28, height = 28, ...props }: ImgProps) {
   return <img src={src} width={width} height={height} {...props} />
 }
@@ -68,14 +58,12 @@ export default function QRX($props: Props) {
     console.log('computed', viewBox())
   })
 
-  // createRenderEffect(() => {
   onMount(() => {
     if (ref) {
       const { width, height } = ref.getBoundingClientRect()
       setViewBox(`0 0 ${width} ${height}`)
     }
   })
-  // const central = createComputed(() => props.central)
 
   return (
     <svg ref={ref} width='100%' {...rest} viewBox={`0 0 ${svg().length} ${svg().length}`}>
@@ -97,26 +85,45 @@ export default function QRX($props: Props) {
             </div>
           </foreignObject>
         </Show> */}
-        {props.central && viewBox() && (
-          <foreignObject {...svg().cords}>
-            <svg viewBox={viewBox()}>
-              <foreignObject {...svg().cords} style={{ overflow: 'visible' }}>
-                <div
-                  style={{ width: '100%', height: '100%', display: 'flex', 'justify-content': 'center', 'align-items': 'center' }}
-                >
-                  {typeof props.central === 'string' ? (
-                    <CentralImage src={props.central} />
-                  ) : typeof props.central === 'object' && 'src' in props.central ? (
-                    <CentralImage {...props.central} />
-                  ) : (
-                    (props.central as JSX.Element)
-                  )}
-                </div>
-              </foreignObject>
-            </svg>
-          </foreignObject>
-        )}
       </g>
+      {props.central && viewBox() && (
+        <foreignObject {...svg().cords}>
+          <svg viewBox={viewBox()}>
+            <foreignObject {...svg().cords} style={{ overflow: 'visible' }}>
+              <div
+                style={{ width: '100%', height: '100%', display: 'flex', 'justify-content': 'center', 'align-items': 'center' }}
+              >
+                {typeof props.central === 'string' ? (
+                  <CentralImage src={props.central} />
+                ) : !isElement(props.central) && typeof props.central === 'object' && 'src' in props.central ? (
+                  <CentralImage {...props.central} />
+                ) : (
+                  (props.central as JSX.Element)
+                )}
+              </div>
+            </foreignObject>
+          </svg>
+        </foreignObject>
+      )}
+      <Show when={props.central && viewBox()}>
+        <foreignObject {...svg().cords}>
+          <svg viewBox={viewBox()}>
+            <foreignObject {...svg().cords} style={{ overflow: 'visible' }}>
+              <div
+                style={{ width: '100%', height: '100%', display: 'flex', 'justify-content': 'center', 'align-items': 'center' }}
+              >
+                {typeof props.central === 'string' ? (
+                  <CentralImage src={props.central} />
+                ) : !isElement(props.central) && typeof props.central === 'object' && 'src' in props.central! ? (
+                  <CentralImage {...props.central} />
+                ) : (
+                  (props.central as JSX.Element)
+                )}
+              </div>
+            </foreignObject>
+          </svg>
+        </foreignObject>
+      </Show>
       <defs>
         <clipPath id={svg().id}>
           <path d={svg().path} />
