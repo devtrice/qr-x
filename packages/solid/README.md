@@ -52,6 +52,59 @@ function App() {
 }
 ```
 
+## Central
+
+## Central Image
+
+```tsx
+import QRX from '@qr-x/solid'
+
+function App() {
+  return <QRX data='qr-x.devtrice.dev' central='https://images.unsplash.com/photo-1682687218608-5e2522b04673' />
+}
+```
+
+## Central Image with custom attributes
+
+```tsx
+import QRX from '@qr-x/solid'
+
+function App() {
+  return (
+    <QRX
+      data='qr-x.devtrice.dev'
+      central={{
+        src: 'https://images.unsplash.com/photo-1682687218608-5e2522b04673',
+        alt: '...',
+        style: { width: '4rem', height: '4rem' },
+      }}
+    />
+  )
+}
+```
+
+## Central Component
+
+```tsx
+import QRX from '@qr-x/solid'
+
+function App() {
+  return (
+    <QRX
+      data='qr-x.devtrice.dev'
+      central={
+        <video
+          src='https://videos.pexels.com/video-files/8333185/8333185-hd_1080_1080_30fps.mp4'
+          style={{ width: '2.5rem', height: '2.5rem', border: '2px solid white', 'border-radius': '50%' }}
+          muted
+          autoplay
+        />
+      }
+    />
+  )
+}
+```
+
 # Props
 
 | Name             | Type                                                             | Default    |
@@ -65,3 +118,6 @@ function App() {
 | gradients.colors | `string[] \| {value: string, stop: number}`                      |            |
 | gradients.rotate | `number` (This property only exist if gradient.type is 'radial') | `45`       |
 | fillImage        | `string`                                                         |            |
+| central          | `string` \| `ComponentProps<'img'>` \| `JSX.Element`             |            |
+| central.width    | `string` \| `number`                                             | `28`       |
+| central.height   | `string` \| `number`                                             | `28`       |
