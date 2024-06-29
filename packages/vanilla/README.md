@@ -16,7 +16,7 @@ You can also try QR-X in action [here](https://qr-x.devtrice.dev/#playground) or
 import createQRX from '@qr-x/vanilla'
 
 const qrx = createQRX({
-  data: 'https://qrx.vercel.app',
+  data: 'https://qr-x.devtrice.dev/',
   color: '#0284c7',
   shapes: {
     body: 'square',
@@ -37,7 +37,7 @@ qrContainer.innerHTML = qrx
 import createQRX from '@qr-x/vanilla'
 
 const qrx = createQRX({
-  data: 'https://qrx.vercel.app',
+  data: 'https://qr-x.devtrice.dev/',
   gradient: {
     colors: ['#0ea5e9', '#a3e635', '#34d399'],
   },
@@ -53,7 +53,7 @@ qrContainer.innerHTML = qrx
 import createQRX from '@qr-x/vanilla'
 
 const qrx = createQRX({
-  data: 'https://qrx.vercel.app',
+  data: 'https://qr-x.devtrice.dev/',
   gradient: {
     type: 'radial',
     colors: ['#0ea5e9', '#a3e635', '#34d399'],
@@ -70,7 +70,7 @@ qrContainer.innerHTML = qrx
 import createQRX from '@qr-x/vanilla'
 
 const qrx = createQRX({
-  data: 'https://qrx.vercel.app',
+  data: 'https://qr-x.devtrice.dev/',
   fillImage: 'https://images.unsplash.com/photo-1682687218608-5e2522b04673',
 })
 
