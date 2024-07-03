@@ -1,10 +1,16 @@
 {
-  "extends": ["@common/tsconfig/base.json", "@tsconfig/svelte/tsconfig.json"],
+  "extends": ["@common/tsconfig/base.json", "./.svelte-kit/tsconfig.json"],
   "compilerOptions": {
-    "module": "ESNext",
+    "verbatimModuleSyntax": true,
+    "allowJs": true,
+    "checkJs": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
     "sourceMap": true,
-    "moduleResolution": "Bundler",
-    "verbatimModuleSyntax": true
-  },
-  "exclude": ["node_modules", "dist", ".svelte-kit"]
+    "strict": true,
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext"
+  }
 }

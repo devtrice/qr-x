@@ -5,7 +5,7 @@ type Props = Options & { [k: string]: unknown }
 
 type Story = StoryObj<Props>
 
-const URL = 'https://qr-x.dev'
+const URL = 'https://qr-x.devtrice.dev'
 
 export const defaultMeta = {
   argTypes: {

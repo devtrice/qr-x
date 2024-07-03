@@ -1,22 +1,43 @@
 import { getSVGData, Options } from '@qr-x/core'
-import React, { ComponentProps, ReactNode, SVGAttributes, useLayoutEffect } from 'react'
+import React, { ComponentProps, ImgHTMLAttributes, ReactNode, SVGAttributes, useEffect, useLayoutEffect } from 'react'
 
-type Props = SVGAttributes<SVGSVGElement> & Options & { central?: ImgProps | ReactNode }
+type Props = SVGAttributes<SVGSVGElement> &
+  Options & {
+    /**
+     * Renders an image or a component in the center of the QR code.
+     * - `string` as an image src to render an image with default width and height
+     * - `ComponentProps<'img'>` to render an image with custom properties.
+     * - `ReactNode` to render a component.
+     * @default width: 28, height: 28
+     */
+    central?: ImgProps | ReactNode
+  }
 
-type ImgProps = ComponentProps<'img'>
+type ImgProps = ComponentProps<'img'> & {
+  /**
+   * Width of the central image.
+   * @default 28
+   */
+  width?: ComponentProps<'img'>['width']
+  /**
+   * Height of the central image.
+   * @default 28
+   */
+  height?: ComponentProps<'img'>['height']
+}
 
 function useViewBox() {
   const ref = React.useRef<SVGSVGElement>(null)
-  const [viewBox, setViewBox] = React.useState('')
+  const [size, setSize] = React.useState<{ width: number; height: number } | null>(null)
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     if (ref.current) {
       const { width, height } = ref.current.getBoundingClientRect()
-      setViewBox(`0 0 ${width} ${height}`)
+      setSize({ width, height })
     }
   }, [])
 
-  return { ref, viewBox }
+  return { ref, size, viewBox: size ? `0 0 ${size.width} ${size.height}` : '' }
 }
 
 function CentralImage({ src, width = 28, height = 28, ...props }: ImgProps) {
@@ -24,7 +45,7 @@ function CentralImage({ src, width = 28, height = 28, ...props }: ImgProps) {
 }
 
 export default function QRX({ data, level, shapes, gradient, central, fillImage, ...rest }: Props) {
-  const { ref, viewBox } = useViewBox()
+  const { ref, size, viewBox } = useViewBox()
   const { id, path, cords, length, $gradient } = getSVGData({ data, level, shapes, gradient })
 
   return (
@@ -44,7 +65,7 @@ export default function QRX({ data, level, shapes, gradient, central, fillImage,
         <foreignObject {...cords}>
           <svg viewBox={viewBox}>
             <foreignObject {...cords} style={{ overflow: 'visible' }}>
-              <div style={{ width: '100%', height: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+              <div style={{ ...size, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                 {typeof central === 'string' ? (
                   <CentralImage src={central} />
                 ) : typeof central === 'object' && 'src' in central ? (
