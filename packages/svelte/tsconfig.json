@@ -1,0 +1,16 @@
+{
+  "extends": ["@common/tsconfig/base.json"],
+  "compilerOptions": {
+    "verbatimModuleSyntax": true,
+    "allowJs": true,
+    "checkJs": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "sourceMap": true,
+    "strict": true,
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext"
+  }
+}
