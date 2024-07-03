@@ -25,13 +25,13 @@
   "devDependencies": {
     "@common/stories": "workspace:*",
     "@common/tsconfig": "workspace:*",
-    "@sveltejs/adapter-auto": "^3.0.0",
-    "@sveltejs/vite-plugin-svelte": "^3.0.0",
-    "@sveltejs/kit": "^2.0.0",
-    "@sveltejs/package": "^2.0.0",
+    "@sveltejs/adapter-auto": "^2.0.0",
+    "@sveltejs/kit": "^1.27.4",
+    "@sveltejs/package": "^2.2.3",
+    "@sveltejs/vite-plugin-svelte": "^3.1.1",
     "@tsconfig/svelte": "^5.0.2",
-    "svelte": "^4.2.7",
-    "typescript": "^5.0.0"
+    "svelte": "^4.2.12",
+    "typescript": "^5.3.3"
   },
   "peerDependencies": {
     "svelte": "^4.x"
