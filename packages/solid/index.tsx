@@ -52,16 +52,19 @@ export default function QRX($props: Props) {
   const svg = createMemo(() => getSVGData(props))
 
   let ref!: SVGSVGElement
-  const [viewBox, setViewBox] = createSignal('')
+  const [size, setSize] = createSignal<{ width: number; height: number } | null>(null)
 
   createComputed(() => {
-    console.log('computed', viewBox())
+    console.log('size', size())
   })
 
   onMount(() => {
     if (ref) {
       const { width, height } = ref.getBoundingClientRect()
-      setViewBox(`0 0 ${width} ${height}`)
+      setSize({
+        width,
+        height,
+      })
     }
   })
 
@@ -86,31 +89,18 @@ export default function QRX($props: Props) {
           </foreignObject>
         </Show> */}
       </g>
-      {props.central && viewBox() && (
+      <Show when={props.central && size()}>
         <foreignObject {...svg().cords}>
-          <svg viewBox={viewBox()}>
+          <svg viewBox={`0 0 ${size()?.width} ${size()?.height}`}>
             <foreignObject {...svg().cords} style={{ overflow: 'visible' }}>
               <div
-                style={{ width: '100%', height: '100%', display: 'flex', 'justify-content': 'center', 'align-items': 'center' }}
-              >
-                {typeof props.central === 'string' ? (
-                  <CentralImage src={props.central} />
-                ) : !isElement(props.central) && typeof props.central === 'object' && 'src' in props.central ? (
-                  <CentralImage {...props.central} />
-                ) : (
-                  (props.central as JSX.Element)
-                )}
-              </div>
-            </foreignObject>
-          </svg>
-        </foreignObject>
-      )}
-      <Show when={props.central && viewBox()}>
-        <foreignObject {...svg().cords}>
-          <svg viewBox={viewBox()}>
-            <foreignObject {...svg().cords} style={{ overflow: 'visible' }}>
-              <div
-                style={{ width: '100%', height: '100%', display: 'flex', 'justify-content': 'center', 'align-items': 'center' }}
+                style={{
+                  width: size()?.width + 'px', // without `px`, solid do not include the style property
+                  height: size()?.height + 'px', // without `px`, solid do not include the style property
+                  display: 'flex',
+                  'justify-content': 'center',
+                  'align-items': 'center',
+                }}
               >
                 {typeof props.central === 'string' ? (
                   <CentralImage src={props.central} />
