@@ -1,19 +1,21 @@
 import {
-  CentralImage,
-  CentralImageCustom,
+  meta,
+  data,
+  video,
+  BrandImage,
+  BrandImageCustom,
   Default,
   FillImage,
   LinearGradient,
   RadialGradient,
-  defaultMeta,
-  FillVideo,
+  renderMultiple,
 } from '@common/stories'
 import QRX from './index.vue'
 
 export default {
-  title: 'QRx',
+  ...meta,
+  title: 'QR-X',
   component: QRX,
-  ...defaultMeta,
 }
 
-export { Default, FillImage, FillVideo, LinearGradient, RadialGradient, CentralImage, CentralImageCustom }
+export { Default, FillImage, LinearGradient, RadialGradient, BrandImage, BrandImageCustom }

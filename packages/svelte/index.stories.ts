@@ -1,4 +1,15 @@
-import { Default, FillImage, LinearGradient, RadialGradient, defaultMeta } from '@common/stories'
+import {
+  meta,
+  data,
+  video,
+  BrandImage,
+  BrandImageCustom,
+  Default,
+  FillImage,
+  LinearGradient,
+  RadialGradient,
+  renderMultiple,
+} from '@common/stories'
 import type { Meta } from '@storybook/svelte'
 import QRX from './dist/index.svelte'
 
@@ -6,12 +17,12 @@ import QRX from './dist/index.svelte'
 //   return new QRX({ target: document.getElementById('storybook-root') as any, props })
 // }
 
-// const Multiple = () => renderMultiple($QRX)
+const Multiple = () => renderMultiple(QRX as never)
 
 export default {
-  title: 'QRx',
+  ...meta,
+  title: 'QR-X',
   component: QRX,
-  ...defaultMeta,
 } satisfies Meta<QRX>
 
-export { Default, FillImage, LinearGradient, RadialGradient }
+export { Default, FillImage, LinearGradient, Multiple, RadialGradient, BrandImage, BrandImageCustom }

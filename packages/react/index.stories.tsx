@@ -1,12 +1,13 @@
 import {
-  CentralImage,
-  CentralImageCustom,
+  meta,
+  data,
+  video,
+  BrandImage,
+  BrandImageCustom,
   Default,
   FillImage,
-  FillVideo,
   LinearGradient,
   RadialGradient,
-  defaultMeta,
   renderMultiple,
 } from '@common/stories'
 import type { Meta } from '@storybook/react'
@@ -14,34 +15,24 @@ import QRX from './index'
 
 const Multiple = () => <div className='grid'>{renderMultiple(QRX)}</div>
 
-const CentralComponent = () => (
+const BrandComponent = () => (
   <QRX
-    data={Default.args?.data as string}
+    data={data}
     central={
       <video
-        src='https://videos.pexels.com/video-files/8333185/8333185-hd_1080_1080_30fps.mp4'
+        src={video}
         style={{ width: '2.5rem', height: '2.5rem', border: '2px solid white', borderRadius: '50%' }}
         muted
         autoPlay
-      ></video>
+      />
     }
   />
 )
 
 export default {
+  ...meta,
   title: 'QR-X',
   component: QRX,
-  ...defaultMeta,
 } satisfies Meta<typeof QRX>
 
-export {
-  Default,
-  FillImage,
-  FillVideo,
-  LinearGradient,
-  Multiple,
-  RadialGradient,
-  CentralImage,
-  CentralImageCustom,
-  CentralComponent,
-}
+export { Default, FillImage, LinearGradient, Multiple, RadialGradient, BrandImage, BrandImageCustom, BrandComponent }

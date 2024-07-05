@@ -1,23 +1,17 @@
 import type { Options } from '@qr-x/core'
 import type { StoryObj } from '@storybook/react'
 
+type Story = StoryObj<Props>
 type Props = Options & { [k: string]: unknown }
 
-type Story = StoryObj<Props>
+export const data = 'https://qr-x.devtrice.dev'
+export const image = 'https://images.unsplash.com/photo-1579546929518-9e396f3cc809?q=80&w=40'
+export const video = 'https://videos.pexels.com/video-files/8333185/8333185-hd_1080_1080_30fps.mp4'
+export const colors = ['#f97316', '#f59e0b', '#facc15']
 
-const URL = 'https://qr-x.devtrice.dev'
-
-export const defaultMeta = {
+export const meta = {
   argTypes: {
-    data: {
-      control: 'text',
-    },
-    // logo: {
-    //   control: 'object',
-    //   src: {
-    //     control: 'text',
-    //   },
-    // },
+    data: { control: 'text' },
     shapes: {
       body: {
         control: 'select',
@@ -33,80 +27,51 @@ export const defaultMeta = {
       },
     },
   },
-}
+} as const
 
 export const Default: Story = {
   args: {
-    data: URL,
+    data,
     color: '#6366f1',
-  },
-}
-
-// export const LogoCenter: Story = {
-//   args: {
-//     data: URL,
-//     color: '#34acd8',
-//     logo: {
-//       src: 'https://static.xx.fbcdn.net/rsrc.php/yT/r/aGT3gskzWBf.ico',
-//     },
-//   },
-// }
-
-export const LinearGradient: Story = {
-  args: {
-    data: URL,
-    gradient: {
-      type: 'linear',
-      colors: ['#f97316', '#f59e0b', '#facc15', '#f9ff23', '#dfdc80', '#ff0000'],
-    },
-    shapes: {
-      body: 'circle',
-      eyeball: 'leaf',
-      eyeframe: 'leaf',
-    },
-  },
-}
-
-export const RadialGradient: Story = {
-  args: {
-    data: URL,
-    gradient: {
-      type: 'radial',
-      colors: ['#f97316', '#f59e0b', '#facc15'],
-    },
   },
 }
 
 export const FillImage: Story = {
   args: {
-    data: URL,
-    fillImage:
-      'https://images.unsplash.com/photo-1682687218608-5e2522b04673?q=80&w=2875&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    data,
+    fillImage: image,
   },
 }
 
-export const FillVideo: Story = {
+export const LinearGradient: Story = {
   args: {
-    data: URL,
-    fillVideo: 'https://videos.pexels.com/video-files/4620563/4620563-uhd_1440_2732_25fps.mp4',
+    data,
+    gradient: { type: 'linear', colors },
   },
 }
 
-export const CentralImage: Story = {
+export const RadialGradient: Story = {
   args: {
-    data: URL,
-    central: 'https://images.unsplash.com/photo-1579546929518-9e396f3cc809?q=80&w=40',
+    data,
+    gradient: { type: 'radial', colors },
   },
 }
 
-export const CentralImageCustom: Story = {
+export const BrandImage: Story = {
   args: {
-    data: URL,
+    data,
+    central: image,
+  },
+}
+
+export const BrandImageCustom: Story = {
+  args: {
+    data,
     central: {
-      src: 'https://images.unsplash.com/photo-1579546929518-9e396f3cc809?q=80&w=40',
+      src: image,
+      style: { border: '2px solid white', borderRadius: '50%' },
       width: 40,
       height: 40,
-      style: { border: '2px solid white', borderRadius: '50%' },
     },
   },
 }
@@ -121,8 +86,8 @@ export const renderMultiple = (component: (props: Props) => any) => {
     ['#f97316', '#f59e0b', '#facc15', '#f9d423', '#ffdc80'],
   ]
   return [
-    ...images.map(image => component({ data: URL, fillImage: image })),
-    ...gradients.map(gradients => component({ data: URL, gradient: { type: 'linear', colors: gradients } })),
-    ...gradients.map(gradients => component({ data: URL, gradient: { type: 'radial', colors: gradients } })),
+    ...images.map(image => component({ data, fillImage: image })),
+    ...gradients.map(gradients => component({ data, gradient: { type: 'linear', colors: gradients } })),
+    ...gradients.map(gradients => component({ data, gradient: { type: 'radial', colors: gradients } })),
   ]
 }

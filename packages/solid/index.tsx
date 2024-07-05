@@ -61,10 +61,7 @@ export default function QRX($props: Props) {
   onMount(() => {
     if (ref) {
       const { width, height } = ref.getBoundingClientRect()
-      setSize({
-        width,
-        height,
-      })
+      setSize({ width, height })
     }
   })
 
@@ -98,8 +95,8 @@ export default function QRX($props: Props) {
                   width: size()?.width + 'px', // without `px`, solid do not include the style property
                   height: size()?.height + 'px', // without `px`, solid do not include the style property
                   display: 'flex',
-                  'justify-content': 'center',
                   'align-items': 'center',
+                  'justify-content': 'center',
                 }}
               >
                 {typeof props.central === 'string' ? (
