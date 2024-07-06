@@ -17,35 +17,7 @@ function isElement(element: any) {
   return element instanceof Element || element instanceof HTMLDocument
 }
 
-// type Props = Options & JSX.SvgSVGAttributes<SVGSVGElement>
-type Props = JSX.SvgSVGAttributes<SVGSVGElement> &
-  Options & {
-    /**
-     * Renders an image or a component in the center of the QR code.
-     * - `string` as an image src to render an image with default width and height
-     * - `ComponentProps<'img'>` to render an image with custom properties.
-     * - `ReactNode` to render a component.
-     * @default width: 28, height: 28
-     */
-    brand?: ImgProps | JSX.Element
-  }
-
-type ImgProps = ComponentProps<'img'> & {
-  /**
-   * Width of the brand image.
-   * @default 28
-   */
-  width?: ComponentProps<'img'>['width']
-  /**
-   * Height of the brand image.
-   * @default 28
-   */
-  height?: ComponentProps<'img'>['height']
-}
-
-function BrandImage({ src, width = 28, height = 28, ...props }: ImgProps) {
-  return <img src={src} width={width} height={height} {...props} />
-}
+type Props = JSX.SvgSVGAttributes<SVGSVGElement> & Options & { brand?: ComponentProps<'img'> | JSX.Element }
 
 export default function QRX($props: Props) {
   const [props, rest] = splitProps($props, ['data', 'level', 'shapes', 'gradient', 'fillImage', 'brand'])
@@ -53,10 +25,6 @@ export default function QRX($props: Props) {
 
   let ref!: SVGSVGElement
   const [size, setSize] = createSignal<{ width: number; height: number } | null>(null)
-
-  createComputed(() => {
-    console.log('size', size())
-  })
 
   onMount(() => {
     if (ref) {
@@ -70,21 +38,8 @@ export default function QRX($props: Props) {
       <g clip-path={`url(#${svg().id})`}>
         <rect {...svg().cords} fill={svg().$gradient ? `url(#${svg().$gradient?.attributes?.id})` : 'currentColor'} />
         <Show when={props.fillImage}>
-          <image
-            {...svg().cords}
-            href={props.fillImage}
-            // @ts-ignore
-            xlink:href={props.fillImage} // Note: Must use both href and xlinkHref to link a source
-            preserveAspectRatio='xMidYMid slice'
-          />
+          <image {...svg().cords} href={props.fillImage} preserveAspectRatio='xMidYMid slice' />
         </Show>
-        {/* <Show when={props.fillVideo}>
-          <foreignObject {...svg().cords}>
-            <div style={{ position: 'relative' }}>
-              <video src={props.fillVideo} width='100%' height='100%' muted autoplay style={{ 'object-fit': 'cover' }} />
-            </div>
-          </foreignObject>
-        </Show> */}
       </g>
       <Show when={props.brand && size()}>
         <foreignObject {...svg().cords}>
@@ -99,10 +54,8 @@ export default function QRX($props: Props) {
                   'justify-content': 'center',
                 }}
               >
-                {typeof props.brand === 'string' ? (
-                  <BrandImage src={props.brand} />
-                ) : !isElement(props.brand) && typeof props.brand === 'object' && 'src' in props.brand! ? (
-                  <BrandImage {...props.brand} />
+                {!isElement(props.brand) && typeof props.brand === 'object' && 'src' in props.brand! ? (
+                  <img {...props.brand} />
                 ) : (
                   (props.brand as JSX.Element)
                 )}
