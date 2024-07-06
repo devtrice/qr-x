@@ -10,17 +10,17 @@ type Props = SVGAttributes<SVGSVGElement> &
      * - `ReactNode` to render a component.
      * @default width: 28, height: 28
      */
-    central?: ImgProps | ReactNode
+    brand?: ImgProps | ReactNode
   }
 
 type ImgProps = ComponentProps<'img'> & {
   /**
-   * Width of the central image.
+   * Width of the brand image.
    * @default 28
    */
   width?: ComponentProps<'img'>['width']
   /**
-   * Height of the central image.
+   * Height of the brand image.
    * @default 28
    */
   height?: ComponentProps<'img'>['height']
@@ -40,11 +40,11 @@ function useViewBox() {
   return { ref, size, viewBox: size ? `0 0 ${size.width} ${size.height}` : '' }
 }
 
-function CentralImage({ src, width = 28, height = 28, ...props }: ImgProps) {
+function BrandImage({ src, width = 28, height = 28, ...props }: ImgProps) {
   return <img src={src} width={width} height={height} {...props} />
 }
 
-export default function QRX({ data, level, shapes, gradient, central, fillImage, ...rest }: Props) {
+export default function QRX({ data, level, shapes, gradient, brand, fillImage, ...rest }: Props) {
   const { ref, size, viewBox } = useViewBox()
   const { id, path, cords, length, $gradient } = getSVGData({ data, level, shapes, gradient })
 
@@ -61,17 +61,17 @@ export default function QRX({ data, level, shapes, gradient, central, fillImage,
           />
         )}
       </g>
-      {central && viewBox && (
+      {brand && viewBox && (
         <foreignObject {...cords}>
           <svg viewBox={viewBox}>
             <foreignObject {...cords} style={{ overflow: 'visible' }}>
               <div style={{ ...size, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                {typeof central === 'string' ? (
-                  <CentralImage src={central} />
-                ) : typeof central === 'object' && 'src' in central ? (
-                  <CentralImage {...central} />
+                {typeof brand === 'string' ? (
+                  <BrandImage src={brand} />
+                ) : typeof brand === 'object' && 'src' in brand ? (
+                  <BrandImage {...brand} />
                 ) : (
-                  (central as ReactNode)
+                  (brand as ReactNode)
                 )}
               </div>
             </foreignObject>

@@ -1,5 +1,5 @@
 {
-  "extends": "@common/tsconfig/base.json",
+  "extends": ["@common/tsconfig/base.json", "./.svelte-kit/tsconfig.json"],
   "compilerOptions": {
     "module": "ES2015",
     "allowJs": true,

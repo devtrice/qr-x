@@ -52,19 +52,19 @@ function App() {
 }
 ```
 
-## Central
+## Brand
 
-## Central Image
+## Brand Image
 
 ```tsx
 import QRX from '@qr-x/solid'
 
 function App() {
-  return <QRX data='qr-x.devtrice.dev' central='https://images.unsplash.com/photo-1682687218608-5e2522b04673' />
+  return <QRX data='qr-x.devtrice.dev' brand='https://images.unsplash.com/photo-1682687218608-5e2522b04673' />
 }
 ```
 
-## Central Image with custom attributes
+## Brand Image with custom attributes
 
 ```tsx
 import QRX from '@qr-x/solid'
@@ -73,7 +73,7 @@ function App() {
   return (
     <QRX
       data='qr-x.devtrice.dev'
-      central={{
+      brand={{
         src: 'https://images.unsplash.com/photo-1682687218608-5e2522b04673',
         alt: '...',
         style: { width: '4rem', height: '4rem' },
@@ -83,7 +83,7 @@ function App() {
 }
 ```
 
-## Central Component
+## Brand Component
 
 ```tsx
 import QRX from '@qr-x/solid'
@@ -92,7 +92,7 @@ function App() {
   return (
     <QRX
       data='qr-x.devtrice.dev'
-      central={
+      brand={
         <video
           src='https://videos.pexels.com/video-files/8333185/8333185-hd_1080_1080_30fps.mp4'
           style={{ width: '2.5rem', height: '2.5rem', border: '2px solid white', 'border-radius': '50%' }}
@@ -118,6 +118,6 @@ function App() {
 | gradients.colors | `string[] \| {value: string, stop: number}`                      |            |
 | gradients.rotate | `number` (This property only exist if gradient.type is 'radial') | `45`       |
 | fillImage        | `string`                                                         |            |
-| central          | `string` \| `ComponentProps<'img'>` \| `JSX.Element`             |            |
-| central.width    | `string` \| `number`                                             | `28`       |
-| central.height   | `string` \| `number`                                             | `28`       |
+| brand            | `string` \| `ComponentProps<'img'>` \| `JSX.Element`             |            |
+| brand.width      | `string` \| `number`                                             | `28`       |
+| brand.height     | `string` \| `number`                                             | `28`       |
