@@ -12,14 +12,10 @@
     renderMultiple,
   } from '@common/stories/index'
 
-  const scenarios = [FillImage, LinearGradient, RadialGradient, BrandImage].map(scenario => scenario.args) as any[]
+  const scenarios = [Default, FillImage, LinearGradient, RadialGradient, BrandImage].map(scenario => scenario.args) as any[]
 </script>
 
 <div class="root">
-  <QRX
-    data="qr-x.devtrice.dev"
-    brand={{ src: 'https://images.unsplash.com/photo-1682687218608-5e2522b04673', style: 'width:2.5rem; height:2.5rem' }}
-  />
   {#each scenarios as scenario}
     <QRX {...scenario} />
   {/each}

@@ -22,6 +22,7 @@
     "vue"
   ],
   "scripts": {
+    "watch": "vite build --watch",
     "build": "rm -rf dist && vue-tsc --noEmit && vite build",
     "build:dts": "tsc -p tsconfig.build.json --outDir ./dist"
   },

@@ -1,5 +1,5 @@
 {
-  "name": "vue",
+  "name": "vue-test",
   "version": "0.0.0",
   "private": true,
   "type": "module",
@@ -16,6 +16,7 @@
     "@common/stories": "workspace:*"
   },
   "devDependencies": {
+    "@common/stories": "workspace:*",
     "@tsconfig/node20": "^20.1.4",
     "@types/node": "^20.14.5",
     "@vitejs/plugin-vue": "^5.0.5",
