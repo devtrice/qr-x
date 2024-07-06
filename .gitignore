@@ -51,9 +51,6 @@ storybook-static
 !.yarn/sdks
 !.yarn/versions
 
-# #vue testing
-# tests/vue
-
 # expo
 .expo/
 dist/
