@@ -17,8 +17,8 @@
   "scripts": {
     "build": "rm -rf dist && pnpm build:dts && pnpm build:esm && pnpm build:cjs",
     "build:dts": "tsc -p tsconfig.build.json --outDir ./dist",
-    "build:esm": "esbuild index.tsx --format=esm --outfile=./dist/index.js",
-    "build:cjs": "esbuild index.tsx --format=cjs --outfile=./dist/index.js"
+    "build:esm": "esbuild index.tsx --format=esm --outfile=./dist/index.esm.js",
+    "build:cjs": "esbuild index.tsx --format=cjs --outfile=./dist/index.cjs.js"
   },
   "dependencies": {
     "@qr-x/core": "workspace:*"
