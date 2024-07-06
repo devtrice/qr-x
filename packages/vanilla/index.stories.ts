@@ -3,7 +3,6 @@ import {
   data,
   video,
   BrandImage,
-  BrandImageCustom,
   Default,
   FillImage,
   LinearGradient,
@@ -27,4 +26,4 @@ export default {
   render: args => createQRX(args),
 } satisfies Meta<Props>
 
-export { Default, FillImage, LinearGradient, Multiple, RadialGradient, BrandImage, BrandImageCustom }
+export { Default, FillImage, LinearGradient, Multiple, RadialGradient, BrandImage }

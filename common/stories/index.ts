@@ -36,13 +36,6 @@ export const Default: Story = {
   },
 }
 
-export const FillImage: Story = {
-  args: {
-    data,
-    fillImage: image,
-  },
-}
-
 export const LinearGradient: Story = {
   args: {
     data,
@@ -57,14 +50,14 @@ export const RadialGradient: Story = {
   },
 }
 
-export const BrandImage: Story = {
+export const FillImage: Story = {
   args: {
     data,
-    brand: image,
+    fillImage: image,
   },
 }
 
-export const BrandImageCustom: Story = {
+export const BrandImage: Story = {
   args: {
     data,
     brand: { src: image, width: 80, height: 80 },

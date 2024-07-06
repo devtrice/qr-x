@@ -5,7 +5,7 @@
   import type { HTMLImgAttributes, SVGAttributes } from 'svelte/elements'
   import { writable } from 'svelte/store'
 
-  type Props = SVGAttributes<never> & Options & { brand?: string | HTMLImgAttributes }
+  type Props = SVGAttributes<never> & Options & { brand?: HTMLImgAttributes }
 
   interface $$Props extends Props {}
 
@@ -41,9 +41,7 @@
           <div
             style="width: {$size.width}px; height: {$size.height}px; display: flex; align-items: center; justify-content: center;"
           >
-            {#if typeof brand === 'string'}
-              <img alt="" src={brand} width="28px" height="28px" />
-            {:else if typeof brand === 'object' && 'src' in brand}
+            {#if brand}
               <img alt="" {...brand} />
             {:else}
               <slot name="brand" />

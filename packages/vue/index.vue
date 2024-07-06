@@ -1,13 +1,10 @@
 <script setup lang="ts">
-import { ImgHTMLAttributes, SVGAttributes, computed } from 'vue'
 import { Options, getSVGData } from '@qr-x/core'
-import BrandImage from './components/BrandImage.vue'
-import { ref, onMounted, reactive } from 'vue'
-import { useSlots } from 'vue'
+import { ImgHTMLAttributes, SVGAttributes, computed, onMounted, reactive, ref, useSlots } from 'vue'
 
 interface Props extends Options {}
 interface Props extends SVGAttributes {
-  brand?: string | ImgHTMLAttributes
+  brand?: ImgHTMLAttributes
 }
 
 const svgRef = ref(null)
@@ -45,19 +42,13 @@ onMounted(() => {
         :xlinkHref="fillImage"
         preserveAspectRatio="xMidYMid slice"
       />
-      <!-- <foreignObject v-if="fillVideo" v-bind="svgState.cords">
-        <div :style="{ position: 'relative' }">
-          <video :src="fillVideo" width="100%" height="100%" muted autoPlay :style="{ objectFit: 'cover' }" />
-        </div>
-      </foreignObject> -->
     </g>
 
     <foreignObject v-if="props.brand || slots.brand" v-bind="svgState.cords">
       <svg :viewBox="`0 0 ${dimensions.width} ${dimensions.height}`">
         <foreignObject v-bind="svgState.cords" :style="{ overflow: 'visible' }">
           <div :style="{ width: '100%', height: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center' }">
-            <BrandImage v-if="typeof brand === 'string'" :src="brand as string" />
-            <BrandImage v-else-if="typeof brand === 'object' && 'src' in brand" v-bind="brand" />
+            <img v-if="brand" v-bind="brand" />
             <slot v-else name="brand"></slot>
           </div>
         </foreignObject>
