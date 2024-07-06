@@ -5,7 +5,6 @@
     data,
     video,
     BrandImage,
-    BrandImageCustom,
     Default,
     FillImage,
     LinearGradient,
@@ -13,9 +12,7 @@
     renderMultiple,
   } from '@common/stories/index'
 
-  const scenarios = [FillImage, LinearGradient, RadialGradient, BrandImage, BrandImageCustom].map(
-    scenario => scenario.args,
-  ) as any[]
+  const scenarios = [Default, FillImage, LinearGradient, RadialGradient, BrandImage].map(scenario => scenario.args) as any[]
 </script>
 
 <div class="root">

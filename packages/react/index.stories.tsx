@@ -3,7 +3,6 @@ import {
   data,
   video,
   BrandImage,
-  BrandImageCustom,
   Default,
   FillImage,
   LinearGradient,
@@ -35,4 +34,4 @@ export default {
   component: QRX,
 } satisfies Meta<typeof QRX>
 
-export { Default, FillImage, LinearGradient, Multiple, RadialGradient, BrandImage, BrandImageCustom, BrandComponent }
+export { Default, FillImage, LinearGradient, Multiple, RadialGradient, BrandImage, BrandComponent }

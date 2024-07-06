@@ -39,7 +39,7 @@ import createQRX from '@qr-x/vanilla'
 const qrx = createQRX({
   data: 'https://qr-x.devtrice.dev/',
   gradient: {
-    colors: ['#0ea5e9', '#a3e635', '#34d399'],
+    colors: ['#f97316', '#f59e0b', '#facc15'],
   },
 })
 
@@ -56,7 +56,7 @@ const qrx = createQRX({
   data: 'https://qr-x.devtrice.dev/',
   gradient: {
     type: 'radial',
-    colors: ['#0ea5e9', '#a3e635', '#34d399'],
+    colors: ['#f97316', '#f59e0b', '#facc15'],
   },
 })
 

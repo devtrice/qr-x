@@ -2,7 +2,7 @@
   "name": "@qr-x/react",
   "version": "1.1.0",
   "license": "MIT",
-  "description": "",
+  "description": "Create elegant QR codes",
   "main": "dist/index.cjs.js",
   "types": "dist/index.d.ts",
   "module": "dist/index.esm.js",

@@ -1,11 +1,12 @@
 {
   "name": "@qr-x/svelte",
-  "version": "0.0.3",
+  "version": "1.0.1",
   "license": "MIT",
   "type": "module",
   "main": "dist/index.js",
   "types": "./dist/index.d.js",
   "svelte": "./dist/index.js",
+  "description": "Create elegant QR codes",
   "files": [
     "dist"
   ],
