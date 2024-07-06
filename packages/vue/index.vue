@@ -1,13 +1,13 @@
 <script setup lang="ts">
 import { ImgHTMLAttributes, SVGAttributes, computed } from 'vue'
 import { Options, getSVGData } from '@qr-x/core'
-import CentralImage from './components/CentralImage.vue'
+import BrandImage from './components/BrandImage.vue'
 import { ref, onMounted, reactive } from 'vue'
 import { useSlots } from 'vue'
 
 interface Props extends Options {}
 interface Props extends SVGAttributes {
-  central?: string | ImgHTMLAttributes
+  brand?: string | ImgHTMLAttributes
 }
 
 const svgRef = ref(null)
@@ -52,13 +52,13 @@ onMounted(() => {
       </foreignObject> -->
     </g>
 
-    <foreignObject v-if="props.central || slots.central" v-bind="svgState.cords">
+    <foreignObject v-if="props.brand || slots.brand" v-bind="svgState.cords">
       <svg :viewBox="`0 0 ${dimensions.width} ${dimensions.height}`">
         <foreignObject v-bind="svgState.cords" :style="{ overflow: 'visible' }">
           <div :style="{ width: '100%', height: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center' }">
-            <CentralImage v-if="typeof central === 'string'" :src="central as string" />
-            <CentralImage v-else-if="typeof central === 'object' && 'src' in central" v-bind="central" />
-            <slot v-else name="central"></slot>
+            <BrandImage v-if="typeof brand === 'string'" :src="brand as string" />
+            <BrandImage v-else-if="typeof brand === 'object' && 'src' in brand" v-bind="brand" />
+            <slot v-else name="brand"></slot>
           </div>
         </foreignObject>
       </svg>

@@ -18,7 +18,7 @@ const Multiple = () => <div class='grid'>{renderMultiple(QRX)}</div>
 const BrandComponent = () => (
   <QRX
     data={data}
-    central={
+    brand={
       <video
         src={video}
         style={{ width: '2.5rem', height: '2.5rem', border: '2px solid white', 'border-radius': '50%' }}

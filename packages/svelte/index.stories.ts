@@ -17,12 +17,10 @@ import QRX from './dist/index.svelte'
 //   return new QRX({ target: document.getElementById('storybook-root') as any, props })
 // }
 
-const Multiple = () => renderMultiple(QRX as never)
-
 export default {
   ...meta,
   title: 'QR-X',
   component: QRX,
 } satisfies Meta<QRX>
 
-export { Default, FillImage, LinearGradient, Multiple, RadialGradient, BrandImage, BrandImageCustom }
+export { Default, FillImage, LinearGradient, RadialGradient, BrandImage, BrandImageCustom }

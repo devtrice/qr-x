@@ -60,19 +60,14 @@ export const RadialGradient: Story = {
 export const BrandImage: Story = {
   args: {
     data,
-    central: image,
+    brand: image,
   },
 }
 
 export const BrandImageCustom: Story = {
   args: {
     data,
-    central: {
-      src: image,
-      style: { border: '2px solid white', borderRadius: '50%' },
-      width: 40,
-      height: 40,
-    },
+    brand: { src: image, width: 80, height: 80 },
   },
 }
 
