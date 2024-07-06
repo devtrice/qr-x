@@ -1,4 +1,15 @@
-import { Default, FillImage, LinearGradient, RadialGradient, defaultMeta, renderMultiple } from '@common/stories'
+import {
+  meta,
+  data,
+  video,
+  BrandImage,
+  BrandImageCustom,
+  Default,
+  FillImage,
+  LinearGradient,
+  RadialGradient,
+  renderMultiple,
+} from '@common/stories'
 import type { Meta } from '@storybook/html'
 import createQRX, { Props } from './index'
 
@@ -11,9 +22,9 @@ const Multiple = () => {
 }
 
 export default {
-  title: 'QRx',
+  ...meta,
+  title: 'QR-X',
   render: args => createQRX(args),
-  ...defaultMeta,
 } satisfies Meta<Props>
 
-export { Default, FillImage, LinearGradient, Multiple, RadialGradient }
+export { Default, FillImage, LinearGradient, Multiple, RadialGradient, BrandImage, BrandImageCustom }

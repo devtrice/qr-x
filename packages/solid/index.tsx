@@ -27,28 +27,28 @@ type Props = JSX.SvgSVGAttributes<SVGSVGElement> &
      * - `ReactNode` to render a component.
      * @default width: 28, height: 28
      */
-    central?: ImgProps | JSX.Element
+    brand?: ImgProps | JSX.Element
   }
 
 type ImgProps = ComponentProps<'img'> & {
   /**
-   * Width of the central image.
+   * Width of the brand image.
    * @default 28
    */
   width?: ComponentProps<'img'>['width']
   /**
-   * Height of the central image.
+   * Height of the brand image.
    * @default 28
    */
   height?: ComponentProps<'img'>['height']
 }
 
-function CentralImage({ src, width = 28, height = 28, ...props }: ImgProps) {
+function BrandImage({ src, width = 28, height = 28, ...props }: ImgProps) {
   return <img src={src} width={width} height={height} {...props} />
 }
 
 export default function QRX($props: Props) {
-  const [props, rest] = splitProps($props, ['data', 'level', 'shapes', 'gradient', 'fillImage', 'central'])
+  const [props, rest] = splitProps($props, ['data', 'level', 'shapes', 'gradient', 'fillImage', 'brand'])
   const svg = createMemo(() => getSVGData(props))
 
   let ref!: SVGSVGElement
@@ -61,10 +61,7 @@ export default function QRX($props: Props) {
   onMount(() => {
     if (ref) {
       const { width, height } = ref.getBoundingClientRect()
-      setSize({
-        width,
-        height,
-      })
+      setSize({ width, height })
     }
   })
 
@@ -89,7 +86,7 @@ export default function QRX($props: Props) {
           </foreignObject>
         </Show> */}
       </g>
-      <Show when={props.central && size()}>
+      <Show when={props.brand && size()}>
         <foreignObject {...svg().cords}>
           <svg viewBox={`0 0 ${size()?.width} ${size()?.height}`}>
             <foreignObject {...svg().cords} style={{ overflow: 'visible' }}>
@@ -98,16 +95,16 @@ export default function QRX($props: Props) {
                   width: size()?.width + 'px', // without `px`, solid do not include the style property
                   height: size()?.height + 'px', // without `px`, solid do not include the style property
                   display: 'flex',
-                  'justify-content': 'center',
                   'align-items': 'center',
+                  'justify-content': 'center',
                 }}
               >
-                {typeof props.central === 'string' ? (
-                  <CentralImage src={props.central} />
-                ) : !isElement(props.central) && typeof props.central === 'object' && 'src' in props.central! ? (
-                  <CentralImage {...props.central} />
+                {typeof props.brand === 'string' ? (
+                  <BrandImage src={props.brand} />
+                ) : !isElement(props.brand) && typeof props.brand === 'object' && 'src' in props.brand! ? (
+                  <BrandImage {...props.brand} />
                 ) : (
-                  (props.central as JSX.Element)
+                  (props.brand as JSX.Element)
                 )}
               </div>
             </foreignObject>
