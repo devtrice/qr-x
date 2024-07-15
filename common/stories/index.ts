@@ -60,7 +60,8 @@ export const FillImage: Story = {
 export const BrandImage: Story = {
   args: {
     data,
-    brand: { src: image, width: 80, height: 80 },
+    brand: { src: image, width: 40, height: 40 },
+    excavate: { width: 40, height: 40 },
   },
 }
 

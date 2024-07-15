@@ -25,6 +25,7 @@ const BrandComponent = () => (
         autoPlay
       />
     }
+    excavate={{ width: 40, height: 40 }}
   />
 )
 
