@@ -1,0 +1,4 @@
+{
+  "extends": "@common/tsconfig/build.json",
+  "exclude": ["node_modules", "dist", "index.stories.tsx"]
+}

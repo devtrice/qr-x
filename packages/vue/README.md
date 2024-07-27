@@ -18,7 +18,7 @@ import QRX from '@qr-x/vue'
 </script>
 
 <template>
-  <QRX data="qr-x.devtrice.dev" color="#0284c7" />
+  <QRX data="https://qr-x.devtrice.dev" color="#0284c7" />
 </template>
 ```
 
@@ -33,7 +33,7 @@ import QRX from '@qr-x/vue'
 
 <template>
   <QRX
-    data="qr-x.devtrice.dev"
+    data="https://qr-x.devtrice.dev"
     :gradient="{
       colors: ['#f97316', '#f59e0b', '#facc15'],
     }"
@@ -50,7 +50,7 @@ import QRX from '@qr-x/vue'
 
 <template>
   <QRX
-    data="qr-x.devtrice.dev"
+    data="https://qr-x.devtrice.dev"
     :gradient="{
       type: 'radial',
       colors: ['#f97316', '#f59e0b', '#facc15'],
@@ -67,7 +67,7 @@ import QRX from '@qr-x/vue'
 </script>
 
 <template>
-  <QRX data="qr-x.devtrice.dev" fillImage="https://images.unsplash.com photo-1682687218608-5e2522b04673" />
+  <QRX data="https://qr-x.devtrice.dev" fillImage="https://images.unsplash.com photo-1682687218608-5e2522b04673" />
 </template>
 ```
 
@@ -81,7 +81,7 @@ import QRX from '@qr-x/vue'
 </script>
 
 <QRX
-  data="qr-x.devtrice.dev"
+  data="https://qr-x.devtrice.dev"
   brand={{ src: 'https://images.unsplash.com/photo-1682687218608-5e2522b04673', style: 'width: 4rem; height: 4rem' }}
 />
 ```
@@ -93,7 +93,7 @@ import QRX from '@qr-x/vue'
 import QRX from '@qr-x/vue'
 </script>
 
-<QRX data="qr-x.devtrice.dev">
+<QRX data="https://qr-x.devtrice.dev">
   <template v-slot:brand>
     <video
       src="https://videos.pexels.com/video-files/8333185/8333185-hd_1080_1080_30fps.mp4"

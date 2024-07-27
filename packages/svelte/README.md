@@ -17,7 +17,7 @@ You can also try QR-X in action [here](https://qr-x.devtrice.dev/#playground) or
   import QRX from '@qr-x/svelte'
 </script>
 
-<QRX data="qr-x.devtrice.dev" color="#0ea5e9" />
+<QRX data="https://qr-x.devtrice.dev" color="#0ea5e9" />
 ```
 
 ## Gradient
@@ -30,7 +30,7 @@ You can also try QR-X in action [here](https://qr-x.devtrice.dev/#playground) or
 </script>
 
 <QRX
-  data="qr-x.devtrice.dev"
+  data="https://qr-x.devtrice.dev"
   gradient={{
     type: 'linear',
     colors: ['#f97316', '#f59e0b', '#facc15'],
@@ -46,7 +46,7 @@ You can also try QR-X in action [here](https://qr-x.devtrice.dev/#playground) or
 </script>
 
 <QRX
-  data="qr-x.devtrice.dev"
+  data="https://qr-x.devtrice.dev"
   gradient={{
     type: 'radial',
     colors: ['#f97316', '#f59e0b', '#facc15'],
@@ -61,7 +61,7 @@ You can also try QR-X in action [here](https://qr-x.devtrice.dev/#playground) or
   import QRX from '@qr-x/svelte'
 </script>
 
-<QRX data="qr-x.devtrice.dev" fillImage="https://images.unsplash.com/photo-1682687218608-5e2522b04673" />
+<QRX data="https://qr-x.devtrice.dev" fillImage="https://images.unsplash.com/photo-1682687218608-5e2522b04673" />
 ```
 
 ## Brand
@@ -74,7 +74,7 @@ You can also try QR-X in action [here](https://qr-x.devtrice.dev/#playground) or
 </script>
 
 <QRX
-  data="qr-x.devtrice.dev"
+  data="https://qr-x.devtrice.dev"
   brand={{ src: 'https://images.unsplash.com/photo-1682687218608-5e2522b04673', style: 'width: 4rem; height: 4rem' }}
 />
 ```
@@ -86,7 +86,7 @@ You can also try QR-X in action [here](https://qr-x.devtrice.dev/#playground) or
   import QRX from '@qr-x/svelte'
 </script>
 
-<QRX data="qr-x.devtrice.dev">
+<QRX data="https://qr-x.devtrice.dev">
   <video
     slot="brand"
     src="https://videos.pexels.com/video-files/8333185/8333185-hd_1080_1080_30fps.mp4"
