@@ -1,19 +1,46 @@
-import { Default, FillImage, LinearGradient, RadialGradient, defaultMeta, renderMultiple } from '@common/stories'
+import {
+  meta,
+  data,
+  video,
+  BrandImage,
+  Default,
+  FillImage,
+  LinearGradient,
+  RadialGradient,
+  renderMultiple,
+} from '@common/stories'
 import type { Meta } from '@storybook/html'
-import createQRX, { Props } from './index'
+import createQRX from './index'
+import { $ } from './src/utils'
 
 const Multiple = () => {
+  const grid = $('div', { className: 'grid' }, true)
   const elements = renderMultiple(createQRX)
-  const grid = document.createElement('div')
-  grid.className = 'grid'
-  grid.innerHTML = elements.join('')
+  elements.forEach(element => grid.appendChild(element))
   return grid
 }
 
-export default {
-  title: 'QRx',
-  render: args => createQRX(args),
-  ...defaultMeta,
-} satisfies Meta<Props>
+const BrandComponent = () => {
+  const v = document.createElement('video')
+  const qrx = createQRX({
+    data,
+    brand: $(
+      'video',
+      {
+        src: video,
+        style: { width: '2.5rem', height: '2.5rem', border: '2px solid white', 'border-radius': '50%' },
+        autoplay: true,
+      },
+      true,
+    ),
+  })
+  return qrx
+}
 
-export { Default, FillImage, LinearGradient, Multiple, RadialGradient }
+export default {
+  ...meta,
+  title: 'QR-X',
+  render: args => createQRX(args),
+} satisfies Meta<Parameters<typeof createQRX>[0]>
+
+export { Default, FillImage, LinearGradient, Multiple, RadialGradient, BrandImage, BrandComponent }

@@ -1,13 +1,28 @@
 import { getSVGData, Options } from '@qr-x/core'
-import React, { SVGAttributes } from 'react'
+import React, { ComponentProps, ReactElement, ReactNode, SVGAttributes, useEffect } from 'react'
 
-type Props = Options & SVGAttributes<SVGSVGElement>
+type Props = SVGAttributes<SVGSVGElement> & Options & { brand?: ComponentProps<'img'> | ReactElement }
 
-export default function QRX({ data, level, shapes, gradient, fillImage, ...rest }: Props) {
+function useViewBox() {
+  const ref = React.useRef<SVGSVGElement>(null)
+  const [size, setSize] = React.useState<{ width: number; height: number } | null>(null)
+
+  useEffect(() => {
+    if (ref.current) {
+      const { width, height } = ref.current.getBoundingClientRect()
+      setSize({ width, height })
+    }
+  }, [])
+
+  return { ref, size, viewBox: size ? `0 0 ${size.width} ${size.height}` : '' }
+}
+
+export default function QRX({ data, level, brand, shapes, gradient, fillImage, ...rest }: Props) {
+  const { ref, size, viewBox } = useViewBox()
   const { id, path, cords, length, $gradient } = getSVGData({ data, level, shapes, gradient })
 
   return (
-    <svg width='100%' {...rest} viewBox={`0 0 ${length} ${length}`}>
+    <svg ref={ref} width='100%' {...rest} viewBox={`0 0 ${length} ${length}`}>
       <g clipPath={`url(#${id})`}>
         <rect {...cords} fill={$gradient ? `url(#${$gradient.attributes.id})` : 'currentColor'} />
         {fillImage && (
@@ -19,6 +34,17 @@ export default function QRX({ data, level, shapes, gradient, fillImage, ...rest 
           />
         )}
       </g>
+      {brand && viewBox && (
+        <foreignObject {...cords}>
+          <svg viewBox={viewBox}>
+            <foreignObject {...cords} style={{ overflow: 'visible' }}>
+              <div style={{ ...size, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                {typeof brand === 'object' && 'src' in brand ? <img {...brand} /> : (brand as ReactNode)}
+              </div>
+            </foreignObject>
+          </svg>
+        </foreignObject>
+      )}
       <defs>
         <clipPath id={id}>
           <path d={path} />

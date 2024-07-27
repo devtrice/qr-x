@@ -29,6 +29,7 @@ const config: StorybookConfig = {
         (resolves, module) => ({
           ...resolves,
           [module]: path.join($path, 'node_modules', module),
+          'svelte/store': path.join($path, 'node_modules', 'svelte/src/runtime/store'),
           'svelte/internal': path.join($path, 'node_modules', 'svelte/src/runtime/internal'),
         }),
         {},

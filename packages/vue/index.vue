@@ -1,11 +1,16 @@
 <script setup lang="ts">
-import { SVGAttributes, computed } from 'vue'
 import { Options, getSVGData } from '@qr-x/core'
+import { ImgHTMLAttributes, SVGAttributes, computed, onMounted, reactive, ref, useSlots } from 'vue'
 
 interface Props extends Options {}
-interface Props extends SVGAttributes {}
+interface Props extends SVGAttributes {
+  brand?: ImgHTMLAttributes
+}
 
+const svgRef = ref(null)
+const slots = useSlots()
 const props = defineProps<Props>()
+const dimensions = reactive({ width: 0, height: 0 })
 
 const svgState = computed(() =>
   getSVGData({
@@ -15,10 +20,19 @@ const svgState = computed(() =>
     gradient: props.gradient,
   }),
 )
+
+onMounted(() => {
+  const element = svgRef.value
+  if (element) {
+    const { clientWidth, clientHeight } = element
+    dimensions.width = clientWidth
+    dimensions.height = clientHeight
+  }
+})
 </script>
 
 <template>
-  <svg v-bind="props" width="100%" :viewBox="`0 0 ${svgState.length} ${svgState.length}`">
+  <svg ref="svgRef" v-bind="props" width="100%" :viewBox="`0 0 ${svgState.length} ${svgState.length}`">
     <g :clip-path="`url(#${svgState.id})`">
       <rect v-bind="svgState.cords" :fill="svgState.$gradient ? `url(#${svgState.$gradient.attributes.id})` : 'currentColor'" />
       <image
@@ -28,12 +42,18 @@ const svgState = computed(() =>
         :xlinkHref="fillImage"
         preserveAspectRatio="xMidYMid slice"
       />
-      <!-- <foreignObject v-if="fillVideo" v-bind="svgState.cords">
-        <div :style="{ position: 'relative' }">
-          <video :src="fillVideo" width="100%" height="100%" muted autoPlay :style="{ objectFit: 'cover' }" />
-        </div>
-      </foreignObject> -->
     </g>
+
+    <foreignObject v-if="props.brand || slots.brand" v-bind="svgState.cords">
+      <svg :viewBox="`0 0 ${dimensions.width} ${dimensions.height}`">
+        <foreignObject v-bind="svgState.cords" :style="{ overflow: 'visible' }">
+          <div :style="{ width: '100%', height: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center' }">
+            <img v-if="brand" v-bind="brand" />
+            <slot v-else name="brand"></slot>
+          </div>
+        </foreignObject>
+      </svg>
+    </foreignObject>
 
     <defs>
       <clipPath :id="svgState.id">
