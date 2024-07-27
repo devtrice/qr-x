@@ -1,0 +1,40 @@
+{
+  "name": "@qr-x/react-native",
+  "version": "1.1.0",
+  "license": "MIT",
+  "description": "Create elegant QR codes",
+  "main": "dist/index.cjs.js",
+  "types": "dist/index.d.ts",
+  "module": "dist/index.esm.js",
+  "files": [
+    "dist"
+  ],
+  "keywords": [
+    "qr",
+    "code",
+    "react"
+  ],
+  "scripts": {
+    "build": "rm -rf dist && pnpm build:dts && pnpm build:esm && pnpm build:cjs",
+    "build:dts": "tsc -p tsconfig.build.json --outDir ./dist",
+    "build:esm": "esbuild index.tsx --format=esm --outfile=./dist/index.esm.js",
+    "build:cjs": "esbuild index.tsx --format=cjs --outfile=./dist/index.cjs.js"
+  },
+  "dependencies": {
+    "@qr-x/core": "workspace:*",
+    "react-native": "^0.74.3",
+    "react-native-svg": "^15.4.0"
+  },
+  "devDependencies": {
+    "@common/stories": "workspace:*",
+    "@common/tsconfig": "workspace:*",
+    "@storybook/react": "^7.6.17",
+    "@types/react": "^18.2.39",
+    "esbuild": "^0.19.8",
+    "react": "^18.2.0",
+    "typescript": "^5.3.3"
+  },
+  "peerDependencies": {
+    "react": "^16.x || ^17.x || ^18.x"
+  }
+}

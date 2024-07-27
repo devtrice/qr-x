@@ -1,0 +1,6 @@
+{
+  "extends": "@common/tsconfig/base.json",
+  "compilerOptions": {
+    "jsx": "react-native"
+  }
+}
