@@ -10,7 +10,7 @@ npm install @qr-x/vanilla
 
 You can also try QR-X in action [here](https://qr-x.devtrice.dev/#playground) or follow the examples below.
 
-## Solid Background
+## Solid
 
 ```ts
 import createQRX from '@qr-x/vanilla'
@@ -26,10 +26,10 @@ const qrx = createQRX({
 })
 
 const qrContainer = document.getElementById('qr-container')
-qrContainer.innerHTML = qrx
+qrContainer.appendChild(qrx)
 ```
 
-## Gradient Background
+## Gradient
 
 ### Linear Gradient
 
@@ -44,7 +44,7 @@ const qrx = createQRX({
 })
 
 const qrContainer = document.getElementById('qr-container')
-qrContainer.innerHTML = qrx
+qrContainer.appendChild(qrx)
 ```
 
 ### Radial Gradient
@@ -61,10 +61,10 @@ const qrx = createQRX({
 })
 
 const qrContainer = document.getElementById('qr-container')
-qrContainer.innerHTML = qrx
+qrContainer.appendChild(qrx)
 ```
 
-## Image Background
+## Fill Image
 
 ```ts
 import createQRX from '@qr-x/vanilla'
@@ -75,7 +75,44 @@ const qrx = createQRX({
 })
 
 const qrContainer = document.getElementById('qr-container')
-qrContainer.innerHTML = qrx
+qrContainer.appendChild(qrx)
+```
+
+## Brand
+
+## Brand Image
+
+```ts
+import createQRX from '@qr-x/vanilla'
+
+const qrx = createQRX({
+  data: 'https://qr-x.devtrice.dev/',
+  brand: {
+    src: 'https://images.unsplash.com/photo-1682687218608-5e2522b04673',
+    style: { width: '4rem', height: '4rem' },
+  },
+})
+```
+
+## Brand Component
+
+```ts
+import createQRX from '@qr-x/vanilla'
+
+const vid = document.createElement('video')
+
+vid.src = 'https://videos.pexels.com/video-files/8333185/8333185-hd_1080_1080_30fps.mp4'
+vid.muted = true
+vid.autoplay = true
+vid.style.width = '2.5rem'
+vid.style.height = '2.5rem'
+vid.style.border = '2px solid white'
+vid.style.borderRadius = '50%'
+
+const qrx = createQRX({
+  data: 'https://qr-x.devtrice.dev/',
+  brand: vid,
+})
 ```
 
 # Props
@@ -91,3 +128,4 @@ qrContainer.innerHTML = qrx
 | gradients.colors | `string[] \| {value: string, stop: number}`                      |            |
 | gradients.rotate | `number` (This property only exist if gradient.type is 'radial') | `45`       |
 | fillImage        | `string`                                                         |            |
+| brand            | HTML Img Attributes \| `Element`                                 |            |
