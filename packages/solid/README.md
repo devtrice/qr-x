@@ -16,7 +16,7 @@ You can also try QR-X in action [here](https://qr-x.devtrice.dev/#playground) or
 import QRX from '@qr-x/solid'
 
 function App() {
-  return <QRX data='Helloworld' color='#0284c7' />
+  return <QRX data='https://qr-x.devtrice.dev' color='#0284c7' />
 }
 ```
 
@@ -28,7 +28,7 @@ function App() {
 import QRX from '@qr-x/solid'
 
 function App() {
-  return <QRX data='Helloworld' gradient={{ colors: ['#f97316', '#f59e0b', '#facc15'] }} />
+  return <QRX data='https://qr-x.devtrice.dev' gradient={{ colors: ['#f97316', '#f59e0b', '#facc15'] }} />
 }
 ```
 
@@ -38,7 +38,7 @@ function App() {
 import QRX from '@qr-x/solid'
 
 function App() {
-  return <QRX data='Helloworld' gradient={{ type: 'radial', colors: ['#f97316', '#f59e0b', '#facc15'] }} />
+  return <QRX data='https://qr-x.devtrice.dev' gradient={{ type: 'radial', colors: ['#f97316', '#f59e0b', '#facc15'] }} />
 }
 ```
 
@@ -48,7 +48,7 @@ function App() {
 import QRX from '@qr-x/solid'
 
 function App() {
-  return <QRX data='Helloworld' fillImage='https://images.unsplash.com/photo-1682687218608-5e2522b04673' />
+  return <QRX data='https://qr-x.devtrice.dev' fillImage='https://images.unsplash.com/photo-1682687218608-5e2522b04673' />
 }
 ```
 

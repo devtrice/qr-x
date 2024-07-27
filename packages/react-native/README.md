@@ -3,7 +3,7 @@
 # Installation
 
 ```bash
-npm install @qr-x/react
+npm install @qr-x/react-native
 ```
 
 # Usage
@@ -13,10 +13,10 @@ You can also try QR-X in action [here](https://qr-x.devtrice.dev/#playground) or
 ## Solid
 
 ```tsx
-import QRX from '@qr-x/react'
+import QRX from '@qr-x/react-native'
 
 function App() {
-  return <QRX data='qr-x.devtrice.dev' color='#0284c7' />
+  return <QRX data='https://qr-x.devtrice.dev' width={400} height={400} color='#0284c7' />
 }
 ```
 
@@ -25,30 +25,46 @@ function App() {
 ### Linear Gradient
 
 ```tsx
-import QRX from '@qr-x/react'
+import QRX from '@qr-x/react-native'
 
 function App() {
-  return <QRX data='qr-x.devtrice.dev' gradient={{ colors: ['#f97316', '#f59e0b', '#facc15'] }} />
+  return (
+    <QRX data='https://qr-x.devtrice.dev' width={400} height={400} gradient={{ colors: ['#f97316', '#f59e0b', '#facc15'] }} />
+  )
 }
 ```
 
 ### Radial Gradient
 
 ```tsx
-import QRX from '@qr-x/react'
+import QRX from '@qr-x/react-native'
 
 function App() {
-  return <QRX data='qr-x.devtrice.dev' gradient={{ type: 'radial', colors: ['#f97316', '#f59e0b', '#facc15'] }} />
+  return (
+    <QRX
+      data='https://qr-x.devtrice.dev'
+      width={400}
+      height={400}
+      gradient={{ type: 'radial', colors: ['#f97316', '#f59e0b', '#facc15'] }}
+    />
+  )
 }
 ```
 
 ## Fill Image
 
 ```tsx
-import QRX from '@qr-x/react'
+import QRX from '@qr-x/react-native'
 
 function App() {
-  return <QRX data='qr-x.devtrice.dev' fillImage='https://images.unsplash.com/photo-1682687218608-5e2522b04673' />
+  return (
+    <QRX
+      data='https://qr-x.devtrice.dev'
+      width={400}
+      height={400}
+      fillImage='https://images.unsplash.com/photo-1682687218608-5e2522b04673'
+    />
+  )
 }
 ```
 
@@ -57,15 +73,17 @@ function App() {
 ## Brand Image
 
 ```tsx
-import QRX from '@qr-x/react'
+import QRX from '@qr-x/react-native'
 
 function App() {
   return (
     <QRX
-      data='qr-x.devtrice.dev'
+      data='https://qr-x.devtrice.dev'
+      width={400}
+      height={400}
       brand={{
         src: 'https://images.unsplash.com/photo-1682687218608-5e2522b04673',
-        style: { width: '4rem', height: '4rem' },
+        style: { width: 32, height: 32 },
       }}
     />
   )
@@ -75,20 +93,15 @@ function App() {
 ## Brand Component
 
 ```tsx
-import QRX from '@qr-x/react'
+import QRX from '@qr-x/react-native'
 
 function App() {
   return (
     <QRX
-      data='qr-x.devtrice.dev'
-      brand={
-        <video
-          src='https://videos.pexels.com/video-files/8333185/8333185-hd_1080_1080_30fps.mp4'
-          style={{ width: '2.5rem', height: '2.5rem', border: '2px solid white', borderRadius: '50%' }}
-          muted
-          autoPlay
-        />
-      }
+      data='https://qr-x.devtrice.dev'
+      width={400}
+      height={400}
+      brand={<View style={{ width: 50, height: 50, background: 'red' }} />}
     />
   )
 }
