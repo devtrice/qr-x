@@ -1,43 +1,49 @@
 import { getSVGData, Options } from '@qr-x/core'
-import { View, Image, ImageProps } from 'react-native'
+import React, { ReactElement, ReactNode } from 'react'
+import { Image, ImageProps, View } from 'react-native'
 import {
-  Svg,
-  SvgProps,
-  G,
-  Rect,
-  Image as SVGImage,
-  ForeignObject,
-  Defs,
-  Path,
-  LinearGradient,
-  Stop,
   ClipPath,
+  Defs,
+  ForeignObject,
+  G,
+  LinearGradient,
+  Path,
   RadialGradient,
+  Rect,
+  Stop,
+  Svg,
+  Image as SVGImage,
+  SvgProps,
 } from 'react-native-svg'
-import React, { ComponentProps, ReactElement, ReactNode, SVGAttributes, useEffect } from 'react'
 
 type Props = SvgProps & Options & { brand?: ImageProps | ReactElement }
 
-function useViewBox() {
-  const ref = React.useRef<Svg>(null)
-  const [size, setSize] = React.useState<{ width: number; height: number } | null>(null)
-
-  useEffect(() => {
-    if (ref.current) {
-      // const { width, height } = ref.current.getBoundingClientRect()
-      // setSize({ width, height })
-    }
-  }, [])
-
-  return { ref, size, viewBox: size ? `0 0 ${size.width} ${size.height}` : '' }
-}
-
 export default function QRX({ data, level, shapes, gradient, brand, fillImage, ...rest }: Props) {
-  const { ref, size, viewBox } = useViewBox()
-  const { id, path, cords, length, $gradient } = getSVGData({ data, level, shapes, gradient })
+  const [size, setSize] = React.useState<{
+    width: number
+    height: number
+  } | null>(null)
 
+  const { id, path, cords, length, $gradient } = getSVGData({
+    data,
+    level,
+    shapes,
+    gradient,
+  })
+
+  const viewBox = size ? `0 0 ${size.width} ${size.height}` : ''
   return (
-    <Svg ref={ref} width='100%' {...rest} viewBox={`0 0 ${length} ${length}`}>
+    <Svg
+      onLayout={event => {
+        setSize({
+          width: event.nativeEvent.layout.width,
+          height: event.nativeEvent.layout.height,
+        })
+      }}
+      width='100%'
+      {...rest}
+      viewBox={`0 0 ${length} ${length}`}
+    >
       <G clipPath={`url(#${id})`}>
         <Rect {...cords} fill={$gradient ? `url(#${$gradient.attributes.id})` : 'currentColor'} />
         {fillImage && (
@@ -53,7 +59,14 @@ export default function QRX({ data, level, shapes, gradient, brand, fillImage, .
         <ForeignObject {...cords}>
           <Svg viewBox={viewBox}>
             <ForeignObject {...cords}>
-              <View style={{ ...size, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+              <View
+                style={{
+                  ...size,
+                  display: 'flex',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                }}
+              >
                 {typeof brand === 'object' && 'src' in brand ? <Image {...brand} /> : (brand as ReactNode)}
               </View>
             </ForeignObject>
