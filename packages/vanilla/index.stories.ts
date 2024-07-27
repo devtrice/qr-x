@@ -21,6 +21,7 @@ const Multiple = () => {
 }
 
 const BrandComponent = () => {
+  const v = document.createElement('video')
   const qrx = createQRX({
     data,
     brand: $(
