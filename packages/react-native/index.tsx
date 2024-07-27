@@ -36,8 +36,6 @@ export default function QRX({ data, level, shapes, gradient, brand, fillImage, .
   const { ref, size, viewBox } = useViewBox()
   const { id, path, cords, length, $gradient } = getSVGData({ data, level, shapes, gradient })
 
-  const Gradient = $gradient && $gradient.isLinearGradient ? LinearGradient : RadialGradient
-
   return (
     <Svg ref={ref} width='100%' {...rest} viewBox={`0 0 ${length} ${length}`}>
       <G clipPath={`url(#${id})`}>
@@ -66,13 +64,14 @@ export default function QRX({ data, level, shapes, gradient, brand, fillImage, .
         <ClipPath id={id}>
           <Path d={path} />
         </ClipPath>
-        {/* <Gradient {...$gradient?.attributes}></Gradient>
+
         {$gradient &&
           React.createElement(
-            ,
+            //@ts-ignore
+            $gradient && $gradient.isLinearGradient ? LinearGradient : RadialGradient,
             $gradient.attributes,
             $gradient.colors.map(({ color, offset }) => <Stop key={offset} offset={offset} stopColor={color} />),
-          )} */}
+          )}
       </Defs>
     </Svg>
   )
