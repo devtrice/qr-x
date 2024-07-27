@@ -1,6 +1,6 @@
 {
   "name": "@qr-x/vanilla",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "license": "MIT",
   "description": "Create elegant QR codes",
   "main": "dist/index.cjs.js",
@@ -18,8 +18,8 @@
   "scripts": {
     "build": "rm -rf dist && pnpm build:dts && pnpm build:esm && pnpm build:cjs",
     "build:dts": "tsc -p tsconfig.build.json --outDir ./dist",
-    "build:esm": "esbuild index.ts --format=esm --outfile=./dist/index.esm.js",
-    "build:cjs": "esbuild index.ts --format=cjs --outfile=./dist/index.cjs.js"
+    "build:esm": "esbuild --bundle index.ts --format=esm --outfile=./dist/index.esm.js --packages=external",
+    "build:cjs": "esbuild --bundle index.ts --format=cjs --outfile=./dist/index.cjs.js --packages=external"
   },
   "dependencies": {
     "@qr-x/core": "workspace:*"
