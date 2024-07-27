@@ -12,9 +12,9 @@ import {
   LinearGradient,
   Stop,
   ClipPath,
+  RadialGradient,
 } from 'react-native-svg'
 import React, { ComponentProps, ReactElement, ReactNode, SVGAttributes, useEffect } from 'react'
-import { RadialGradient } from '@common/stories'
 
 type Props = SvgProps & Options & { brand?: ImageProps | ReactElement }
 
