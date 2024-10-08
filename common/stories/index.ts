@@ -15,7 +15,7 @@ export const meta = {
     shapes: {
       body: {
         control: 'select',
-        options: ['square', 'circle', 'leaf', 'diamond', 'heart', 'triangle'],
+        options: ['square', 'circle', 'leaf', 'diamond', 'heart', 'triangle', 'rounded'],
       },
       eyeball: {
         control: 'select',
