@@ -1,14 +1,14 @@
-type GetPath = (x: number, y: number) => string
+type GetNeighbor = (xOffset:number, yOffset:number) => boolean
+type GetPath = (x: number, y: number, getNeighbor?: GetNeighbor) => string
+type Corner = "topLeft" | "topRight" | "bottomRight" | "bottomLeft"
+type Corners = Record<Corner,string>
+type Side = "top" | "right" | "bottom" | "left"
+type Sides = Record<Side,string>
 
 export const bodyShapes = {
-  circle: ((x, y) => {
-    const r = 0.45
-    return `M ${x + r * 2}, ${y + r} 
-            a ${r},${r} 45 1,0 -${r * 2},0,
-            a ${r},${r} 45 1,0 ${r * 2},0`
-    // rotation 45deg is to smooth the edges of the circle (bug in chromium)
-  }) satisfies GetPath,
-  square: ((x, y) => `M ${x} ${y} h 1 v 1 h -1 v -1`) satisfies GetPath,
+  circle,
+  square,
+  rounded,
   diamond: ((x, y) => `M ${x + 0.5} ${y} l 0.5 0.5 l -0.5 0.5 l -0.5 -0.5 Z`) satisfies GetPath,
   triangle: ((x, y) => `M ${x} ${y + 1} l 0.5 -1 l 0.5 1 Z`) satisfies GetPath,
   heart: ((x, y) => `M ${x + 0.5} ${y + 0.5} 
@@ -40,4 +40,81 @@ export const eyeframeShapes = {
   rounded: `M ${0},${
     0 + 2
   }a2,2,0,0,1,2,-2h3a2,2,0,0,1,2,2v3a2,2,0,0,1,-2,2h-3a2,2,0,0,1,-2,-2v-3zm2,-1a1,1,0,0,0,-1,1v3a1,1,0,0,0,1,1h3a1,1,0,0,0,1,-1v-3a1,1,0,0,0,-1,-1h-3z`,
+}
+
+function rounded(x:number, y:number, getNeighbor?:GetNeighbor) {
+  const leftNeighbor = getNeighbor ? +getNeighbor(-1, 0) : 0;
+  const rightNeighbor = getNeighbor ? +getNeighbor(1, 0) : 0;
+  const topNeighbor = getNeighbor ? +getNeighbor(0, -1) : 0;
+  const bottomNeighbor = getNeighbor ? +getNeighbor(0, 1) : 0;
+
+  const neighborsCount = leftNeighbor + rightNeighbor + topNeighbor + bottomNeighbor;
+
+  if (neighborsCount === 0) {
+      return circle(x, y);
+  }
+
+  if (neighborsCount > 2 || (leftNeighbor && rightNeighbor) || (topNeighbor && bottomNeighbor)) {
+      return square(x, y);
+  }
+
+  if (neighborsCount === 2) {
+      let corner:Corner = "topRight";
+
+      if (leftNeighbor && topNeighbor) {
+          corner = "bottomRight";
+      } else if (topNeighbor && rightNeighbor) {
+          corner = "bottomLeft";
+      } else if (rightNeighbor && bottomNeighbor) {
+          corner = "topLeft";
+      }
+
+      return basicCornerRounded(x, y, corner);
+  }
+
+  if (neighborsCount === 1) {
+      let side:Side = "right";
+
+      if (topNeighbor) {
+          side = "bottom";
+      } else if (rightNeighbor) {
+          side = "left";
+      } else if (bottomNeighbor) {
+          side = "top";
+      }
+
+      return basicSideRounded(x, y, side);
+  }
+  return ``
+}
+
+function circle(x:number, y:number){
+  const r = 0.45
+  return `M ${x + r * 2}, ${y + r} 
+          a ${r},${r} 45 1,0 -${r * 2},0,
+          a ${r},${r} 45 1,0 ${r * 2},0`
+}
+
+function square(x:number, y:number){
+  return `M ${x} ${y} h 1 v 1 h -1 v -1`
+}
+
+function basicCornerRounded(x:number, y:number, corner:Corner) {
+  const corners:Corners = {
+      topLeft: `M ${x + 1} ${y} h -0.5 a 0.5 0.5 0 0 0 -0.5 0.5 v 0.5 h 1 v -1 h -0.5`,
+      topRight: `M ${x} ${y} h 0 v 1 h 1 v -0.5 a 0.5 0.5 0 0 0, -0.5 -0.5 h -0.5`,
+      bottomRight: `M ${x} ${y} h 1 v 0.5 a 0.5 0.5, 0, 0 1, -0.5 0.5 h -0.5`,
+      bottomLeft: `M ${x} ${y} h 1 v 1 h -0.5 a 0.5 0.5 0 0 1 -0.5 -0.5`
+  }
+  return corners[corner]
+}
+
+function basicSideRounded(x:number, y:number, side:Side) {
+  const sides:Sides = {
+      left: `M ${x + 0.5} ${y} h 0.5 v 1 h -0.5 a 0.5 0.5 0 0 1 0 -1`,
+      right: `M ${x} ${y}v 1h 0.5a 0.5 0.5, 0, 0, 0, 0 -1`,
+      top: `M ${x} ${y + 0.5} v 0.5 h 1 v -0.5 a 0.5 0.5 0 0 0 -1 0`,
+      bottom: `M ${x} ${y} h 1 v 0.5 a 0.5 0.5 0 0 1 -1 0`
+  }
+  return sides[side]
 }
