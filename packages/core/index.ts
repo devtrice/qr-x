@@ -13,8 +13,8 @@ type Gradient = ({ type?: 'linear'; rotate?: number } | { type: 'radial'; rotate
 }
 
 export type Excavate = {
-  width:number | string
-  height:number | string
+  width:number
+  height:number
 }
 
 export type Options = {
@@ -115,8 +115,8 @@ function excavateModules(modules:boolean[][], size:number, excavate:Excavate) {
   const scale = length / size;
 
   const { width, height } = excavate; // brand area
-  const w = convertToPixels(width) * scale;
-  const h = convertToPixels(height) * scale;
+  const w = width * scale;
+  const h = height * scale;
   const x = length / 2 - w / 2;
   const y = length / 2 - h / 2;
 
@@ -139,20 +139,3 @@ function excavateModules(modules:boolean[][], size:number, excavate:Excavate) {
     });
   });
 }
-
-const convertToPixels = (value:number | string):number => {
-  if (!isNaN(+value)) {
-    return value as number;
-  }
-
-  const temp = document.createElement('div');
-  temp.style.position = 'absolute';
-  temp.style.visibility = 'hidden';
-  temp.style.width = value.toString();
-  document.body.appendChild(temp);
-
-  const pixels = temp.offsetWidth;
-
-  document.body.removeChild(temp);
-  return pixels;
-};
