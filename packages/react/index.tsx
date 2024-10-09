@@ -17,9 +17,9 @@ function useViewBox() {
   return { ref, size, viewBox: size ? `0 0 ${size.width} ${size.height}` : '' }
 }
 
-export default function QRX({ data, level, brand, shapes, gradient, fillImage, ...rest }: Props) {
+export default function QRX({ data, level, brand, shapes, gradient, fillImage, excavate, ...rest }: Props) {
   const { ref, size, viewBox } = useViewBox()
-  const { id, path, cords, length, $gradient } = getSVGData({ data, level, shapes, gradient })
+  const { id, path, cords, length, $gradient } = getSVGData({ data, level, shapes, gradient, excavate, size:size?.width })
 
   return (
     <svg ref={ref} width='100%' {...rest} viewBox={`0 0 ${length} ${length}`}>
