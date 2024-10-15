@@ -33,9 +33,9 @@
     "storybook": "^7.6.20",
     "storybook-solidjs": "1.0.0-beta.2",
     "storybook-solidjs-vite": "1.0.0-beta.2",
-    "turbo": "2.0.4",
+    "turbo": "2.1.3",
     "typescript": "^5.5.3",
-    "vite": "^5.3.3"
+    "vite": "5.3.3"
   },
   "devDependencies": {
     "@types/node": "^20.14.9",

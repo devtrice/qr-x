@@ -117,15 +117,15 @@ const qrx = createQRX({
 
 # Props
 
-| Name             | Type                                                             | Default    |
-| :--------------- | :--------------------------------------------------------------- | :--------- |
-| data             | `string`                                                         |            |
-| level            | `'L' \| 'M' \|'Q' \| 'H'`                                        | `'L'`      |
-| shapes.body      | `'square' \| 'circle' \| 'leaf' \| 'rounded'`                    | `'square'` |
-| shapes.eyeball   | `'square' \| 'circle' \| 'leaf' \| 'rounded'`                    | `'square'` |
-| shapes.eyeframe  | `'square' \| 'circle' \| 'leaf' \| 'rounded'`                    | `'square'` |
-| gradient.type    | `'linear' \| 'radial'`                                           |            |
-| gradients.colors | `string[] \| {value: string, stop: number}`                      |            |
-| gradients.rotate | `number` (This property only exist if gradient.type is 'radial') | `45`       |
-| fillImage        | `string`                                                         |            |
-| brand            | HTML Img Attributes \| `Element`                                 |            |
+| Name             | Type                                                                                | Default    |
+| :--------------- | :---------------------------------------------------------------------------------- | :--------- |
+| data             | `string`                                                                            |            |
+| level            | `'L' \| 'M' \|'Q' \| 'H'`                                                           | `'L'`      |
+| shapes.body      | `'square' \| 'circle' \| 'leaf' \| 'rounded' \| 'diamond' \| 'triangle' \| 'heart'` | `'square'` |
+| shapes.eyeball   | `'square' \| 'circle' \| 'leaf' \| 'rounded'`                                       | `'square'` |
+| shapes.eyeframe  | `'square' \| 'circle' \| 'leaf' \| 'rounded'`                                       | `'square'` |
+| gradient.type    | `'linear' \| 'radial'`                                                              |            |
+| gradients.colors | `string[] \| {value: string, stop: number}`                                         |            |
+| gradients.rotate | `number` (This property only exist if gradient.type is 'radial')                    | `45`       |
+| fillImage        | `string`                                                                            |            |
+| brand            | HTML Img Attributes \| `Element`                                                    |            |

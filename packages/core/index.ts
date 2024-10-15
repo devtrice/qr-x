@@ -54,8 +54,10 @@ export function getSVGData({ data, shapes, gradient, ...options }: Omit<Options,
           switch (true) {
             case isEyeArea:
               return ''
-            case isON:
-              return bodyShapes[$shapes.body](i, j)
+            case isON:{
+              const getNeighbor = getNeighborHOF(i, j, modules);
+              return bodyShapes[$shapes.body](i,j,getNeighbor);
+            }
             default:
               return ''
           }
@@ -84,5 +86,18 @@ export function getSVGData({ data, shapes, gradient, ...options }: Omit<Options,
     cords: { x: 0, y: 0, width: '100%', height: '100%' },
     length: modules.length,
     $gradient: gradient ? parseGradient({ id: `gradient-${id}`, ...gradient }) : undefined,
+  }
+}
+
+function getNeighborHOF(x:number, y:number, modules:boolean[][]) {
+  return function (
+      xOffset:number, yOffset:number
+  ) {
+      const count = modules.length;
+      const isOn = (r:number, c:number) => modules[r] && modules[r][c];
+      // if outside qr
+      if (x + xOffset < 0 || y + yOffset < 0 || x + xOffset >= count || y + yOffset >= count) return false;
+  
+      return isOn(x+xOffset, y+yOffset);
   }
 }
